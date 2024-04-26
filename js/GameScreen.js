@@ -29,6 +29,7 @@ class GameScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
+        
         //Title
         const text = new Text(145, 43, "Title", 'white', 106,false);
         text.draw(canvas)

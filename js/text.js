@@ -37,7 +37,7 @@ class Text {
         this.w = ctx.measureText(this.text).width / scale;
         this.x = this.x / scale;
         this.y = this.y / scale;
-        
+           
     }
     
     testHit(clickX, clickY) {
