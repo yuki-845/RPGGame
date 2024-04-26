@@ -18,8 +18,11 @@ class TitleScreen {
     } //constructor() 終了
     update(canvas) {
         //画像などを画面に表示するためのメソッドを呼び出す
-        this.draw(canvas);
-        //スプライトを動かしたり、なにかのきっかけでイベントを発生させたりするために使うメソッドを呼び出す
+        if(!IsNewGameOR.isclick) {
+            this.draw(canvas);
+        }
+        
+        //スプライトを動かしたり,なにかのきっかけでイベントを発生させたりするために使うメソッドを呼び出す
     } //update() 終了
 
     draw(canvas) {
@@ -38,7 +41,7 @@ class TitleScreen {
         text.draw(canvas)
 
         //'New Game'テキスト
-        if(ISCLICK ) {
+        if(IsNewGameOR.isclick && IsNewGameOR.text == "New Game") {
             const newgame = new Text(558, 397, "New Game", 'red', 106,false)
             newgame.draw(canvas)
             items.push(newgame);
@@ -49,9 +52,16 @@ class TitleScreen {
         }
         
         // 'LoadGame’　テキスト
-        const loadgame = new Text(558, 553, "Load Game", 'white', 106,false)
-        loadgame.draw(canvas)
-        items.push(loadgame);
+        if(IsNewGameOR.isclick && IsNewGameOR.text == "Load Game") {
+            const loadgame = new Text(558, 553, "Load Game", 'red', 106,false)
+            loadgame.draw(canvas)
+            items.push(loadgame);
+        }else {
+            const loadgame = new Text(558, 553, "Load Game", 'white', 106,false)
+            loadgame.draw(canvas)
+            items.push(loadgame);
+        }
+        
 
 
         canvas.addEventListener('click', function (event) {
@@ -62,7 +72,8 @@ class TitleScreen {
             items.forEach(item => {
                 if (item.testHit(clickX, clickY)) {
                     
-                    console.log("csddscssdcds")
+                    IsNewGameOR.text = item.text;
+                    IsNewGameOR.isclick = true;
                 }
             });
         });

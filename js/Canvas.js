@@ -63,7 +63,6 @@ class Game {
 			this.objs[i].update( this.canvas );
 		}
         
-
 		//自分自身（_mainLoop）を呼び出して、ループさせる
 		requestAnimationFrame( this._mainLoop.bind( this ) );
 	} //_mainLoop() 終了
