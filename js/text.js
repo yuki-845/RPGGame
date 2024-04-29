@@ -21,23 +21,23 @@ class Text {
         this.h = 0;
         this.ismouse = ismouse
 	} //constructor() 終了
-    draw (canvas) {
+    draw (ctx) {
         
-        var ctx = canvas.getContext("2d");
+       
         this.x = aspect(this.x)
         this.y = aspect(this.y)
         ctx.beginPath();
         ctx.globalAlpha = 1.0;
         ctx.font = aspect(this.fontsize) +'px ヒラギノ明朝 ProN';
         ctx.fillStyle = this.color;
-        ctx.fillText(this.text, this.x, this.y + this.fontsize);
+        ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();
         const scale = window.devicePixelRatio || 1;
-        this.h = this.fontsize / scale;
-        this.w = ctx.measureText(this.text).width / scale;
-        this.x = this.x / scale;
-        this.y = this.y / scale;
-           
+        this.h = this.fontsize;
+        this.w = ctx.measureText(this.text).width;
+        this.x = this.x 
+        this.y = this.y
+
     }
     
     testHit(clickX, clickY) {
