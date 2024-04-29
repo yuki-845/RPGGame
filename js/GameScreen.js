@@ -1,4 +1,5 @@
 'use strict'
+const mainCharacter = new Sprite( 'img/MainCharacter.png' );
 class GameScreen {
 
     /**
@@ -12,8 +13,7 @@ class GameScreen {
         this.height = height
     } //constructor() 終了
     
-
-    draw(ctx) {
+    draw(ctx,canvas) {
         
         // Titleの背景
         ctx.beginPath()
@@ -21,10 +21,12 @@ class GameScreen {
         ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
-
         //Title
         const text = new Text(145, 43, "Title", 'white', 106,false);
-        text.draw(canvas)
+        text.draw(ctx)
+        mainCharacter.draw(ctx);
+        
+        
     }
 }
 

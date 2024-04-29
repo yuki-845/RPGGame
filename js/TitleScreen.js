@@ -56,7 +56,8 @@ class TitleScreen {
                 items.forEach(item => {
                     if (item.testHit(clickX, clickY)) {
                         console.log(item)
-                        
+                        //GameScreenに切り替わる
+                        IsGameScreen.isclick = true;
                         IsNewGameOR.text = item.text;
                         IsNewGameOR.isclick = true;
                         items = [];

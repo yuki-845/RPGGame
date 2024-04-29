@@ -32,7 +32,7 @@ class Text {
         ctx.fillStyle = this.color;
         ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();
-        const scale = window.devicePixelRatio || 1;
+        
         this.h = this.fontsize;
         this.w = ctx.measureText(this.text).width;
         this.x = this.x 

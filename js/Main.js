@@ -28,21 +28,43 @@ addEventListener('load', () => {
 		const image = new Image();
 		image.src = 'img/character.png'
         const titlescreen = new TitleScreen(screenWidth, screenHeight);
+        const gamescreen = new GameScreen(screenWidth, screenHeight);
+        let isMouseDown = false;
+        canvas.addEventListener('mousedown', function(event) {
+            isMouseDown = true;
+            console.log("押されています")
+        })
+        canvas.addEventListener('mouseup', function(event) {
+            isMouseDown = false;
+            // マウスが離されたときの処理
+            console.log("ボタンが話されました")
+        });
         
+        canvas.addEventListener('mousemove', function(event) {
+            // マウスがクリックされている間のみ処理を行う && GameScreenの画面のときだけキャラクターを動かす
+            if (isMouseDown && IsGameScreen.isclick) {
+
+                mainCharacter.x += 2;
+                console.log("ボタンが押されたままマウスが移動しています")
+            }
+        });
         const draw = () => {
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-        
+            
             if(!IsNewGameOR.isclick) {
                 titlescreen.draw(ctx,canvas)
+            }
+            if(IsGameScreen.isclick) {
+                gamescreen.draw(ctx,canvas)
             }
             
 			
         };
 
         // 60fpsで描画を更新する
-        setInterval(draw, 1000 / 60);
+        setInterval(draw, 1000 / 30);
     };
 
     main();

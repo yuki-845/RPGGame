@@ -8,4 +8,7 @@ let IsNewGameOR = {
     text: "",
     isclick: false,
 }
+let IsGameScreen = {
+    isclick: false
+}
 
