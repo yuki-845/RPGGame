@@ -44,8 +44,11 @@ addEventListener('load', () => {
             // マウスがクリックされている間のみ処理を行う && GameScreenの画面のときだけキャラクターを動かす
             if (isMouseDown && IsGameScreen.isclick) {
 
-                mainCharacter.x += 2;
-                console.log("ボタンが押されたままマウスが移動しています")
+                const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+                const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+                
+                // キャラクターをマウスの位置に追跡させる
+                mainCharacter.moveTowardsMouse(mouseX, mouseY);
             }
         });
         const draw = () => {
