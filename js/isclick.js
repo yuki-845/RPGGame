@@ -12,3 +12,6 @@ let IsGameScreen = {
     isclick: false
 }
 
+let IsBattleScreen = {
+    isclick: false
+}

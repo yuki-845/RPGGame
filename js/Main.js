@@ -29,6 +29,9 @@ addEventListener('load', () => {
 		image.src = 'img/character.png'
         const titlescreen = new TitleScreen(screenWidth, screenHeight);
         const gamescreen = new GameScreen(screenWidth, screenHeight);
+        const battlescreen = new BattleScreen(
+            screenWidth, screenHeight
+        )
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function(event) {
             isMouseDown = true;
@@ -59,9 +62,17 @@ addEventListener('load', () => {
             if(!IsNewGameOR.isclick) {
                 titlescreen.draw(ctx,canvas)
             }
+
+            
             if(IsGameScreen.isclick) {
                 gamescreen.draw(ctx,canvas)
             }
+
+
+            if(IsBattleScreen.isclick) {
+                battlescreen.draw(ctx,canvas)
+            }
+
             
 			
         };

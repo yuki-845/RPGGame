@@ -10,7 +10,7 @@ class Text {
 	 * width : ゲームの横幅
 	 * height : ゲームの縦幅
 	 */
-	constructor( x, y , text, color, fontsize ,ismouse ) {
+	constructor( x, y , text, color, fontsize ,ismouse ,weight) {
 		//canvas要素を作成
         this.x = x;
         this.y = y;
@@ -20,6 +20,7 @@ class Text {
         this.w = 0;
         this.h = 0;
         this.ismouse = ismouse
+        this.weight = weight || 'normal'
 	} //constructor() 終了
     draw (ctx) {
         
@@ -28,7 +29,7 @@ class Text {
         this.y = aspect(this.y)
         ctx.beginPath();
         ctx.globalAlpha = 1.0;
-        ctx.font = aspect(this.fontsize) +'px ヒラギノ明朝 ProN';
+        ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px ヒラギノ明朝 ProN';
         ctx.fillStyle = this.color;
         ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();
