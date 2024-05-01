@@ -10,46 +10,68 @@ addEventListener('load', () => {
      */
     const main = () => {
         const canvas = document.createElement("canvas");
-		const scale = window.devicePixelRatio || 1;
-		canvas.width = screenWidth * scale;
-		canvas.height = screenHeight * scale;
-		
+        const scale = window.devicePixelRatio || 1;
+        canvas.width = screenWidth * scale;
+        canvas.height = screenHeight * scale;
+
 
         document.getElementById("app").appendChild(canvas);
         const ctx = canvas.getContext("2d");
-		ctx.scale(scale, scale);
-		canvas.style.width = screenWidth + 'px';
-		canvas.style.height = screenHeight + 'px';
+        ctx.scale(scale, scale);
+        canvas.style.width = screenWidth + 'px';
+        canvas.style.height = screenHeight + 'px';
 
-		// 画面を白色で塗りつぶす
-		ctx.fillStyle = '#ffffff';
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // 画面を白色で塗りつぶす
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-		const image = new Image();
-		image.src = 'img/character.png'
+        const image = new Image();
+        image.src = 'img/character.png'
         const titlescreen = new TitleScreen(screenWidth, screenHeight);
         const gamescreen = new GameScreen(screenWidth, screenHeight);
         const battlescreen = new BattleScreen(
             screenWidth, screenHeight
         )
+        canvas.addEventListener('click', function (event) {
+            // クリックされた座標を取得
+            const clickX = event.clientX - canvas.getBoundingClientRect().left;
+            const clickY = event.clientY - canvas.getBoundingClientRect().top;
+            // テキストの領域内でクリックされたかどうかを判定
+            clickItems.forEach(item => {
+                if (item.testHit(clickX, clickY)) {
+                    //GameScreenに切り替わる
+                    if (!IsNewGameOR.isclick) {
+                        IsGameScreen.isclick = true;
+                        IsNewGameOR.text = item.text;
+                        IsNewGameOR.isclick = true;
+                        clickItems = [];
+                    }
+                    //BattleScreen内でのclickイベント
+                    if (IsBattleScreen.isclick && item.text == "S") {
+                        battlescreen.isSkill = true;
+                    }
+                }
+            });
+
+        });
         let isMouseDown = false;
-        canvas.addEventListener('mousedown', function(event) {
+        canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
             console.log("押されています")
         })
-        canvas.addEventListener('mouseup', function(event) {
+        canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
             console.log("ボタンが話されました")
         });
-        
-        canvas.addEventListener('mousemove', function(event) {
+
+        canvas.addEventListener('mousemove', function (event) {
             // マウスがクリックされている間のみ処理を行う && GameScreenの画面のときだけキャラクターを動かす
             if (isMouseDown && IsGameScreen.isclick) {
 
                 const mouseX = event.clientX - canvas.getBoundingClientRect().left;
                 const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-                
+
                 // キャラクターをマウスの位置に追跡させる
                 mainCharacter.moveTowardsMouse(mouseX, mouseY);
             }
@@ -57,24 +79,58 @@ addEventListener('load', () => {
         const draw = () => {
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            
-            if(!IsNewGameOR.isclick) {
-                titlescreen.draw(ctx,canvas)
-            }
 
-            
-            if(IsGameScreen.isclick) {
-                gamescreen.draw(ctx,canvas)
+
+            if (!IsNewGameOR.isclick) {
+                titlescreen.draw(ctx, canvas)
             }
 
 
-            if(IsBattleScreen.isclick) {
-                battlescreen.draw(ctx,canvas)
+            if (IsGameScreen.isclick) {
+                gamescreen.draw(ctx, canvas)
             }
 
-            
-			
+
+            if (IsBattleScreen.isclick) {
+                
+                battlescreen.draw(ctx, canvas);
+
+                
+        
+                if (battlescreen.isSkill) {
+
+                    // 線のアニメーション
+                    const mx1 = (aspect(90) - battlescreen.mx1) / 4;
+                    const my1 = (aspect(76) - battlescreen.my1) / 4;
+                    battlescreen.mx1 += mx1;
+                    battlescreen.my1 += my1;
+
+                    const tx1 = (aspect(377) - battlescreen.tx1) / 4;
+                    const ty1 = (aspect(1079) - battlescreen.ty1) / 4;
+                    battlescreen.tx1 += tx1;
+                    battlescreen.ty1 += ty1;
+
+                    const mx2 = (aspect(23) - battlescreen.mx2) / 4;
+                    const my2 = (aspect(390) - battlescreen.my2) / 4;
+                    battlescreen.mx2 += mx2;
+                    battlescreen.my2 += my2;
+
+                    const tx2 = (aspect(684) - battlescreen.tx2) / 4;
+                    const ty2 = (aspect(178) - battlescreen.ty2) / 4;
+                    battlescreen.tx2 += tx2;
+                    battlescreen.ty2 += ty2;
+
+                    //テキスト"S"のアニメーション
+
+                   
+                    
+                }
+
+
+            }
+
+
+
         };
 
         // 60fpsで描画を更新する

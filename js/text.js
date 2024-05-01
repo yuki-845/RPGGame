@@ -10,7 +10,7 @@ class Text {
 	 * width : ゲームの横幅
 	 * height : ゲームの縦幅
 	 */
-	constructor( x, y , text, color, fontsize ,ismouse ,weight) {
+	constructor( x, y , text, color, fontsize ,ismouse ,weight,angle) {
 		//canvas要素を作成
         this.x = x;
         this.y = y;
@@ -21,13 +21,18 @@ class Text {
         this.h = 0;
         this.ismouse = ismouse
         this.weight = weight || 'normal'
+        this.angle = angle;
 	} //constructor() 終了
     draw (ctx) {
         
        
         this.x = aspect(this.x)
         this.y = aspect(this.y)
-        ctx.beginPath();
+        ctx.save();
+        // let angleInRadians = this.angle * Math.PI / 180; // 45度の角度をラジアンに変換
+        
+
+        // ctx.rotate(angleInRadians); // 角度を回転
         ctx.globalAlpha = 1.0;
         ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px ヒラギノ明朝 ProN';
         ctx.fillStyle = this.color;
@@ -36,9 +41,8 @@ class Text {
         
         this.h = this.fontsize;
         this.w = ctx.measureText(this.text).width;
-        this.x = this.x 
-        this.y = this.y
-
+        
+        ctx.restore();
     }
     
     testHit(clickX, clickY) {
