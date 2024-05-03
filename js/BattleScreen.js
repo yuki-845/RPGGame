@@ -194,6 +194,11 @@ class BattleScreen {
             // スキル名テキスト
             const fire = new Text(573, 289, "ファイヤ", 'white', 41, false, 'normal');
             fire.draw(ctx);
+            ctx.fillStyle = 'white';
+            fillRoundRect(ctx, aspect(768), aspect(290), aspect(117), aspect(41), 10);
+            const sp = new Text(788, 295, "3 SP", '#333DBC', 31, false, 'normal');
+            sp.draw(ctx);
+
 
 
             // キャラクター画像
