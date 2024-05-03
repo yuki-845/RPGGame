@@ -28,7 +28,7 @@ class Text {
        
         this.x = aspect(this.x)
         this.y = aspect(this.y)
-        ctx.save();
+        ctx.beginPath();
         // let angleInRadians = this.angle * Math.PI / 180; // 45度の角度をラジアンに変換
         
 
@@ -42,7 +42,7 @@ class Text {
         this.h = this.fontsize;
         this.w = ctx.measureText(this.text).width;
         
-        ctx.restore();
+        
     }
     
     testHit(clickX, clickY) {

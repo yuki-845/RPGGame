@@ -39,8 +39,6 @@ class Sprite {
 		const _frameX = this.frame % ( this.img.width / this.width );
 		const _frameY = ~~( this.frame / ( this.img.width / this.width ) );
 
-		
-		
 		//画家さんに、絵を描いてとお願いする
 		ctx.drawImage(
 			this.img,

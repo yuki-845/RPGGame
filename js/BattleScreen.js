@@ -46,7 +46,28 @@ class BattleScreen {
 
 
         // キャラクターのシャドーを描画
-        ctx.drawImage(characterShadowImage, aspect(21), aspect(156), aspect(495), aspect(882));
+        
+        if (this.isSkill) {
+            ctx.beginPath();
+            ctx.globalAlpha = 1;
+            ctx.moveTo(aspect(236.5), 0); // 始点
+            ctx.lineTo(aspect(1053), 0); // 右上
+            ctx.lineTo(aspect(775), aspect(1080)); // 右下
+            ctx.lineTo(-46,aspect(1080)); // 左下
+            ctx.closePath(); // パスを閉じる
+            ctx.fillStyle = '#0316A7'; // 色の指定
+            ctx.fill(); // 塗りつぶし
+
+            //SKILL テキスト
+            const SKILL = new Text(251, -11, "SKILL", 'white', 217, false, 'bold');
+            SKILL.draw(ctx);
+
+            // 
+
+        }
+        // Atackボタン
+        if (!this.isSkill) {
+            ctx.drawImage(characterShadowImage, aspect(-22), aspect(105), aspect(683), aspect(1217));
         // テキストを描画
 
         // Skillボタン
@@ -57,26 +78,6 @@ class BattleScreen {
         // killテキスト
         const kill = new Text(this.killx, this.killy, "kill", '#073545', 52, false, 'normal', this.killangle);
         kill.draw(ctx);
-        if (this.isSkill) {
-            const Sx = (140.59 - this.Sx) / 4;
-            const Sy = (20.52 - this.Sy) / 4;
-            this.Sx += Sx;
-            this.Sy += Sy;
-
-            //テキスト"kill"のアニメーション
-
-            const killx = (285.59 - this.killx) / 4;
-            const killy = (219.52 - this.killy) / 4;
-
-            this.killx += killx
-            this.killy += killy
-
-            console.log(this.killx, this.killy);
-            const Back = new Text(90, 942, "Back", 'white', 105, false, 'normal');
-            Back.draw(ctx);
-        }
-        // Atackボタン
-        if (!this.isSkill) {
             const Atack = new Text(399, 375, "A", 'white', 297, false, 'bold');
             Atack.draw(ctx);
             clickItems.push(Atack);
@@ -91,20 +92,21 @@ class BattleScreen {
             // uardテキスト
             const uard = new Text(397, 890, "uard", '#073545', 52, false);
             uard.draw(ctx);
+             // 線を描画
+            ctx.strokeStyle = "white";
+            ctx.beginPath();
+            ctx.globalAlpha = 1;
+            ctx.moveTo(this.mx1, this.my1);
+            ctx.lineTo(this.tx1, this.ty1);
+            ctx.stroke();
+
+            ctx.strokeStyle = "white";
+            ctx.beginPath();
+            ctx.moveTo(this.mx2, this.my2);
+            ctx.lineTo(this.tx2, this.ty2);
+            ctx.stroke();
         }
 
-        // 線を描画
-        ctx.strokeStyle = "white";
-        ctx.beginPath();
-        ctx.globalAlpha = 1;
-        ctx.moveTo(this.mx1, this.my1);
-        ctx.lineTo(this.tx1, this.ty1);
-        ctx.stroke();
-
-        ctx.strokeStyle = "white";
-        ctx.beginPath();
-        ctx.moveTo(this.mx2, this.my2);
-        ctx.lineTo(this.tx2, this.ty2);
-        ctx.stroke();
+       
     }
 }

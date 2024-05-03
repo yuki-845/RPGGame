@@ -99,29 +99,7 @@ addEventListener('load', () => {
         
                 if (battlescreen.isSkill) {
 
-                    // 線のアニメーション
-                    const mx1 = (aspect(90) - battlescreen.mx1) / 4;
-                    const my1 = (aspect(76) - battlescreen.my1) / 4;
-                    battlescreen.mx1 += mx1;
-                    battlescreen.my1 += my1;
-
-                    const tx1 = (aspect(377) - battlescreen.tx1) / 4;
-                    const ty1 = (aspect(1079) - battlescreen.ty1) / 4;
-                    battlescreen.tx1 += tx1;
-                    battlescreen.ty1 += ty1;
-
-                    const mx2 = (aspect(23) - battlescreen.mx2) / 4;
-                    const my2 = (aspect(390) - battlescreen.my2) / 4;
-                    battlescreen.mx2 += mx2;
-                    battlescreen.my2 += my2;
-
-                    const tx2 = (aspect(684) - battlescreen.tx2) / 4;
-                    const ty2 = (aspect(178) - battlescreen.ty2) / 4;
-                    battlescreen.tx2 += tx2;
-                    battlescreen.ty2 += ty2;
-
-                    //テキスト"S"のアニメーション
-
+                    
                    
                     
                 }
