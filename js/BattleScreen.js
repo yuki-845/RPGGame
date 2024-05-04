@@ -282,18 +282,14 @@ class BattleScreen {
 
         //アニメーション
         if (encoutnanimation.animation) {
+            
             encoutnanimation.draw(ctx)
             encoutnanimation.lineheight += screenHeight / 10
             encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
 
 
-            
-            ctx.beginPath()
-            ctx.globalAlpha = 1;
-            ctx.fillStyle = '#3405FC'; // 四角形の塗りつぶし色
 
-            ctx.fillRect(0, (screenHeight / 2) - this.lineheight / 2, this.linewidth, this.lineheight); // (x, y, width, height)
-            ctx.fill();
+            
         }
     }
 }

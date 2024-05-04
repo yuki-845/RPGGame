@@ -39,10 +39,17 @@ class GameScreen {
             if(encoutnanimation.linewidth >= screenWidth * 4) {
                 encoutnanimation.lineheight += screenHeight / 10
                 encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
-                if(encoutnanimation.lineheight >= screenHeight / 1.4) {
+                if(encoutnanimation.lineheight >= screenHeight / 1.2) {
                     IsGameScreen.isclick = false;
                     IsBattleScreen.isclick = true;
+                    
                 }
+                if(encoutnanimation.lineheight >= screenHeight / 2) {
+                    encoutnanimation.whiteRec = true;
+                }
+            }
+            if(encoutnanimation.whiteRec) {
+                
             }
         }
 
