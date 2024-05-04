@@ -282,14 +282,29 @@ class BattleScreen {
 
         //アニメーション
         if (encoutnanimation.animation) {
-            
+
             encoutnanimation.draw(ctx)
             encoutnanimation.lineheight += screenHeight / 10
             encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
+            encoutnanimation.whiteLineHeight += screenHeight / 8
+            if (encoutnanimation.whiteLineHeight >= screenHeight * 0.7) {
+                encoutnanimation.isblue = false;
+                encoutnanimation.alpha -= 0.2
+
+                if (encoutnanimation.alpha < 0) {
+                    console.log("真っ白になっちまったよ")
+                    encoutnanimation.animation = false;
+                    encoutnanimation.linewidth = 0
+                    encoutnanimation.lineheight = 2
+                    encoutnanimation.animation = false;
+                    encoutnanimation.whiteRec = false;
+                    encoutnanimation.whiteLineHeight = 10;
+                    encoutnanimation.alpha = 1;
+                    encoutnanimation.isblue = true
+                }
+            }
 
 
-
-            
         }
     }
 }

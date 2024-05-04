@@ -35,7 +35,7 @@ class GameScreen {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);
             encoutnanimation.linewidth += screenWidth / 5;
-            console.log(encoutnanimation.linewidth);
+            
             if(encoutnanimation.linewidth >= screenWidth * 4) {
                 encoutnanimation.lineheight += screenHeight / 10
                 encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
@@ -49,7 +49,7 @@ class GameScreen {
                 }
             }
             if(encoutnanimation.whiteRec) {
-                
+                encoutnanimation.whiteLineHeight += screenHeight / 9
             }
         }
 
