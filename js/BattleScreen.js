@@ -1,8 +1,15 @@
 'use strict';
+// 音量調整変数
 
+let volume = 0.5
 let characterShadowImage = new Image();
 
 characterShadowImage.src = 'img/shadowCharacter.png'; // 画像のパスを指定してください
+let audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
+audio.loop = true;
+audio.currentTime = 2;
+audio.volume = volume;
+
 /**
  * 角が丸い四角形のパスを作成する
  * @param  {CanvasRenderingContext2D} ctx コンテキスト
@@ -118,7 +125,7 @@ function strokeBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
 }
 
 class BattleScreen {
-
+    
     constructor(width, height) {
         this.width = width;
         this.height = height;
@@ -128,7 +135,7 @@ class BattleScreen {
     }
 
     draw(ctx, canvas) {
-
+        audio.play();
         ctx.beginPath();
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
