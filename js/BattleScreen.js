@@ -16,13 +16,13 @@ function createRoundRectPath(ctx, x, y, w, h, r) {
     ctx.beginPath();
     ctx.moveTo(x + r, y);
     ctx.lineTo(x + w - r, y);
-    ctx.arc(x + w - r, y + r, r, Math.PI * (3/2), 0, false);
+    ctx.arc(x + w - r, y + r, r, Math.PI * (3 / 2), 0, false);
     ctx.lineTo(x + w, y + h - r);
-    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * (1/2), false);
-    ctx.lineTo(x + r, y + h);       
-    ctx.arc(x + r, y + h - r, r, Math.PI * (1/2), Math.PI, false);
+    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * (1 / 2), false);
+    ctx.lineTo(x + r, y + h);
+    ctx.arc(x + r, y + h - r, r, Math.PI * (1 / 2), Math.PI, false);
     ctx.lineTo(x, y + r);
-    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * (3/2), false);
+    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * (3 / 2), false);
     ctx.closePath();
 }
 
@@ -51,7 +51,7 @@ function fillRoundRect(ctx, x, y, w, h, r) {
  */
 function strokeRoundRect(ctx, x, y, w, h, r) {
     createRoundRectPath(ctx, x, y, w, h, r);
-    ctx.stroke();       
+    ctx.stroke();
 }
 
 /**
@@ -70,16 +70,16 @@ function createBalloonRoundRectPath(ctx, x, y, w, h, r, bl, br, bh) {
     ctx.beginPath();
     ctx.moveTo(x + r, y);
     ctx.lineTo(x + w - r, y);
-    ctx.arc(x + w - r, y + r, r, Math.PI * (3/2), 0, false);
+    ctx.arc(x + w - r, y + r, r, Math.PI * (3 / 2), 0, false);
     ctx.lineTo(x + w, y + h - r);
-    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * (1/2), false);        
+    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * (1 / 2), false);
     ctx.lineTo(x + br, y + h);
     ctx.lineTo(x + (br + bl) / 2, y + h + bh);
     ctx.lineTo(x + bl, y + h);
     ctx.lineTo(x + r, y + h);
-    ctx.arc(x + r, y + h - r, r, Math.PI * (1/2), Math.PI, false);
+    ctx.arc(x + r, y + h - r, r, Math.PI * (1 / 2), Math.PI, false);
     ctx.lineTo(x, y + r);
-    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * (3/2), false);
+    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * (3 / 2), false);
     ctx.closePath();
 }
 
@@ -97,7 +97,7 @@ function createBalloonRoundRectPath(ctx, x, y, w, h, r, bl, br, bh) {
  */
 function fillBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
     createBalloonRoundRectPath(ctx, x, y, w, h, r, bl, br, bh);
-    ctx.fill();     
+    ctx.fill();
 }
 
 /**
@@ -114,7 +114,7 @@ function fillBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
  */
 function strokeBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
     createBalloonRoundRectPath(ctx, x, y, w, h, r, bl, br, bh);
-    ctx.stroke();       
+    ctx.stroke();
 }
 
 class BattleScreen {
@@ -151,7 +151,7 @@ class BattleScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
-     
+
 
 
 
@@ -159,15 +159,15 @@ class BattleScreen {
 
 
         // キャラクターのシャドーを描画
-        
+
         if (this.isSkill) {
-             // Skillの背景２
+            // Skillの背景２
             ctx.beginPath();
             ctx.globalAlpha = 0.7;
-            ctx.moveTo(aspect(300), 0); // 始点
-            ctx.lineTo(aspect(1139), 0); // 右上
-            ctx.lineTo(aspect(856), aspect(1080)); // 右下
-            ctx.lineTo(-46,aspect(1080)); // 左下
+            ctx.moveTo(aspect(1045), 0); // 始点
+            ctx.lineTo(aspect(1201), 0); // 右上
+            ctx.lineTo(aspect(1201), aspect(1080)); // 右下
+            ctx.lineTo(aspect(762), aspect(1080)); // 左下
             ctx.closePath(); // パスを閉じる
             ctx.fillStyle = '#00AEEB'; // 色の指定
             ctx.fill(); // 塗りつぶし
@@ -175,56 +175,60 @@ class BattleScreen {
             //Skillの背景1
             ctx.beginPath();
             ctx.globalAlpha = 1;
-            ctx.moveTo(aspect(236.5), 0); // 始点
-            ctx.lineTo(aspect(1053), 0); // 右上
-            ctx.lineTo(aspect(775), aspect(1080)); // 右下
-            ctx.lineTo(-46,aspect(1080)); // 左下
+            ctx.moveTo(aspect(1134), 0); // 始点
+            ctx.lineTo(aspect(1920), 0); // 右上
+            ctx.lineTo(aspect(1647), aspect(1080)); // 右下
+            ctx.lineTo(aspect(861), aspect(1080)); // 左下
             ctx.closePath(); // パスを閉じる
             ctx.fillStyle = '#0316A7'; // 色の指定
             ctx.fill(); // 塗りつぶし
-           
+
 
             // マウスが触れたときの線
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = '#104CD3'; // 四角形の塗りつぶし色
-            ctx.fillRect(aspect(-147), aspect(276), aspect(2100), aspect(68)) // (x, y, width, height)
+            ctx.fillRect(aspect(-147), aspect(338), aspect(2100), aspect(68)) // (x, y, width, height)
             ctx.fill();
 
             // スキル名テキスト
-            const fire = new Text(573, 289, "ファイヤ", 'white', 41, false, 'normal');
+            const fire = new Text(1304, 348, "ファイヤ", 'white', 41, false, 'normal');
             fire.draw(ctx);
             ctx.fillStyle = 'white';
-            fillRoundRect(ctx, aspect(768), aspect(290), aspect(117), aspect(41), 10);
-            const sp = new Text(788, 295, "3 SP", '#333DBC', 31, false, 'normal');
+            fillRoundRect(ctx, aspect(1494), aspect(352), aspect(117), aspect(41), 10);
+            const sp = new Text(1514, 353, "3 SP", '#333DBC', 31, false, 'normal');
             sp.draw(ctx);
 
 
 
-            // キャラクター画像
-            ctx.drawImage(characterShadowImage, aspect(-199.97), aspect(179.1), aspect(604), aspect(1077));
-            //SKILL テキスト
-            const SKILL = new Text(251, -40, "SKILL", 'white', 217, false, 'bold');
-            SKILL.draw(ctx);
 
+            // キャラクター画像
+            ctx.globalAlpha = 1;
+            ctx.drawImage(characterShadowImage, aspect(1423), aspect(129), aspect(604), aspect(1077));
+
+
+
+            //SKILL テキスト
+            const SKILL = new Text(1227, -40, "SKILL", 'white', 217, false, 'bold');
+            SKILL.draw(ctx);
             // Back テキスト
-            const BACK = new Text(0, 935, "BACK", 'white', 145, false, 'bold');
+            const BACK = new Text(892, 932, "BACK", 'white', 145, false, 'bold');
             BACK.draw(ctx);
 
         }
         // Atackボタン
         if (!this.isSkill) {
             ctx.drawImage(characterShadowImage, aspect(-22), aspect(105), aspect(683), aspect(1217));
-        // テキストを描画
+            // テキストを描画
 
-        // Skillボタン
-        const Skill = new Text(this.Sx, this.Sy, "S", 'white', 297, false, 'bold', this.angle);
-        Skill.draw(ctx);
-        clickItems.push(Skill);
+            // Skillボタン
+            const Skill = new Text(this.Sx, this.Sy, "S", 'white', 297, false, 'bold', this.angle);
+            Skill.draw(ctx);
+            clickItems.push(Skill);
 
-        // killテキスト
-        const kill = new Text(this.killx, this.killy, "kill", '#073545', 52, false, 'normal', this.killangle);
-        kill.draw(ctx);
+            // killテキスト
+            const kill = new Text(this.killx, this.killy, "kill", '#073545', 52, false, 'normal', this.killangle);
+            kill.draw(ctx);
             const Atack = new Text(399, 375, "A", 'white', 297, false, 'bold');
             Atack.draw(ctx);
             clickItems.push(Atack);
@@ -239,7 +243,7 @@ class BattleScreen {
             // uardテキスト
             const uard = new Text(397, 890, "uard", '#073545', 52, false);
             uard.draw(ctx);
-             // 線を描画
+            // 線を描画
             ctx.strokeStyle = "white";
             ctx.beginPath();
             ctx.globalAlpha = 1;
@@ -254,6 +258,26 @@ class BattleScreen {
             ctx.stroke();
         }
 
-       
+        //キャラクター　四角形
+        ctx.beginPath();
+        ctx.globalAlpha = 0.6;
+        ctx.moveTo(aspect(1532), aspect(652)); // 始点
+        ctx.lineTo(aspect(1920), aspect(652)); // 右上
+        ctx.lineTo(aspect(1884), aspect(822)); // 右下
+        ctx.lineTo(aspect(1497), aspect(822)); // 左下
+        ctx.closePath(); // パスを閉じる
+        ctx.fillStyle = '#0316FA'; // 色の指定
+        ctx.fill(); // 塗りつぶし
+
+        ctx.beginPath();
+        ctx.globalAlpha = 0.6;
+        ctx.moveTo(aspect(1532), aspect(854)); // 始点
+        ctx.lineTo(aspect(1920), aspect(854)); // 右上
+        ctx.lineTo(aspect(1884), aspect(1024)); // 右下
+        ctx.lineTo(aspect(1497), aspect(1024)); // 左下
+        ctx.closePath(); // パスを閉じる
+        ctx.fillStyle = '#0316FA'; // 色の指定
+        ctx.fill(); // 塗りつぶし
+
     }
 }
