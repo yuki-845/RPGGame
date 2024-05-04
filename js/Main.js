@@ -1,7 +1,6 @@
 'use strict';
 
-let screenWidth = 960;
-let screenHeight = 540;
+
 
 // ページの読み込みが完了した後に処理を実行
 addEventListener('load', () => {

@@ -122,42 +122,18 @@ class BattleScreen {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.isSkill = false;
+        
+        
 
-        this.mx1 = aspect(67);
-        this.my1 = aspect(223);
-        this.tx1 = aspect(700);
-        this.ty1 = aspect(856);
-
-        this.mx2 = aspect(21.5);
-        this.my2 = aspect(802);
-        this.tx2 = aspect(633);
-        this.ty2 = aspect(191);
-
-        this.angle = 0;
-
-        this.Sx = 267;
-        this.Sy = 77
-
-        this.killx = 397
-        this.killy = 285
-        this.killangle = 0;
     }
 
     draw(ctx, canvas) {
 
         ctx.beginPath();
-        ctx.globalAlpha = 0.4;
+        ctx.globalAlpha = 1;
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
-
-
-
-
-
-
-
 
         // キャラクターのシャドーを描画
 
@@ -217,45 +193,49 @@ class BattleScreen {
             BACK.draw(ctx);
 
         }
-        // Atackボタン
+
         if (!this.isSkill) {
-            ctx.drawImage(characterShadowImage, aspect(-22), aspect(105), aspect(683), aspect(1217));
+
+
+            ctx.drawImage(characterShadowImage, aspect(936), aspect(91), aspect(683), aspect(1217));
             // テキストを描画
 
             // Skillボタン
-            const Skill = new Text(this.Sx, this.Sy, "S", 'white', 297, false, 'bold', this.angle);
+            const Skill = new Text(1206, 108, "S", 'white', 297, false, 'bold');
             Skill.draw(ctx);
             clickItems.push(Skill);
 
             // killテキスト
-            const kill = new Text(this.killx, this.killy, "kill", '#073545', 52, false, 'normal', this.killangle);
+            const kill = new Text(1340, 316, "kill", '#073545', 52, false, 'normal', this.killangle);
             kill.draw(ctx);
-            const Atack = new Text(399, 375, "A", 'white', 297, false, 'bold');
+            
+            // Atackボタン
+            const Atack = new Text(1411, 312, "A", 'white', 297, false, 'bold');
             Atack.draw(ctx);
             clickItems.push(Atack);
             // tackテキスト
-            const tack = new Text(552, 620, "tack", '#073545', 52, false);
+            const tack = new Text(1579, 553, "tack", '#073545', 52, false);
             tack.draw(ctx);
 
             // Guardボタン
-            const Guaurd = new Text(239, 654, "G", 'white', 297, false, 'bold');
+            const Guaurd = new Text(1177, 588, "G", 'white', 297, false, 'bold');
             Guaurd.draw(ctx);
             clickItems.push(Guaurd);
             // uardテキスト
-            const uard = new Text(397, 890, "uard", '#073545', 52, false);
+            const uard = new Text(1351, 817, "uard", '#073545', 52, false);
             uard.draw(ctx);
             // 線を描画
             ctx.strokeStyle = "white";
             ctx.beginPath();
             ctx.globalAlpha = 1;
-            ctx.moveTo(this.mx1, this.my1);
-            ctx.lineTo(this.tx1, this.ty1);
+            ctx.moveTo(aspect(1025), aspect(208));
+            ctx.lineTo(aspect(1591), aspect(774));
             ctx.stroke();
 
             ctx.strokeStyle = "white";
             ctx.beginPath();
-            ctx.moveTo(this.mx2, this.my2);
-            ctx.lineTo(this.tx2, this.ty2);
+            ctx.moveTo(aspect(1559), aspect(208));
+            ctx.lineTo(aspect(1025), aspect(774));
             ctx.stroke();
         }
 
@@ -284,23 +264,32 @@ class BattleScreen {
         if (encoutnanimation.animation) {
 
             encoutnanimation.draw(ctx)
-            encoutnanimation.lineheight += screenHeight / 10
+            encoutnanimation.lineheight += screenHeight / 15
             encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
-            encoutnanimation.whiteLineHeight += screenHeight / 8
-            if (encoutnanimation.whiteLineHeight >= screenHeight * 0.7) {
-                encoutnanimation.isblue = false;
-                encoutnanimation.alpha -= 0.2
+            encoutnanimation.y1 -= screenHeight / 15;
+            encoutnanimation.y2 -= screenHeight / 15;
+            encoutnanimation.y3 += screenHeight / 15;
+            encoutnanimation.y4 += screenHeight / 15;
+            if (encoutnanimation.y3 >= screenHeight * 2) {
+                encoutnanimation.isblue = false
+                encoutnanimation.alpha -= 0.1
 
                 if (encoutnanimation.alpha < 0) {
                     console.log("真っ白になっちまったよ")
                     encoutnanimation.animation = false;
+
+                    //初期化
                     encoutnanimation.linewidth = 0
                     encoutnanimation.lineheight = 2
                     encoutnanimation.animation = false;
                     encoutnanimation.whiteRec = false;
-                    encoutnanimation.whiteLineHeight = 10;
+                    encoutnanimation.y1 = 524
+                    encoutnanimation.y2 = 353
+                    encoutnanimation.y3 = 560
+                    encoutnanimation.y4 = 749
                     encoutnanimation.alpha = 1;
                     encoutnanimation.isblue = true
+                    encoutnanimation.screenWidth = screenWidth
                 }
             }
 
