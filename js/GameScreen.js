@@ -1,5 +1,6 @@
 'use strict'
 const mainCharacter = new Sprite('img/MainCharacter.png');
+const encoutnanimation = new EncoutAnimation();
 class GameScreen {
 
     /**
@@ -11,13 +12,17 @@ class GameScreen {
         //canvas要素を作成
         this.width = width
         this.height = height
+        
     } //constructor() 終
 
     draw(ctx, canvas) {
+       
+        
+        
 
         // Titleの背景
         ctx.beginPath()
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = 1;
         ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
@@ -26,32 +31,26 @@ class GameScreen {
         text.draw(ctx)
         mainCharacter.draw(ctx);
 
-        ctx.beginPath()
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
-        ctx.fillRect(0, 0, 300, 300); // (x, y, width, height)
-        ctx.fill();
-
-        // 平行四辺形のパスを作成
-        ctx.beginPath();
-        ctx.moveTo(100, 100); // 左上
-        ctx.lineTo(300, 100); // 右上
-        ctx.lineTo(250, 200); // 右下
-        ctx.lineTo(150, 200); // 左下
-        ctx.closePath(); // パスを閉じる
-
-        // パスを描画してボタンを表示
-        ctx.strokeStyle = "black";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-        ctx.fill();
+        if(encoutnanimation.animation) {
+            ctx.globalAlpha = 1;
+            encoutnanimation.draw(ctx);
+            encoutnanimation.linewidth += screenWidth / 5;
+            console.log(encoutnanimation.linewidth);
+            if(encoutnanimation.linewidth >= screenWidth * 4) {
+                encoutnanimation.lineheight += screenHeight / 10
+                encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
+                if(encoutnanimation.lineheight >= screenHeight / 1.4) {
+                    IsGameScreen.isclick = false;
+                    IsBattleScreen.isclick = true;
+                }
+            }
+        }
 
         canvas.addEventListener("click", function (event) {
+            encoutnanimation.animation = true;
             const mouseX = event.clientX - canvas.getBoundingClientRect().left;
             const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-            IsGameScreen.isclick = false;
-            IsBattleScreen.isclick = true;
+           
         });
     }
 }

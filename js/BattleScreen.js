@@ -145,6 +145,7 @@ class BattleScreen {
     }
 
     draw(ctx, canvas) {
+
         ctx.beginPath();
         ctx.globalAlpha = 0.4;
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
@@ -279,5 +280,20 @@ class BattleScreen {
         ctx.fillStyle = '#0316FA'; // 色の指定
         ctx.fill(); // 塗りつぶし
 
+        //アニメーション
+        if (encoutnanimation.animation) {
+            encoutnanimation.draw(ctx)
+            encoutnanimation.lineheight += screenHeight / 10
+            encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
+
+
+            
+            ctx.beginPath()
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = '#3405FC'; // 四角形の塗りつぶし色
+
+            ctx.fillRect(0, (screenHeight / 2) - this.lineheight / 2, this.linewidth, this.lineheight); // (x, y, width, height)
+            ctx.fill();
+        }
     }
 }

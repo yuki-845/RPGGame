@@ -89,8 +89,6 @@ addEventListener('load', () => {
             if (IsGameScreen.isclick) {
                 gamescreen.draw(ctx, canvas)
             }
-
-
             if (IsBattleScreen.isclick) {
                 
                 battlescreen.draw(ctx, canvas);
