@@ -31,6 +31,9 @@ addEventListener('load', () => {
         const battlescreen = new BattleScreen(
             screenWidth, screenHeight
         )
+        const menuscreen = new MenuScreen(
+            screenWidth, screenHeight
+        )
         canvas.addEventListener('click', function (event) {
             // クリックされた座標を取得
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
@@ -87,31 +90,18 @@ addEventListener('load', () => {
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
             if (!IsNewGameOR.isclick) {
                 titlescreen.draw(ctx, canvas)
             }
-
-
             if (IsGameScreen.isclick) {
                 gamescreen.draw(ctx, canvas)
             }
             if (IsBattleScreen.isclick) {
-                
                 battlescreen.draw(ctx, canvas);
-
-                
-        
-                if (battlescreen.isSkill) {
-
-                    
-                   
-                    
-                }
-
-
             }
-
+            if(ISMenuScreen.isclick) {
+                menuscreen.draw(ctx);
+            }
 
 
         };

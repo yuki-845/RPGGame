@@ -15,3 +15,6 @@ let IsGameScreen = {
 let IsBattleScreen = {
     isclick: false
 }
+let ISMenuScreen = {
+    isclick: false
+}
