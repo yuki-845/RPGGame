@@ -70,10 +70,10 @@ class SkillSwitchAnimation {
             ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(683), aspect(1216));
 
             //SKILL テキスト
-            const SKILL = new Text(1227, -40, "SKILL", 'white', 217, false, 'bold');
+            const SKILL = new Text(1227, -40, "SKILL", 'white', 217, false, 'italic');
             SKILL.draw(ctx);
             // Back テキスト
-            const BACK = new Text(892, 932, "BACK", 'white', 145, false, 'bold');
+            const BACK = new Text(892, 932, "BACK", 'white', 145, false, 'italic');
             BACK.draw(ctx);
             clickItems.push(BACK);
 

@@ -159,28 +159,28 @@ class BattleScreen {
             // テキストを描画
             if(!skillSwitchAnimation.isAnimation) {
             // Skillボタン
-            const Skill = new Text(1206, 108, "S", 'white', 297, false, 'bold');
+            const Skill = new Text(1206, 108, "S", 'white', 297, false, 'italic',900);
             Skill.draw(ctx);
             clickItems.push(Skill);
 
             // killテキスト
-            const kill = new Text(1340, 316, "kill", '#073545', 52, false, 'normal', this.killangle);
+            const kill = new Text(1340, 316, "KILL", 'black', 42, false, 'normal', this.killangle);
             kill.draw(ctx);
             
             // Atackボタン
-            const Atack = new Text(1411, 312, "A", 'white', 297, false, 'bold');
+            const Atack = new Text(1411, 312, "A", 'white', 297, false, 'italic',900);
             Atack.draw(ctx);
             clickItems.push(Atack);
             // tackテキスト
-            const tack = new Text(1579, 553, "tack", '#073545', 52, false);
+            const tack = new Text(1579, 553, "TACK", 'black', 42, false);
             tack.draw(ctx);
 
             // Guardボタン
-            const Guaurd = new Text(1177, 588, "G", 'white', 297, false, 'bold');
+            const Guaurd = new Text(1177, 508, "G", 'white', 297, false, 'italic',900);
             Guaurd.draw(ctx);
             clickItems.push(Guaurd);
             // uardテキスト
-            const uard = new Text(1351, 817, "uard", '#073545', 52, false);
+            const uard = new Text(1351, 737, "UARD", 'black', 42, false);
             uard.draw(ctx);
             // 線を描画
             ctx.strokeStyle = "white";
