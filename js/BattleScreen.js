@@ -123,90 +123,41 @@ function strokeBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
     createBalloonRoundRectPath(ctx, x, y, w, h, r, bl, br, bh);
     ctx.stroke();
 }
-
+const skillSwitchAnimation = new SkillSwitchAnimation()
+console.log(screenWidth)
 class BattleScreen {
     
     constructor(width, height) {
         this.width = width;
         this.height = height;
         
-        
+        this.Imagex = 936;
+        this.Imagey = 91;
 
     }
 
     draw(ctx, canvas) {
-        audio.play();
+        //うるさいので一旦コメントアウト
+        // audio.play();
         ctx.beginPath();
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
+
         // キャラクターのシャドーを描画
-
+        
         if (this.isSkill) {
-            // Skillの背景２
-            ctx.beginPath();
-            ctx.globalAlpha = 0.7;
-            ctx.moveTo(aspect(1045), 0); // 始点
-            ctx.lineTo(aspect(1201), 0); // 右上
-            ctx.lineTo(aspect(1201), aspect(1080)); // 右下
-            ctx.lineTo(aspect(762), aspect(1080)); // 左下
-            ctx.closePath(); // パスを閉じる
-            ctx.fillStyle = '#00AEEB'; // 色の指定
-            ctx.fill(); // 塗りつぶし
-
-            //Skillの背景1
-            ctx.beginPath();
-            ctx.globalAlpha = 1;
-            ctx.moveTo(aspect(1134), 0); // 始点
-            ctx.lineTo(aspect(1920), 0); // 右上
-            ctx.lineTo(aspect(1647), aspect(1080)); // 右下
-            ctx.lineTo(aspect(861), aspect(1080)); // 左下
-            ctx.closePath(); // パスを閉じる
-            ctx.fillStyle = '#0316A7'; // 色の指定
-            ctx.fill(); // 塗りつぶし
-
-
-            // マウスが触れたときの線
-            ctx.beginPath();
-            ctx.globalAlpha = 1;
-            ctx.fillStyle = '#104CD3'; // 四角形の塗りつぶし色
-            ctx.fillRect(aspect(-147), aspect(338), aspect(2100), aspect(68)) // (x, y, width, height)
-            ctx.fill();
-
-            // スキル名テキスト
-            const fire = new Text(1304, 348, "ファイヤ", 'white', 41, false, 'normal');
-            fire.draw(ctx);
-            ctx.fillStyle = 'white';
-            fillRoundRect(ctx, aspect(1494), aspect(352), aspect(117), aspect(41), 10);
-            const sp = new Text(1514, 353, "3 SP", '#333DBC', 31, false, 'normal');
-            sp.draw(ctx);
-
-
-
-
-            // キャラクター画像
-            ctx.globalAlpha = 1;
-            ctx.drawImage(characterShadowImage, aspect(1423), aspect(129), aspect(604), aspect(1077));
-
-
-
-            //SKILL テキスト
-            const SKILL = new Text(1227, -40, "SKILL", 'white', 217, false, 'bold');
-            SKILL.draw(ctx);
-            // Back テキスト
-            const BACK = new Text(892, 932, "BACK", 'white', 145, false, 'bold');
-            BACK.draw(ctx);
-
+            skillSwitchAnimation.draw(ctx,this.Imagex,this.Imagey);
         }
 
         if (!this.isSkill) {
 
 
-            ctx.drawImage(characterShadowImage, aspect(936), aspect(91), aspect(683), aspect(1217));
+            ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(683), aspect(1217));
             // テキストを描画
-
+            if(!skillSwitchAnimation.isAnimation) {
             // Skillボタン
             const Skill = new Text(1206, 108, "S", 'white', 297, false, 'bold');
             Skill.draw(ctx);
@@ -244,6 +195,7 @@ class BattleScreen {
             ctx.moveTo(aspect(1559), aspect(208));
             ctx.lineTo(aspect(1025), aspect(774));
             ctx.stroke();
+            }
         }
 
         //キャラクター　四角形
@@ -302,5 +254,23 @@ class BattleScreen {
 
 
         }
+        // アニメーション
+        if(skillSwitchAnimation.isAnimation) {
+            this.Imagex += aspect(1357 - this.Imagex) / 2;
+            this.Imagey += aspect(156 - this.Imagey) / 2;
+
+
+            if(this.Imagex >= 1300) {
+                this.isSkill = true;
+                
+                skillSwitchAnimation.x1 += aspect(1232 -  skillSwitchAnimation.x1) / 2;
+                skillSwitchAnimation.x2 += aspect(2018 -  skillSwitchAnimation.x2) / 2;
+                skillSwitchAnimation.x3 += aspect(1745 -  skillSwitchAnimation.x3) / 2;
+                skillSwitchAnimation.x4 += aspect(960 -  skillSwitchAnimation.x4) / 2;
+                
+            }
+        }
+        
     }
+    
 }

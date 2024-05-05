@@ -25,13 +25,11 @@ class EncoutAnimation {
             ctx.fillStyle = '#3405FC'; // 四角形の塗りつぶし色
             ctx.fillRect(0, (screenHeight / 2) - this.lineheight / 2, this.linewidth, this.lineheight); // (x, y, width, height)
             ctx.fill();
-
+            
         }
 
 
         if (this.whiteRec) {
-
-
             ctx.beginPath();
             ctx.globalAlpha = this.alpha;
             ctx.moveTo(0, aspect(this.y1)); // 始点

@@ -47,7 +47,7 @@ addEventListener('load', () => {
                     }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick && item.text == "S") {
-                        battlescreen.isSkill = true;
+                        skillSwitchAnimation.isAnimation = true;
                     }
                 }
             });
