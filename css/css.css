@@ -1,1 +1,8 @@
 
+@font-face {
+    font-family: 'Aktiv.Grotesk';
+    src: url('/font/Aktiv.Grotesk/Aktiv Grotesk/OTF/AktivGrotesk-BlackItalic.otf') format('otf');
+    /* 他のフォーマットがあればここに追加します */
+    font-weight: 400;
+    font-style: normal;
+}

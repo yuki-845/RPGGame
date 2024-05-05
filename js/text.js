@@ -1,8 +1,6 @@
 'use strict'
 
-/**
- * ゲームづくりの基本となるクラス
- */
+
 class Text {
 
 	/**
@@ -34,7 +32,7 @@ class Text {
 
         // ctx.rotate(angleInRadians); // 角度を回転
         ctx.globalAlpha = 1.0;
-        ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px ヒラギノ明朝 ProN';
+        ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px "Aktiv.Grotesk", sans-serif';
         ctx.fillStyle = this.color;
         ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();

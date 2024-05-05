@@ -269,7 +269,21 @@ class BattleScreen {
                 skillSwitchAnimation.x4 += aspect(960 -  skillSwitchAnimation.x4) / 2;
                 
             }
+        }else {
+            skillSwitchAnimation.x1 += aspect(2098 -  skillSwitchAnimation.x1) / 2;
+            skillSwitchAnimation.x2 += aspect(2884 -  skillSwitchAnimation.x2) / 2;
+            skillSwitchAnimation.x3 += aspect(2712 -  skillSwitchAnimation.x3) / 2;
+            skillSwitchAnimation.x4 += aspect(2026 -  skillSwitchAnimation.x4) / 2;
+            if(skillSwitchAnimation.x1 >= 2000) {
+                this.isSkill = false;
+                this.Imagex += aspect(936 - this.Imagex) / 2;
+                this.Imagey += aspect(91 - this.Imagey) / 2;
+
+            }
+
+            
         }
+
         
     }
     

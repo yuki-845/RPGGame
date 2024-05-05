@@ -46,9 +46,16 @@ addEventListener('load', () => {
                         clickItems = [];
                     }
                     //BattleScreen内でのclickイベント
-                    if (IsBattleScreen.isclick && item.text == "S") {
-                        skillSwitchAnimation.isAnimation = true;
+                    if (IsBattleScreen.isclick) {
+                        if(item.text == "S") {
+                            skillSwitchAnimation.isAnimation = true;
+                        }
+                        if(item.text == "BACK") {
+                            skillSwitchAnimation.isAnimation = false;
+                        }
+                        
                     }
+
                 }
             });
 
