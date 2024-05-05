@@ -37,7 +37,7 @@ class SkillSwitchAnimation {
         //Skillの背景1
         ctx.beginPath();
         ctx.globalAlpha = 1;
-        console.log(this.x1)
+
         ctx.moveTo(aspect(this.x1), 0); // 始点
         ctx.lineTo(aspect(this.x2), 0); // 右上
         ctx.lineTo(aspect(this.x3), aspect(1080)); // 右下
@@ -61,7 +61,6 @@ class SkillSwitchAnimation {
             fillRoundRect(ctx, aspect(1494), aspect(352), aspect(117), aspect(41), 10);
             const sp = new Text(1514, 353, "3 SP", '#333DBC', 31, false, 'normal');
             sp.draw(ctx);
-
 
 
 

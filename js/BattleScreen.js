@@ -144,8 +144,7 @@ class BattleScreen {
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
-
-
+        clickItems = [];
         // キャラクターのシャドーを描画
         
         if (this.isSkill) {

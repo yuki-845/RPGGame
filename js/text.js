@@ -39,8 +39,9 @@ class Text {
         ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();
         
-        this.h = this.fontsize;
+        this.h = aspect(this.fontsize);
         this.w = ctx.measureText(this.text).width;
+        
         
         
     }

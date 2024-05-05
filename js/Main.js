@@ -49,6 +49,7 @@ addEventListener('load', () => {
                     if (IsBattleScreen.isclick) {
                         if(item.text == "S") {
                             skillSwitchAnimation.isAnimation = true;
+                            console.log(item.text)
                         }
                         if(item.text == "BACK") {
                             skillSwitchAnimation.isAnimation = false;
