@@ -1,6 +1,6 @@
 'use strict'
 const mainCharacter = new Sprite('img/MainCharacter.png');
-const encoutnanimation = new EncoutAnimation(524,353,560,749,screenWidth);
+const encoutnanimation = new EncoutAnimation(583,435,533,714,screenWidth);
 class GameScreen {
 
     /**
@@ -31,13 +31,16 @@ class GameScreen {
         text.draw(ctx)
         mainCharacter.draw(ctx);
 
+
+        
+
         if(encoutnanimation.animation) {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);
             encoutnanimation.linewidth += screenWidth / 5;
             
             if(encoutnanimation.linewidth >= screenWidth * 4) {
-                encoutnanimation.lineheight += screenHeight / 15
+                encoutnanimation.lineheight += screenHeight / 20
                 encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
                 if(encoutnanimation.lineheight >= screenHeight / 1.2) {
                     IsGameScreen.isclick = false;
@@ -49,10 +52,10 @@ class GameScreen {
                 }
             }
             if(encoutnanimation.whiteRec) {
-                   encoutnanimation.y1 -= screenHeight / 15;
-                   encoutnanimation.y2 -= screenHeight / 15;
-                   encoutnanimation.y3 += screenHeight / 15;
-                   encoutnanimation.y4 += screenHeight / 15;
+                   encoutnanimation.y1 -= screenHeight / 20;
+                   encoutnanimation.y2 -= screenHeight / 20;
+                   encoutnanimation.y3 += screenHeight / 20;
+                   encoutnanimation.y4 += screenHeight / 20;
             }
         }
 
