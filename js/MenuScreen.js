@@ -1,3 +1,8 @@
+
+'use strict'
+
+const CHARACTEES_TEXT = new Image()
+CHARACTEES_TEXT.src = 'img/CHARACTERS.png'
 class MenuScreen {
 
     /**
@@ -35,7 +40,7 @@ class MenuScreen {
         MAP.draw(ctx);
         clickItems.push(MAP);
 
-        const CHARACTEES= new Text(348, 118, "MAP", 'white', 54, false, 'italic',400);
+        const CHARACTEES= new Text(348, 118, "CHARACTERS", 'white', 54, false, 'italic',400);
         CHARACTEES.draw(ctx);
         clickItems.push(CHARACTEES);
 
@@ -47,11 +52,11 @@ class MenuScreen {
         SETTING.draw(ctx);
         clickItems.push(SETTING);
 
-        const CLOSE = new Text(348, 349, "SETTING", 'white', 54, false, 'italic',400);
+        const CLOSE = new Text(348, 349, "CLOSE", 'white', 54, false, 'italic',400);
         CLOSE.draw(ctx);
         clickItems.push(CLOSE);
 
-
+        ctx.drawImage(CHARACTEES_TEXT, aspect(-114), aspect(22), aspect(470), aspect(2496));
 
     }
 }

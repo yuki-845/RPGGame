@@ -1,7 +1,7 @@
 'use strict'
 
 
-class Text {
+class Parallelogram {
 
 	/**
 	 * 引数
