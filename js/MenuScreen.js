@@ -22,12 +22,12 @@ class MenuScreen {
         clickItems = [];
         ctx.beginPath()
         ctx.globalAlpha = 1;
-        ctx.fillStyle = '#CCD1E2'; // 四角形の塗りつぶし色
+        ctx.fillStyle = 'white'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
         ctx.beginPath();
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = 1;
         ctx.moveTo(0, 0); // 始点
         ctx.lineTo(aspect(1920), 0); // 右上
         ctx.lineTo(aspect(626), aspect(1101)); // 右下
@@ -37,7 +37,7 @@ class MenuScreen {
         ctx.fill(); // 塗りつぶし
 
         // Menu表
-        const MAP = new Text(348, 41, "MAP", 'white', 54, false, 'italic',400);
+        const MAP = new Text(348, 41, "MAP", 'white', 54, false, 'italic',400,true);
         MAP.draw(ctx);
         clickItems.push(MAP);
 

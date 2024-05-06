@@ -8,7 +8,7 @@ class Text {
      * width : ゲームの横幅
      * height : ゲームの縦幅
      */
-    constructor(x, y, text, color, fontsize, ismouse, weight, w) {
+    constructor(x, y, text, color, fontsize, ismouse, weight, w,isRect) {
         //canvas要素を作成
         this.x = x;
         this.y = y;
@@ -21,11 +21,18 @@ class Text {
         this.weight = weight || 'normal'
 
         this.w = w || 700;
-
+        this.isRect = isRect
         
     } //constructor() 終了
     draw(ctx) {
+        if(this.isRect) {
+            ctx.beginPath();
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
+            ctx.fillRect(aspect(this.x), aspect(this.y) + aspect(25), aspect(355), aspect(55)); // (x, y, width, height)
+            ctx.fill();
 
+        }
 
         this.x = aspect(this.x)
         this.y = aspect(this.y)
@@ -45,12 +52,7 @@ class Text {
         this.w = ctx.measureText(this.text).width;
 
         
-            // ctx.beginPath();
-            // ctx.globalAlpha = 1;
-            // ctx.fillStyle = 'black'; // 四角形の塗りつぶし色
-            // ctx.fillRect(0, 0, 50, 50); // (x, y, width, height)
-            // ctx.fill();
-
+            
       
 
 
