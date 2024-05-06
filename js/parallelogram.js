@@ -37,7 +37,8 @@ class Parallelogram {
     }
     
     testHit(clickX, clickY) {
-        
+        return (aspect(this.mx1) <= clickX && clickX <= aspect(this.mx2)) &&
+        (aspect(this.my1) <= clickY && clickY <= aspect(this.my4));
     }
 }
 

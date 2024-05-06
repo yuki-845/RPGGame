@@ -59,6 +59,10 @@ addEventListener('load', () => {
                         }
                         
                     }
+                    //MenuScreen内でのclickイベント
+                    if(ISMenuScreen.isclick) {
+                        console.log("Menuscreen")
+                    }
 
                 }
             });
@@ -67,12 +71,12 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
-            console.log("押されています")
+            
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
-            console.log("ボタンが話されました")
+            
         });
 
         canvas.addEventListener('mousemove', function (event) {

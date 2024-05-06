@@ -61,8 +61,9 @@ class MenuScreen {
 
         const charaPara = new Parallelogram(371,885,784,885,746,1047,334,1047,0.6,"#00AEEB")
         charaPara.draw(ctx);
-
+        clickItems.push(charaPara);
         const charaPara2 = new Parallelogram(371 + 479,885,784 + 479,885,746 + 479,1047,334 + 479,1047,0.6,"#00AEEB")
         charaPara2.draw(ctx);
+        clickItems.push(charaPara2);
     }
 }
