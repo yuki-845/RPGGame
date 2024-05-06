@@ -17,7 +17,7 @@ class GameScreen {
 
     draw(ctx, canvas) {
        
-        
+        clickItems = [];
         
 
         // Titleの背景
@@ -29,8 +29,9 @@ class GameScreen {
         //Title
         const text = new Text(145, 43, "Title", 'white', 106, false);
         text.draw(ctx)
+        clickItems.push(text)
+        
         mainCharacter.draw(ctx);
-
 
         
 
@@ -59,13 +60,7 @@ class GameScreen {
             }
         }
 
-        canvas.addEventListener("click", function (event) {
-            // encoutnanimation.animation = true;
-            const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-            const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-           ISMenuScreen.isclick = true;
-           IsGameScreen.isclick = false
-        });
+       
     }
 }
 

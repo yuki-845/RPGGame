@@ -48,6 +48,14 @@ addEventListener('load', () => {
                         IsNewGameOR.isclick = true;
                         clickItems = [];
                     }
+                    // GameScreen内でのclick イベント
+                    if(IsGameScreen.isclick) {
+                        if(item.text == "Title") {
+                            ISMenuScreen.isclick = true;
+                            IsGameScreen.isclick = false
+                        } 
+                        
+                    }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick) {
                         if (item.text == "S") {
@@ -61,7 +69,14 @@ addEventListener('load', () => {
                     }
                     //MenuScreen内でのclickイベント
                     if (ISMenuScreen.isclick) {
-                        console.log("Menuscreen")
+                        
+                        if(item.text == "CLOSE") {
+                            console.log("Menuscreen")
+                            ISMenuScreen.isclick = false;
+                           
+
+                            console.log(ISMenuScreen.isclick)
+                        }
                     }
 
                 }
@@ -106,7 +121,7 @@ addEventListener('load', () => {
         function onMouseMove(e) {
             /* マウスが動く度に要素上に乗っているかかどうかをチェック */
             moveActions.updateTargetFlag(e);
-            
+
             /* 実行する関数には、間引きを噛ませる */
             if (targetFlag) {
                 moveActions.throttle(moveActions.over, 50);
@@ -173,7 +188,7 @@ addEventListener('load', () => {
                 menuscreen.draw(ctx);
             }
 
-
+            console.log(ISMenuScreen.isclick)
         };
 
         // 60fpsで描画を更新する
