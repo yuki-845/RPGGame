@@ -50,17 +50,17 @@ addEventListener('load', () => {
                     }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick) {
-                        if(item.text == "S") {
+                        if (item.text == "S") {
                             skillSwitchAnimation.isAnimation = true;
                             console.log(item.text)
                         }
-                        if(item.text == "BACK") {
+                        if (item.text == "BACK") {
                             skillSwitchAnimation.isAnimation = false;
                         }
-                        
+
                     }
                     //MenuScreen内でのclickイベント
-                    if(ISMenuScreen.isclick) {
+                    if (ISMenuScreen.isclick) {
                         console.log("Menuscreen")
                     }
 
@@ -71,12 +71,12 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
-            
+
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
-            
+
         });
 
         canvas.addEventListener('mousemove', function (event) {
@@ -90,6 +90,72 @@ addEventListener('load', () => {
                 mainCharacter.moveTowardsMouse(mouseX, mouseY);
             }
         });
+        var targetFlag = false; // trueでマウスが要素に乗っているとみなす
+        var rect = null;
+
+        /* Canvas上にマウスが乗った時 */
+        function onMouseOver(e) {
+            rect = e.target.getBoundingClientRect();
+            canvas.addEventListener('mousemove', onMouseMove, false);
+        }
+        /* Canvasからマウスが離れた時 */
+        function onMouseOut() {
+            canvas.removeEventListener('mousemove', onMouseMove, false);
+        }
+        /* Canvas上でマウスが動いている時 */
+        function onMouseMove(e) {
+            /* マウスが動く度に要素上に乗っているかかどうかをチェック */
+            moveActions.updateTargetFlag(e);
+            
+            /* 実行する関数には、間引きを噛ませる */
+            if (targetFlag) {
+                moveActions.throttle(moveActions.over, 50);
+            } else {
+                moveActions.throttle(moveActions.out, 50);
+            }
+        }
+
+        /* mouseMoveで実行する関数 */
+        var moveActions = {
+            timer: null,
+            /* targetFlagの更新 */
+            updateTargetFlag: function (event) {
+                const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+                const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+                clickItems.forEach(item => {
+                    if (item.testHit(mouseX, mouseY)) {
+                        
+                    }
+                })
+            },
+            /* 連続イベントの間引き */
+            throttle: function (targetFunc, time) {
+                var _time = time || 100;
+                clearTimeout(this.timer);
+                this.timer = setTimeout(function () {
+                    targetFunc();
+                }, _time);
+            },
+            out: function () {
+                drawRect();
+            },
+            over: function () {
+                drawRectIsHover();
+            }
+        };
+
+        function drawRect(color) {
+            // デフォルトもしくはマウスが要素から離れた時の描画処理
+        }
+        function drawRectIsHover() {
+            // マウスが要素に乗った時の描画処理
+        }
+
+        canvas.addEventListener('mouseover', onMouseOver, false);
+        canvas.addEventListener('mouseout', onMouseOut, false);
+
+        drawRect();
+
         const draw = () => {
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,7 +169,7 @@ addEventListener('load', () => {
             if (IsBattleScreen.isclick) {
                 battlescreen.draw(ctx, canvas);
             }
-            if(ISMenuScreen.isclick) {
+            if (ISMenuScreen.isclick) {
                 menuscreen.draw(ctx);
             }
 
