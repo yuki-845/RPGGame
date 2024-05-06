@@ -60,11 +60,11 @@ class GameScreen {
         }
 
         canvas.addEventListener("click", function (event) {
-            encoutnanimation.animation = true;
+            // encoutnanimation.animation = true;
             const mouseX = event.clientX - canvas.getBoundingClientRect().left;
             const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-        //    ISMenuScreen.isclick = true;
-        //    IsGameScreen.isclick = false
+           ISMenuScreen.isclick = true;
+           IsGameScreen.isclick = false
         });
     }
 }
