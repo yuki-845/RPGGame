@@ -2,7 +2,8 @@
 'use strict'
 
 const CHARACTEES_TEXT = new Image()
-CHARACTEES_TEXT.src = 'img/CHARACTERS.png'
+CHARACTEES_TEXT.src = 'img/CHARACTERS.png';
+
 class MenuScreen {
 
     /**
@@ -55,8 +56,13 @@ class MenuScreen {
         const CLOSE = new Text(348, 349, "CLOSE", 'white', 54, false, 'italic',400);
         CLOSE.draw(ctx);
         clickItems.push(CLOSE);
-
+        //テキスト画像
         ctx.drawImage(CHARACTEES_TEXT, aspect(-114), aspect(22), aspect(470), aspect(2496));
 
+        const charaPara = new Parallelogram(371,885,784,885,746,1047,334,1047,0.6,"#00AEEB")
+        charaPara.draw(ctx);
+
+        const charaPara2 = new Parallelogram(371 + 479,885,784 + 479,885,746 + 479,1047,334 + 479,1047,0.6,"#00AEEB")
+        charaPara2.draw(ctx);
     }
 }
