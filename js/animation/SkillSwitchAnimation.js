@@ -66,13 +66,14 @@ class SkillSwitchAnimation {
 
             // キャラクター画像
             ctx.globalAlpha = 1;
-            ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(683), aspect(1216));
+            ctx.drawImage(characterShadowImage2, aspect(1476), aspect(0), aspect(618), aspect(1113));
+            ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(545), aspect(971));
 
             //SKILL テキスト
-            const SKILL = new Text(1227, -40, "SKILL", 'white', 217, false, 'italic');
+            const SKILL = new Text(1227, -50, "SKILL", 'black', 217, false, 'italic',900);
             SKILL.draw(ctx);
             // Back テキスト
-            const BACK = new Text(892, 932, "BACK", 'white', 145, false, 'italic');
+            const BACK = new Text(838, 932, "BACK", 'white', 145, false, 'italic');
             BACK.draw(ctx);
             clickItems.push(BACK);
 

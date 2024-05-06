@@ -5,6 +5,9 @@ let volume = 0.5
 let characterShadowImage = new Image();
 
 characterShadowImage.src = 'img/shadowCharacter.png'; // 画像のパスを指定してください
+let characterShadowImage2 = new Image();
+
+characterShadowImage2.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
 let audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
 audio.loop = true;
 audio.currentTime = 2;
@@ -158,38 +161,38 @@ class BattleScreen {
             // テキストを描画
             if(!skillSwitchAnimation.isAnimation) {
             // Skillボタン
-            const Skill = new Text(1206, 108, "S", 'white', 297, false, 'italic',900);
+            const Skill = new Text(1206, 108, "S", 'black', 297, false, 'italic',900);
             Skill.draw(ctx);
             clickItems.push(Skill);
 
             // killテキスト
-            const kill = new Text(1340, 316, "KILL", 'black', 42, false, 'normal', this.killangle);
+            const kill = new Text(1340, 316, "KILL", 'white', 42, false, 'normal', this.killangle);
             kill.draw(ctx);
             
             // Atackボタン
-            const Atack = new Text(1411, 312, "A", 'white', 297, false, 'italic',900);
+            const Atack = new Text(1411, 312, "A", 'black', 297, false, 'italic',900);
             Atack.draw(ctx);
             clickItems.push(Atack);
             // tackテキスト
-            const tack = new Text(1579, 553, "TACK", 'black', 42, false);
+            const tack = new Text(1579, 553, "TACK", 'white', 42, false);
             tack.draw(ctx);
 
             // Guardボタン
-            const Guaurd = new Text(1177, 508, "G", 'white', 297, false, 'italic',900);
+            const Guaurd = new Text(1177, 508, "G", 'black', 297, false, 'italic',900);
             Guaurd.draw(ctx);
             clickItems.push(Guaurd);
             // uardテキスト
-            const uard = new Text(1351, 737, "UARD", 'black', 42, false);
+            const uard = new Text(1351, 737, "UARD", 'white', 42, false);
             uard.draw(ctx);
             // 線を描画
-            ctx.strokeStyle = "white";
+            ctx.strokeStyle = "black";
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.moveTo(aspect(1025), aspect(208));
             ctx.lineTo(aspect(1591), aspect(774));
             ctx.stroke();
 
-            ctx.strokeStyle = "white";
+            ctx.strokeStyle = "black";
             ctx.beginPath();
             ctx.moveTo(aspect(1559), aspect(208));
             ctx.lineTo(aspect(1025), aspect(774));
@@ -255,17 +258,17 @@ class BattleScreen {
         }
         // アニメーション
         if(skillSwitchAnimation.isAnimation) {
-            this.Imagex += aspect(1357 - this.Imagex) / 2;
-            this.Imagey += aspect(156 - this.Imagey) / 2;
+            this.Imagex += aspect(1453 - this.Imagex) / 2;
+            this.Imagey += aspect(196 - this.Imagey) / 2;
 
 
             if(this.Imagex >= 1300) {
                 this.isSkill = true;
                 
-                skillSwitchAnimation.x1 += aspect(1232 -  skillSwitchAnimation.x1) / 2;
-                skillSwitchAnimation.x2 += aspect(2018 -  skillSwitchAnimation.x2) / 2;
-                skillSwitchAnimation.x3 += aspect(1745 -  skillSwitchAnimation.x3) / 2;
-                skillSwitchAnimation.x4 += aspect(960 -  skillSwitchAnimation.x4) / 2;
+                skillSwitchAnimation.x1 += aspect(1153 -  skillSwitchAnimation.x1) / 2;
+                skillSwitchAnimation.x2 += aspect(1920 -  skillSwitchAnimation.x2) / 2;
+                skillSwitchAnimation.x3 += aspect(1654 -  skillSwitchAnimation.x3) / 2;
+                skillSwitchAnimation.x4 += aspect(888 -  skillSwitchAnimation.x4) / 2;
                 
             }
         }else {
