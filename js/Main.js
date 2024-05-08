@@ -19,7 +19,7 @@ addEventListener('load', () => {
         ctx.scale(scale, scale);
         canvas.style.width = screenWidth + 'px';
         canvas.style.height = screenHeight + 'px';
-
+        
         // 画面を白色で塗りつぶす
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -35,6 +35,7 @@ addEventListener('load', () => {
             screenWidth, screenHeight
         )
         canvas.addEventListener('click', function (event) {
+           
             // クリックされた座標を取得
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
             const clickY = event.clientY - canvas.getBoundingClientRect().top;
@@ -73,7 +74,7 @@ addEventListener('load', () => {
                         if(item.text == "CLOSE") {
                             console.log("Menuscreen")
                             ISMenuScreen.isclick = false;
-                           
+                            IsGameScreen.isclick = true;
 
                             console.log(ISMenuScreen.isclick)
                         }
