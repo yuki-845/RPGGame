@@ -52,8 +52,10 @@ addEventListener('load', () => {
                     // GameScreen内でのclick イベント
                     if(IsGameScreen.isclick) {
                         if(item.text == "Title") {
-                            ISMenuScreen.isclick = true;
-                            IsGameScreen.isclick = false
+                            // ISMenuScreen.isclick = true;
+                            // IsGameScreen.isclick = false
+                            encoutnanimation.animation = true
+                            
                         } 
                         
                     }
@@ -193,7 +195,7 @@ addEventListener('load', () => {
         };
 
         // 60fpsで描画を更新する
-        setInterval(draw, 1000 / 30);
+        setInterval(draw, 1000 / 40);
     };
 
     main();
