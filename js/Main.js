@@ -195,7 +195,7 @@ addEventListener('load', () => {
         };
 
         // 60fpsで描画を更新する
-        setInterval(draw, 1000 / 40);
+        setInterval(draw, 1000 / 60);
     };
 
     main();
@@ -204,19 +204,3 @@ addEventListener('load', () => {
 
 
 
-// // getContext('2d')メソッドを呼び出してコンテキストを取得
-// const ctx = canvas.getContext('2d');
-
-// // ピクセル比を取得し、Canvasの解像度を改善
-// ctx.scale(scale, scale);
-
-// // キャンバスのスタイルを設定して、CSSでサイズを変更しなくても正しいサイズで描画されるようにする
-// canvas.style.width = screenWidth + 'px';
-// canvas.style.height = screenHeight + 'px';
-
-// // 画面を白色で塗りつぶす
-// ctx.fillStyle = '#ffffff';
-// ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-// // その他の処理を行う
-// // 例: オブジェクトの更新、メインループの開始など
