@@ -78,10 +78,10 @@ class MenuScreen {
         clickItems.push(CLOSE);
 
 
-        const charaPara = new Parallelogram(371, 885, 784, 885, 746, 1047, 334, 1047, 0.6, "#00AEEB")
+        const charaPara = new Parallelogram(706.11, 903.77, 935, 903.77, 913.89, 1004, 685, 1004, 1, "#0087BF")
         charaPara.draw(ctx);
         clickItems.push(charaPara);
-        const charaPara2 = new Parallelogram(371 + 479, 885, 784 + 479, 885, 746 + 479, 1047, 334 + 479, 1047, 0.6, "#00AEEB")
+        const charaPara2 = new Parallelogram(1006.11, 903.77, 1235, 903.77, 1213.89, 1004.38, 985, 1004.38, 1, "#0087BF")
         charaPara2.draw(ctx);
         clickItems.push(charaPara2);
     }
