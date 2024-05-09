@@ -11,7 +11,7 @@ class EncoutAnimation {
         this.y3 = y3 
         this.y4 = y4
 
-        this.alpha = 1;
+        this.alpha = 0.6;
         this.isblue = true
 
         this.screenWidth = screenWidth

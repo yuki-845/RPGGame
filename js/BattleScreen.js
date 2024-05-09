@@ -148,7 +148,8 @@ class BattleScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
         clickItems = [];
-        // キャラクターのシャドーを描画
+
+        // スキル画面
         
         if (this.isSkill) {
             skillSwitchAnimation.draw(ctx,this.Imagex,this.Imagey);
@@ -161,45 +162,36 @@ class BattleScreen {
             // テキストを描画
             if(!skillSwitchAnimation.isAnimation) {
             // Skillボタン
-            const Skill = new Text(1206, 108, "S", 'black', 297, false, 'italic',900);
+            const Skill = new Text(1340, 200, "S", 'black', 297, false, 'italic',900);
             Skill.draw(ctx);
             clickItems.push(Skill);
 
             // killテキスト
-            const kill = new Text(1340, 316, "KILL", 'white', 42, false, 'normal', this.killangle);
+            const kill = new Text(1482, 433.46, "KILL", 'white', 52, false, 'normal', this.killangle);
             kill.draw(ctx);
             
             // Atackボタン
-            const Atack = new Text(1411, 312, "A", 'black', 297, false, 'italic',900);
+            const Atack = new Text(1039.5, 255.96, "A", 'black', 297, false, 'italic',900);
             Atack.draw(ctx);
             clickItems.push(Atack);
             // tackテキスト
-            const tack = new Text(1579, 553, "TACK", 'white', 42, false);
+            const tack = new Text(1202, 489, "TACK", 'white', 52, false);
             tack.draw(ctx);
 
             // Guardボタン
-            const Guaurd = new Text(1177, 508, "G", 'black', 297, false, 'italic',900);
+            const Guaurd = new Text(1204, 509.96, "G", 'black', 297, false, 'italic',900);
             Guaurd.draw(ctx);
             clickItems.push(Guaurd);
             // uardテキスト
-            const uard = new Text(1351, 737, "UARD", 'white', 42, false);
+            const uard = new Text(1372, 736.96, "UARD", 'white', 52, false);
             uard.draw(ctx);
-            // 線を描画
-            ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.globalAlpha = 1;
-            ctx.moveTo(aspect(1025), aspect(208));
-            ctx.lineTo(aspect(1591), aspect(774));
-            ctx.stroke();
 
-            ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.moveTo(aspect(1559), aspect(208));
-            ctx.lineTo(aspect(1025), aspect(774));
-            ctx.stroke();
+
+
+            
             }
         }
-
+        
         //キャラクター　四角形
         ctx.beginPath();
         ctx.globalAlpha = 0.6;
@@ -208,7 +200,7 @@ class BattleScreen {
         ctx.lineTo(aspect(1884), aspect(822)); // 右下
         ctx.lineTo(aspect(1497), aspect(822)); // 左下
         ctx.closePath(); // パスを閉じる
-        ctx.fillStyle = '#0316FA'; // 色の指定
+        ctx.fillStyle = '#5535DE'; // 色の指定
         ctx.fill(); // 塗りつぶし
 
         ctx.beginPath();
@@ -218,19 +210,19 @@ class BattleScreen {
         ctx.lineTo(aspect(1884), aspect(1024)); // 右下
         ctx.lineTo(aspect(1497), aspect(1024)); // 左下
         ctx.closePath(); // パスを閉じる
-        ctx.fillStyle = '#0316FA'; // 色の指定
+        ctx.fillStyle = '#5535DE'; // 色の指定
         ctx.fill(); // 塗りつぶし
 
         //アニメーション
         if (encoutnanimation.animation) {
 
             encoutnanimation.draw(ctx)
-            encoutnanimation.lineheight += screenHeight / 15
+            encoutnanimation.lineheight += screenHeight / 25
             encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
-            encoutnanimation.y1 -= screenHeight / 15;
-            encoutnanimation.y2 -= screenHeight / 15;
-            encoutnanimation.y3 += screenHeight / 15;
-            encoutnanimation.y4 += screenHeight / 15;
+            encoutnanimation.y1 -= screenHeight / 25;
+            encoutnanimation.y2 -= screenHeight / 25;
+            encoutnanimation.y3 += screenHeight / 25;
+            encoutnanimation.y4 += screenHeight / 25;
             if (encoutnanimation.y3 >= screenHeight * 2) {
                 encoutnanimation.isblue = false
                 encoutnanimation.alpha -= 0.1
@@ -258,28 +250,28 @@ class BattleScreen {
         }
         // アニメーション
         if(skillSwitchAnimation.isAnimation) {
-            this.Imagex += aspect(1453 - this.Imagex) / 2;
-            this.Imagey += aspect(196 - this.Imagey) / 2;
+            this.Imagex += aspect(1453 - this.Imagex) / 3;
+            this.Imagey += aspect(196 - this.Imagey) / 3;
 
 
             if(this.Imagex >= 1300) {
                 this.isSkill = true;
                 
-                skillSwitchAnimation.x1 += aspect(1153 -  skillSwitchAnimation.x1) / 2;
-                skillSwitchAnimation.x2 += aspect(1920 -  skillSwitchAnimation.x2) / 2;
-                skillSwitchAnimation.x3 += aspect(1654 -  skillSwitchAnimation.x3) / 2;
-                skillSwitchAnimation.x4 += aspect(888 -  skillSwitchAnimation.x4) / 2;
+                skillSwitchAnimation.x1 += aspect(1153 -  skillSwitchAnimation.x1) / 3;
+                skillSwitchAnimation.x2 += aspect(1920 -  skillSwitchAnimation.x2) / 3;
+                skillSwitchAnimation.x3 += aspect(1654 -  skillSwitchAnimation.x3) / 3;
+                skillSwitchAnimation.x4 += aspect(888 -  skillSwitchAnimation.x4) / 3;
                 
             }
         }else {
-            skillSwitchAnimation.x1 += aspect(2098 -  skillSwitchAnimation.x1) / 2;
-            skillSwitchAnimation.x2 += aspect(2884 -  skillSwitchAnimation.x2) / 2;
-            skillSwitchAnimation.x3 += aspect(2712 -  skillSwitchAnimation.x3) / 2;
-            skillSwitchAnimation.x4 += aspect(2026 -  skillSwitchAnimation.x4) / 2;
+            skillSwitchAnimation.x1 += aspect(2098 -  skillSwitchAnimation.x1) / 3;
+            skillSwitchAnimation.x2 += aspect(2884 -  skillSwitchAnimation.x2) / 3;
+            skillSwitchAnimation.x3 += aspect(2712 -  skillSwitchAnimation.x3) / 3;
+            skillSwitchAnimation.x4 += aspect(2026 -  skillSwitchAnimation.x4) / 3;
             if(skillSwitchAnimation.x1 >= 2000) {
                 this.isSkill = false;
-                this.Imagex += aspect(936 - this.Imagex) / 2;
-                this.Imagey += aspect(91 - this.Imagey) / 2;
+                this.Imagex += aspect(936 - this.Imagex) / 3;
+                this.Imagey += aspect(91 - this.Imagey) / 3;
 
             }
 

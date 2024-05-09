@@ -38,10 +38,10 @@ class GameScreen {
         if(encoutnanimation.animation) {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);
-            encoutnanimation.linewidth += screenWidth / 5;
+            encoutnanimation.linewidth += screenWidth / 8;
             
             if(encoutnanimation.linewidth >= screenWidth * 4) {
-                encoutnanimation.lineheight += screenHeight / 20
+                encoutnanimation.lineheight += screenHeight / 25
                 encoutnanimation.y = (screenHeight / 2) - encoutnanimation.lineheight / 2;
                 if(encoutnanimation.lineheight >= screenHeight / 1.2) {
                     IsGameScreen.isclick = false;
@@ -53,10 +53,10 @@ class GameScreen {
                 }
             }
             if(encoutnanimation.whiteRec) {
-                   encoutnanimation.y1 -= screenHeight / 20;
-                   encoutnanimation.y2 -= screenHeight / 20;
-                   encoutnanimation.y3 += screenHeight / 20;
-                   encoutnanimation.y4 += screenHeight / 20;
+                   encoutnanimation.y1 -= screenHeight / 30;
+                   encoutnanimation.y2 -= screenHeight / 30;
+                   encoutnanimation.y3 += screenHeight / 30;
+                   encoutnanimation.y4 += screenHeight / 30;
             }
         }
 
