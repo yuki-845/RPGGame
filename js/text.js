@@ -28,8 +28,8 @@ class Text {
         if(this.isRect) {
             ctx.beginPath();
             ctx.globalAlpha = 1;
-            ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
-            ctx.fillRect(aspect(this.x), aspect(this.y) + aspect(25), aspect(355), aspect(55)); // (x, y, width, height)
+            ctx.fillStyle = '#11B1F4'; // 四角形の塗りつぶし色
+            ctx.fillRect(aspect(this.x), aspect(this.y) + aspect(35), aspect(587.62), aspect(80)); // (x, y, width, height)
             ctx.fill();
 
         }
