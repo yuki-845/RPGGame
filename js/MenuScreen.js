@@ -27,6 +27,7 @@ class MenuScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
+        
         //背景２
         ctx.beginPath();
         ctx.globalAlpha = 1;
