@@ -61,7 +61,7 @@ addEventListener('load', () => {
                     }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick) {
-                        if (item.text == "S") {
+                        if (item.text == "M") {
                             skillSwitchAnimation.isAnimation = true;
                             console.log(item.text)
                         }

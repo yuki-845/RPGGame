@@ -134,9 +134,22 @@ class BattleScreen {
         this.width = width;
         this.height = height;
         
-        this.Imagex = 936;
-        this.Imagey = 91;
+        this.Imagex = 987;
+        this.Imagey = 95;
 
+        //敵への矢印のアニメーション用の変数
+        this.arrowx1 = 90
+        this.arrowy1 = 90
+
+        this.arrowx2 = 90
+        this.arrowy2 = 90
+
+        this.arrowx3 = 90
+        this.arrowy3 = 90
+
+        this.arrowx4 = 90
+        this.arrowy4 = 90
+        
     }
 
     draw(ctx, canvas) {
@@ -148,9 +161,13 @@ class BattleScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
         clickItems = [];
-
-        // スキル画面
         
+        //攻撃する敵が何かがわかるようにする
+        const ENEMY_ARROW = new Parallelogram(this.arrowx1,this.arrowy1,this.arrowx2,this.arrowy2,this.arrowx3,this.arrowy3,this.arrowx4,this.arrowy4,1,"#00AEEB")
+        ENEMY_ARROW.draw(ctx)
+
+        
+        // スキル画面
         if (this.isSkill) {
             skillSwitchAnimation.draw(ctx,this.Imagex,this.Imagey);
         }
@@ -158,36 +175,33 @@ class BattleScreen {
         if (!this.isSkill) {
 
 
-            ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(683), aspect(1217));
+            ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
             // テキストを描画
             if(!skillSwitchAnimation.isAnimation) {
             // Skillボタン
-            const Skill = new Text(1340, 200, "S", 'black', 297, false, 'italic',900);
+            const Skill = new Text(1257, 220, "M", 'white', 291, false, 'italic',900);
             Skill.draw(ctx);
             clickItems.push(Skill);
 
             // killテキスト
-            const kill = new Text(1482, 433.46, "KILL", 'white', 52, false, 'normal', this.killangle);
+            const kill = new Text(1444, 454, "AGIC", 'black', 54, false, 'normal', this.killangle);
             kill.draw(ctx);
             
             // Atackボタン
-            const Atack = new Text(1039.5, 255.96, "A", 'black', 297, false, 'italic',900);
+            const Atack = new Text(1022, 365, "A", 'white', 300, false, 'italic',900);
             Atack.draw(ctx);
             clickItems.push(Atack);
             // tackテキスト
-            const tack = new Text(1202, 489, "TACK", 'white', 52, false);
+            const tack = new Text(1187, 608, "TACK", 'black', 54, false);
             tack.draw(ctx);
 
             // Guardボタン
-            const Guaurd = new Text(1204, 509.96, "G", 'black', 297, false, 'italic',900);
+            const Guaurd = new Text(1217, 592, "G", 'white', 300, false, 'italic',900);
             Guaurd.draw(ctx);
             clickItems.push(Guaurd);
             // uardテキスト
-            const uard = new Text(1372, 736.96, "UARD", 'white', 52, false);
+            const uard = new Text(1349, 820, "UARD", 'black', 54, false);
             uard.draw(ctx);
-
-
-
             
             }
         }
@@ -213,7 +227,7 @@ class BattleScreen {
         ctx.fillStyle = '#5535DE'; // 色の指定
         ctx.fill(); // 塗りつぶし
 
-        //アニメーション
+        //戦闘画面遷移アニメーション
         if (encoutnanimation.animation) {
 
             encoutnanimation.draw(ctx)
@@ -246,9 +260,8 @@ class BattleScreen {
                 }
             }
 
-
         }
-        // アニメーション
+        // スキル画面線維アニメーション
         if(skillSwitchAnimation.isAnimation) {
             this.Imagex += aspect(1453 - this.Imagex) / 3;
             this.Imagey += aspect(196 - this.Imagey) / 3;
