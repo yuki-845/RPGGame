@@ -138,17 +138,17 @@ class BattleScreen {
         this.Imagey = 95;
 
         //敵への矢印のアニメーション用の変数
-        this.arrowx1 = 1856
-        this.arrowy1 = -49
+        this.arrowx1 = 1939
+        this.arrowy1 = -212
 
-        this.arrowx2 = 1861
-        this.arrowy2 = 138
+        this.arrowx2 = 1863.77
+        this.arrowy2 = -7.14
 
-        this.arrowx3 = 1875
-        this.arrowy3 = 158
+        this.arrowx3 = 1876.88
+        this.arrowy3 = 12.52
 
-        this.arrowx4 = 1924
-        this.arrowy4 = 66
+        this.arrowx4 = 2004
+        this.arrowy4 = -95
 
         this.arrowanimation = false;
     }
@@ -156,6 +156,7 @@ class BattleScreen {
     draw(ctx, canvas) {
         //うるさいので一旦コメントアウト
         // audio.play();
+        
         ctx.beginPath();
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
@@ -163,18 +164,18 @@ class BattleScreen {
         ctx.fill();
         clickItems = [];
 
-        
-
-
         // スキル画面
         if (this.isSkill) {
             skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey);
         }
 
         if (!this.isSkill) {
+
             //攻撃する敵が何かがわかるようにする
-        const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
-        ENEMY_ARROW.draw(ctx)
+            const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
+            ENEMY_ARROW.draw(ctx)
+            
+            //キャラクターのシャドー
             ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
             // テキストを描画
             if (!skillSwitchAnimation.isAnimation) {
@@ -205,7 +206,6 @@ class BattleScreen {
 
             }
         }
-
         //キャラクター　四角形
         ctx.beginPath();
         ctx.globalAlpha = 0.6;
@@ -261,11 +261,11 @@ class BattleScreen {
             }
 
         }
-        if(this.arrowanimation) {
+        if (this.arrowanimation) {
             this.arrowx1 += (1987 - this.arrowx1) / 10
             this.arrowy1 += (-149 - this.arrowy1) / 10
 
-            this.arrowx2 += (-119 -  this.arrowx2) / 10
+            this.arrowx2 += (-119 - this.arrowx2) / 10
             this.arrowy2 += (1307 - this.arrowy2) / 10
 
             this.arrowx3 += (-100 - this.arrowx3) / 10
@@ -273,11 +273,11 @@ class BattleScreen {
 
             this.arrowx4 += (2026 - this.arrowx4) / 10
             this.arrowy4 += (-16 - this.arrowy4) / 10
-            console.log(this.arrowx1)
+            // console.log(this.arrowx1)
         }
-        
-           
-        
+
+
+
         // スキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation) {
             this.Imagex += aspect(1453 - this.Imagex) / 3;
