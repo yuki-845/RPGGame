@@ -276,8 +276,6 @@ class BattleScreen {
             // console.log(this.arrowx1)
         }
 
-
-
         // スキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation) {
             this.Imagex += aspect(1453 - this.Imagex) / 3;

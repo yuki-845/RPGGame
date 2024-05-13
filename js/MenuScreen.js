@@ -16,6 +16,7 @@ class MenuScreen {
         this.width = width
         this.height = height
 
+        
     } //constructor() 終
 
     draw(ctx, canvas) {
@@ -23,67 +24,28 @@ class MenuScreen {
         //背景1
         ctx.beginPath()
         ctx.globalAlpha = 1;
-        ctx.fillStyle = 'black'; // 四角形の塗りつぶし色
+        ctx.fillStyle = 'white'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
 
-        
-        //背景２
-        ctx.beginPath();
-        ctx.globalAlpha = 1;
-        ctx.moveTo(0, 0); // 始点
-        ctx.lineTo(aspect(1920), 0); // 右上
-        ctx.lineTo(aspect(1920), aspect(1097.62)); // 右下
-        ctx.lineTo(aspect(917), aspect(1097.62)); // 左下
-        ctx.closePath(); // パスを閉じる
-        ctx.fillStyle = '#11B1F4'; // 色の指定
-        ctx.fill(); // 塗りつぶし
-
-
-        // Menu表
-
-        //　枠線のテキスト
-        ctx.font = '700 normal ' + aspect(154) + 'px "aktiv-grotesk", sans-serif';
-        ctx.strokeStyle = "white";
-        ctx.lineWidth = aspect(2);
-        ctx.strokeText("EQUIP&STATUS", aspect(39), aspect(-32) + aspect(154));
-        
-        //MAPボタン
-        const MAP = new Text(39, 280, "MAP", 'white', 80, false, 'normal', 400, false);
+        const MAP = new Text(148, -61, "MAP", '#E8E8E8', 273, false, 'normal', 700, false,0.5);
         MAP.draw(ctx);
-        clickItems.push(MAP);
 
-        //EQUIP&STATUSボタン
-        const EQUIP_STATUS = new Text(39, 383, "EQUIP&STATUS", 'white', 80, false, 'normal', 400,true);
-        EQUIP_STATUS.draw(ctx);
-        clickItems.push(EQUIP_STATUS);
+        const BlackPara = new Parallelogram(1311.04,-150.7,-237.73,1103.47,-131.49,1234.66,1417.28,-19.51,0.76,"#000000")
+        BlackPara.draw(ctx)
 
-        // SKILL ボタン
-        const SKILL = new Text(39, 486, "SKILL", 'white', 80, false, 'normal', 400);
-        SKILL.draw(ctx);
-        clickItems.push(SKILL);
+        const bluePara = new Parallelogram(1833.42,-248.04,133.02,1128.92,566.05,1663.67,2266.45,286.71,0.42,"#00B1FF")
+        bluePara.draw(ctx)
 
-        // SAVEボタン
-        const SAVE = new Text(39, 588, "SAVE", 'white', 80, false, 'normal', 400);
-        SAVE.draw(ctx);
-        clickItems.push(SAVE);
+        
+        const map = new Text(1127, 31, "MAP", '#ffffff', 51, false, 'normal', 700, false,1);
+        map.draw(ctx)
+        const status = new Text(1276, 31, "STATUS", '#777777', 51, false, 'normal', 700, false,1);
+        status.draw(ctx)
+        const save = new Text(1508, 31, "SAVE", '#777777', 51, false, 'normal', 700, false,1);
+        save.draw(ctx)
+        const SETTING = new Text(1677, 31, "SETTING", '#777777', 51, false, 'normal', 700, false,1);
+        SETTING.draw(ctx)
 
-        //SETTINGボタン
-        const SETTING = new Text(39, 691, "SETTING", 'white', 80, false, 'normal', 400);
-        SETTING.draw(ctx);
-        clickItems.push(SETTING);
-
-        //CLOSE ボタン
-        const CLOSE = new Text(39, 794.61, "CLOSE", 'white', 80, false, 'normal', 400);
-        CLOSE.draw(ctx);
-        clickItems.push(CLOSE);
-
-
-        const charaPara = new Parallelogram(706.11, 903.77, 935, 903.77, 913.89, 1004, 685, 1004, 1, "#0087BF")
-        charaPara.draw(ctx);
-        clickItems.push(charaPara);
-        const charaPara2 = new Parallelogram(1006.11, 903.77, 1235, 903.77, 1213.89, 1004.38, 985, 1004.38, 1, "#0087BF")
-        charaPara2.draw(ctx);
-        clickItems.push(charaPara2);
     }
 }

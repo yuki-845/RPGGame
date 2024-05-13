@@ -8,8 +8,9 @@ class Text {
      * width : ゲームの横幅
      * height : ゲームの縦幅
      */
-    constructor(x, y, text, color, fontsize, ismouse, weight, w,isRect) {
+    constructor(x, y, text, color, fontsize, ismouse, weight, w,isRect,alpha) {
         //canvas要素を作成
+
         this.x = x;
         this.y = y;
         this.text = text;
@@ -21,7 +22,9 @@ class Text {
         this.weight = weight || 'normal'
 
         this.w = w || 700;
+
         this.isRect = isRect
+        this.alpha = alpha || 1.0
         
     } //constructor() 終了
     draw(ctx) {
@@ -41,7 +44,7 @@ class Text {
 
 
         // ctx.rotate(angleInRadians); // 角度を回転
-        ctx.globalAlpha = 1.0;
+        ctx.globalAlpha = this.alpha;
         // ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px "Aktiv.Grotesk", sans-serif';
         ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
         ctx.fillStyle = this.color;
