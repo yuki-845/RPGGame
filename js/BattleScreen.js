@@ -129,27 +129,28 @@ function strokeBalloonRoundRect(ctx, x, y, w, h, r, bl, br, bh) {
 const skillSwitchAnimation = new SkillSwitchAnimation()
 console.log(screenWidth)
 class BattleScreen {
-    
+
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        
+
         this.Imagex = 987;
         this.Imagey = 95;
 
         //敵への矢印のアニメーション用の変数
-        this.arrowx1 = 90
-        this.arrowy1 = 90
+        this.arrowx1 = 1856
+        this.arrowy1 = -49
 
-        this.arrowx2 = 90
-        this.arrowy2 = 90
+        this.arrowx2 = 1861
+        this.arrowy2 = 138
 
-        this.arrowx3 = 90
-        this.arrowy3 = 90
+        this.arrowx3 = 1875
+        this.arrowy3 = 158
 
-        this.arrowx4 = 90
-        this.arrowy4 = 90
-        
+        this.arrowx4 = 1924
+        this.arrowy4 = 66
+
+        this.arrowanimation = false;
     }
 
     draw(ctx, canvas) {
@@ -161,51 +162,50 @@ class BattleScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
         clickItems = [];
-        
-        //攻撃する敵が何かがわかるようにする
-        const ENEMY_ARROW = new Parallelogram(this.arrowx1,this.arrowy1,this.arrowx2,this.arrowy2,this.arrowx3,this.arrowy3,this.arrowx4,this.arrowy4,1,"#00AEEB")
-        ENEMY_ARROW.draw(ctx)
 
         
+
+
         // スキル画面
         if (this.isSkill) {
-            skillSwitchAnimation.draw(ctx,this.Imagex,this.Imagey);
+            skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey);
         }
 
         if (!this.isSkill) {
-
-
+            //攻撃する敵が何かがわかるようにする
+        const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
+        ENEMY_ARROW.draw(ctx)
             ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
             // テキストを描画
-            if(!skillSwitchAnimation.isAnimation) {
-            // Skillボタン
-            const Skill = new Text(1257, 220, "M", 'white', 291, false, 'italic',900);
-            Skill.draw(ctx);
-            clickItems.push(Skill);
+            if (!skillSwitchAnimation.isAnimation) {
+                // Skillボタン
+                const Skill = new Text(1257, 220, "M", 'white', 291, false, 'italic', 900);
+                Skill.draw(ctx);
+                clickItems.push(Skill);
 
-            // killテキスト
-            const kill = new Text(1444, 454, "AGIC", 'black', 54, false, 'normal', this.killangle);
-            kill.draw(ctx);
-            
-            // Atackボタン
-            const Atack = new Text(1022, 365, "A", 'white', 300, false, 'italic',900);
-            Atack.draw(ctx);
-            clickItems.push(Atack);
-            // tackテキスト
-            const tack = new Text(1187, 608, "TACK", 'black', 54, false);
-            tack.draw(ctx);
+                // killテキスト
+                const kill = new Text(1444, 454, "AGIC", 'black', 54, false, 'normal', this.killangle);
+                kill.draw(ctx);
 
-            // Guardボタン
-            const Guaurd = new Text(1217, 592, "G", 'white', 300, false, 'italic',900);
-            Guaurd.draw(ctx);
-            clickItems.push(Guaurd);
-            // uardテキスト
-            const uard = new Text(1349, 820, "UARD", 'black', 54, false);
-            uard.draw(ctx);
-            
+                // Atackボタン
+                const Atack = new Text(1022, 365, "A", 'white', 300, false, 'italic', 900);
+                Atack.draw(ctx);
+                clickItems.push(Atack);
+                // tackテキスト
+                const tack = new Text(1187, 608, "TACK", 'black', 54, false);
+                tack.draw(ctx);
+
+                // Guardボタン
+                const Guaurd = new Text(1217, 592, "G", 'white', 300, false, 'italic', 900);
+                Guaurd.draw(ctx);
+                clickItems.push(Guaurd);
+                // uardテキスト
+                const uard = new Text(1349, 820, "UARD", 'black', 54, false);
+                uard.draw(ctx);
+
             }
         }
-        
+
         //キャラクター　四角形
         ctx.beginPath();
         ctx.globalAlpha = 0.6;
@@ -244,7 +244,7 @@ class BattleScreen {
                 if (encoutnanimation.alpha < 0) {
                     console.log("真っ白になっちまったよ")
                     encoutnanimation.animation = false;
-
+                    this.arrowanimation = true
                     //初期化
                     encoutnanimation.linewidth = 0
                     encoutnanimation.lineheight = 2
@@ -261,37 +261,54 @@ class BattleScreen {
             }
 
         }
+        if(this.arrowanimation) {
+            this.arrowx1 += (1987 - this.arrowx1) / 10
+            this.arrowy1 += (-149 - this.arrowy1) / 10
+
+            this.arrowx2 += (-119 -  this.arrowx2) / 10
+            this.arrowy2 += (1307 - this.arrowy2) / 10
+
+            this.arrowx3 += (-100 - this.arrowx3) / 10
+            this.arrowy3 += (1322 - this.arrowy3) / 10
+
+            this.arrowx4 += (2026 - this.arrowx4) / 10
+            this.arrowy4 += (-16 - this.arrowy4) / 10
+            console.log(this.arrowx1)
+        }
+        
+           
+        
         // スキル画面線維アニメーション
-        if(skillSwitchAnimation.isAnimation) {
+        if (skillSwitchAnimation.isAnimation) {
             this.Imagex += aspect(1453 - this.Imagex) / 3;
             this.Imagey += aspect(196 - this.Imagey) / 3;
 
 
-            if(this.Imagex >= 1300) {
+            if (this.Imagex >= 1300) {
                 this.isSkill = true;
-                
-                skillSwitchAnimation.x1 += aspect(1153 -  skillSwitchAnimation.x1) / 3;
-                skillSwitchAnimation.x2 += aspect(1920 -  skillSwitchAnimation.x2) / 3;
-                skillSwitchAnimation.x3 += aspect(1654 -  skillSwitchAnimation.x3) / 3;
-                skillSwitchAnimation.x4 += aspect(888 -  skillSwitchAnimation.x4) / 3;
-                
+
+                skillSwitchAnimation.x1 += aspect(1153 - skillSwitchAnimation.x1) / 3;
+                skillSwitchAnimation.x2 += aspect(1920 - skillSwitchAnimation.x2) / 3;
+                skillSwitchAnimation.x3 += aspect(1654 - skillSwitchAnimation.x3) / 3;
+                skillSwitchAnimation.x4 += aspect(888 - skillSwitchAnimation.x4) / 3;
+
             }
-        }else {
-            skillSwitchAnimation.x1 += aspect(2098 -  skillSwitchAnimation.x1) / 3;
-            skillSwitchAnimation.x2 += aspect(2884 -  skillSwitchAnimation.x2) / 3;
-            skillSwitchAnimation.x3 += aspect(2712 -  skillSwitchAnimation.x3) / 3;
-            skillSwitchAnimation.x4 += aspect(2026 -  skillSwitchAnimation.x4) / 3;
-            if(skillSwitchAnimation.x1 >= 2000) {
+        } else {
+            skillSwitchAnimation.x1 += aspect(2098 - skillSwitchAnimation.x1) / 3;
+            skillSwitchAnimation.x2 += aspect(2884 - skillSwitchAnimation.x2) / 3;
+            skillSwitchAnimation.x3 += aspect(2712 - skillSwitchAnimation.x3) / 3;
+            skillSwitchAnimation.x4 += aspect(2026 - skillSwitchAnimation.x4) / 3;
+            if (skillSwitchAnimation.x1 >= 2000) {
                 this.isSkill = false;
                 this.Imagex += aspect(936 - this.Imagex) / 3;
                 this.Imagey += aspect(91 - this.Imagey) / 3;
 
             }
 
-            
+
         }
 
-        
+
     }
-    
+
 }
