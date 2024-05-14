@@ -80,6 +80,7 @@ addEventListener('load', () => {
 
                             console.log(ISMenuScreen.isclick)
                         }
+                        menuscreen.isNowMenu = item.text
                     }
 
                 }
