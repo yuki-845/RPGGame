@@ -84,9 +84,17 @@ addEventListener('load', () => {
                         }
                         if(item.text == "MAP") {
                             menuscreen.isNowMenu = item.text
+                            STATUS_MENU.x = -100;
+                            STATUS_MENU.y = -100
                         }
                         if(item.text == "STATUS") {
                             menuscreen.isNowMenu = item.text
+                        }
+                        if(item.text == "SAVE") {
+                            menuscreen.isNowMenu = item.text
+                            STATUS_MENU.x = +100;
+                            STATUS_MENU.y = +100
+
                         }
                         
                     }

@@ -1,6 +1,8 @@
 
 'use strict'
 
+const STATUS_MENU = new MenuStatus()
+const SAVE_MENU = new SAVEMENU()
 
 class MenuScreen {
 
@@ -110,8 +112,9 @@ class MenuScreen {
 
         const ani = 4;
         console.log(this.isNowMenu)
+        //ステータス画面
         if (this.isNowMenu == "STATUS") {
-            const STATUS_MENU = new MenuStatus()
+            
             STATUS_MENU.draw(ctx)
             //ステータスのところに青と黒の線が移動
             this.bluex1 += (1948.43 - this.bluex1) / ani;
@@ -133,6 +136,35 @@ class MenuScreen {
             this.blacky3 += (1215.83 - this.blacky3) / ani;
             this.blackx4 += (1641.01 - this.blackx4) / ani;
             this.blacky4 += (-38.34 - this.blacky4) / ani;
+
+            STATUS_MENU.x += (0 - STATUS_MENU.x) / 3;
+            STATUS_MENU.y += (0 - STATUS_MENU.y) / 3;
+        }
+        //セーブ画面
+        if (this.isNowMenu == "SAVE") {
+            SAVE_MENU.draw(ctx)
+
+            //ステータスのところに青と黒の線が移動
+            this.bluex1 += (2101.32 - this.bluex1) / ani;
+            this.bluey1 += (-171.33 - this.bluey1) / ani;
+            this.bluex2 += (509.64 - this.bluex2) / ani;
+            this.bluey2 += (1117.58 - this.bluey2) / ani;
+            this.bluex3 += (942.68 - this.bluex3) / ani;
+            this.bluey3 += (1652.33 - this.bluey3) / ani;
+            this.bluex4 += (2534.36 - this.bluex4) / ani;
+            this.bluey4 += (363.42 - this.bluey4) / ani;
+
+
+            //メニュー画面を開くときのアニメーション 背景ブラック
+            this.blackx1 += (1719.67 - this.blackx1) / ani;
+            this.blacky1 += (-186.53 - this.blacky1) / ani;
+            this.blackx2 += (170.9 - this.blackx2) / ani;
+            this.blacky2 += (1067.64- this.blacky2) / ani;
+            this.blackx3 += (277.13 - this.blackx3) / ani;
+            this.blacky3 += (1198.83 - this.blacky3) / ani;
+            this.blackx4 += (1825.91 - this.blackx4) / ani;
+            this.blacky4 += (-55.34 - this.blacky4) / ani;
+
         }
 
         // 1833.42,-248.04,133.02,1128.92,566.05,1663.67,2266.45,286.71,
@@ -159,6 +191,8 @@ class MenuScreen {
             this.blacky4 += (-19.51 - this.blacky4) / ani;
 
         }
+
+        
 
         //アルファ値を濃くする
         this.alpha += 0.08
