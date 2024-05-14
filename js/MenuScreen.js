@@ -66,21 +66,48 @@ class MenuScreen {
         const bluePara = new Parallelogram(this.bluex1, this.bluey1, this.bluex2, this.bluey2, this.bluex3, this.bluey3, this.bluex4, this.bluey4, 0.42, "#00B1FF")
 
         bluePara.draw(ctx)
-        
-        const MAP = new Text(1127, 31, "MAP", '#ffffff', 51, false, 'normal', 700, false, 1);
-        MAP.draw(ctx)
-        clickItems.push(MAP)
+        if (this.isNowMenu == "MAP") {
+            const MAP = new Text(1127, 31, "MAP", '#ffffff', 51, false, 'normal', 700, false, 1);
+            MAP.draw(ctx)
+            clickItems.push(MAP)
+        } else {
+            const MAP = new Text(1127, 31, "MAP", '#777777', 51, false, 'normal', 700, false, 1);
+            MAP.draw(ctx)
+            clickItems.push(MAP)
+        }
+        if (this.isNowMenu == "STATUS") {
+            const STATUS = new Text(1276, 31, "STATUS", '#ffffff', 51, false, 'normal', 700, false, 1);
+            STATUS.draw(ctx)
+            clickItems.push(STATUS)
+        } else {
+            const STATUS = new Text(1276, 31, "STATUS", '#777777', 51, false, 'normal', 700, false, 1);
+            STATUS.draw(ctx)
+            clickItems.push(STATUS)
 
-        const STATUS = new Text(1276, 31, "STATUS", '#777777', 51, false, 'normal', 700, false, 1);
-        STATUS.draw(ctx)
-        clickItems.push(STATUS)
+        }
+        if (this.isNowMenu == "SAVE") {
+            const SAVE = new Text(1508, 31, "SAVE", '#ffffff', 51, false, 'normal', 700, false, 1);
+            SAVE.draw(ctx)
+            clickItems.push(SAVE)
+        } else {
+            const SAVE = new Text(1508, 31, "SAVE", '#777777', 51, false, 'normal', 700, false, 1);
+            SAVE.draw(ctx)
+            clickItems.push(SAVE)
+        }
+        if (this.isNowMenu == "SETTING") {
+            const SETTING = new Text(1677, 31, "SETTING", '#ffffff', 51, false, 'normal', 700, false, 1);
+            SETTING.draw(ctx)
+            clickItems.push(SETTING)
+        } else {
+            const SETTING = new Text(1677, 31, "SETTING", '#777777', 51, false, 'normal', 700, false, 1);
+            SETTING.draw(ctx)
+            clickItems.push(SETTING)
+        }
 
-        const SAVE = new Text(1508, 31, "SAVE", '#777777', 51, false, 'normal', 700, false, 1);
-        SAVE.draw(ctx)
-        clickItems.push(SAVE)
-        const SETTING = new Text(1677, 31, "SETTING", '#777777', 51, false, 'normal', 700, false, 1);
-        SETTING.draw(ctx)
-        clickItems.push(SETTING)
+
+
+
+
         const ani = 4;
         console.log(this.isNowMenu)
         if (this.isNowMenu == "STATUS") {
