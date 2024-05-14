@@ -21,12 +21,11 @@ class MenuStatus {
     } //constructor() 終
 
     draw(ctx, canvas) {
-        clickItems = [];
+       
     
         //魔法のスキル紹介欄
         const MagicCircle = new Circle(713,113,325,"#50A5FA")
         MagicCircle.draw(ctx)
-
 
         //魔法の詳細
         const InfoCircle = new Circle(642,611,178,"#508BFA")

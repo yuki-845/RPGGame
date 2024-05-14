@@ -52,10 +52,12 @@ addEventListener('load', () => {
                     // GameScreen内でのclick イベント
                     if(IsGameScreen.isclick) {
                         if(item.text == "Title") {
+                            
                             ISMenuScreen.isclick = true;
                             // IsGameScreen.isclick = false
                             // encoutnanimation.animation = true
                             menuscreen.isAnimation = true;
+                            
                         } 
                         
                     }
@@ -80,7 +82,13 @@ addEventListener('load', () => {
 
                             console.log(ISMenuScreen.isclick)
                         }
-                        menuscreen.isNowMenu = item.text
+                        if(item.text == "MAP") {
+                            menuscreen.isNowMenu = item.text
+                        }
+                        if(item.text == "STATUS") {
+                            menuscreen.isNowMenu = item.text
+                        }
+                        
                     }
 
                 }
