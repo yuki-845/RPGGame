@@ -39,6 +39,10 @@ addEventListener('load', () => {
             // クリックされた座標を取得
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
             const clickY = event.clientY - canvas.getBoundingClientRect().top;
+            console.log(gamescreen.isTalk)
+            if(IsGameScreen.isclick && gamescreen.isTalk) {
+                gamescreen.TalkIndex += 1
+            }
             // テキストの領域内でクリックされたかどうかを判定
             clickItems.forEach(item => {
                 if (item.testHit(clickX, clickY)) {

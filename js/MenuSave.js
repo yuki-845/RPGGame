@@ -14,7 +14,6 @@ class SAVEMENU {
         this.width = width
         this.height = height
         this.isSave = isSave
-
         
     } //constructor() 終
 
