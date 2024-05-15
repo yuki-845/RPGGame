@@ -8,7 +8,8 @@ class Parallelogram {
 	 * width : ゲームの横幅
 	 * height : ゲームの縦幅
 	 */
-	constructor(mx1,my1,mx2,my2,mx3,my3,mx4,my4,alpha,color) {
+	constructor(mx1,my1,mx2,my2,mx3,my3,mx4,my4,alpha,color,text
+        ) {
 		//canvas要素を作成
 
         this.mx1 = mx1
@@ -21,6 +22,7 @@ class Parallelogram {
         this.my4 = my4;
         this.alpha = alpha || 1
         this.color = color
+        this.text = text
         
 	} //constructor() 終了
     draw (ctx) {

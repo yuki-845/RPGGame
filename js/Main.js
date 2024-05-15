@@ -94,7 +94,7 @@ addEventListener('load', () => {
                             menuscreen.isNowMenu = item.text
                             STATUS_MENU.x = +100;
                             STATUS_MENU.y = +100
-
+                            
                         }
                         
                     }

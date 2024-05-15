@@ -25,6 +25,7 @@ class Text {
 
         this.isRect = isRect
         this.alpha = alpha || 1.0
+      
         
     } //constructor() 終了
     draw(ctx) {
