@@ -8,7 +8,7 @@ class Text {
      * width : ゲームの横幅
      * height : ゲームの縦幅
      */
-    constructor(x, y, text, color, fontsize, ismouse, weight, w,isRect,alpha) {
+    constructor(x, y, text, color, fontsize, ismouse, weight, w, isRect, alpha) {
         //canvas要素を作成
 
         this.x = x;
@@ -25,11 +25,13 @@ class Text {
 
         this.isRect = isRect
         this.alpha = alpha || 1.0
-      
+
         
+
+
     } //constructor() 終了
     draw(ctx) {
-        if(this.isRect) {
+        if (this.isRect) {
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = '#11B1F4'; // 四角形の塗りつぶし色
@@ -55,12 +57,26 @@ class Text {
         this.h = aspect(this.fontsize);
         this.w = ctx.measureText(this.text).width;
 
-        
-            
-      
+
+
+
 
 
     }
+    drawText(ctx) {
+        // Split the text at every newline character
+        var lines = this.text.split('\n');
+        ctx.globalAlpha = this.alpha;
+        ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
+        ctx.fillStyle = this.color;
+
+        // Draw each line separately
+        for (var i = 0; i < lines.length; i++) {
+            ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
+            this.y += aspect(this.fontsize) * 2 * 1.2; // Move down by line height for the next line
+        }
+    }
+
 
     testHit(clickX, clickY) {
         return (this.x <= clickX && clickX <= this.x + this.w) &&

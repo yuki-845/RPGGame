@@ -4,7 +4,8 @@ const mainCharacter = new Sprite('img/MainCharacter.png');
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 let hukidasi = new Image();
 hukidasi.src = 'img/吹出し.png';
-
+const characterIcon = new Image()
+characterIcon.src = "img/CharacterIcon.png"
 
 class GameScreen {
 
@@ -49,9 +50,12 @@ class GameScreen {
             ctx.drawImage(hukidasi, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(888.92), aspect(349.05));
             if (this.TalkIndex <= talk.chapter01.length - 1) {
                 var key = Object.keys(talk.chapter01[this.TalkIndex]);
+                console.log(talk.chapter01[this.TalkIndex])
                 const talkText = new Text(mainCharacter.x + aspect(800), mainCharacter.y + aspect(200), talk.chapter01[this.TalkIndex][key], 'white', 25, false);
-                talkText.draw(ctx)
+                talkText.drawText(ctx);
             }
+            ctx.drawImage(characterIcon, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(197), aspect(262));
+            
 
 
             if (talk.chapter01.length == this.TalkIndex) {
