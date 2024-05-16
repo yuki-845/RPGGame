@@ -5,8 +5,8 @@ function aspect(x) {
     const textsize = (x) / (1920 / screenWidth)
     return textsize
 }
-let screenWidth = 1920;
-let screenHeight = 1080;
+let screenWidth = 1920 / 2;
+let screenHeight = 1080 / 2;
 (function(d) {
     var config = {
       kitId: 'YOUR_ADOBE_FONTS_KIT_ID',
