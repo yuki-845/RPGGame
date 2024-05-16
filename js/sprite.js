@@ -17,7 +17,7 @@ class Sprite {
 		//this.img.srcに画像ファイルまでのパスを代入
 		this.img.src = img;
 		//画像の初期位置
-		this.x = this.y = 300;
+		this.x = this.y = 200;
 		//画像を表示する範囲の横幅。引数widthが指定されていない場合、this.widthに32を代入
 		this.width = width || 32;
 		//画像を表示する範囲の縦幅。引数heightが指定されていない場合、this.heightに32を代入

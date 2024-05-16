@@ -170,11 +170,9 @@ class BattleScreen {
         }
 
         if (!this.isSkill) {
-
             //攻撃する敵が何かがわかるようにする
             const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
             ENEMY_ARROW.draw(ctx)
-            
             //キャラクターのシャドー
             ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
             // テキストを描画

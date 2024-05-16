@@ -67,13 +67,13 @@ class Text {
         // Split the text at every newline character
         var lines = this.text.split('\n');
         ctx.globalAlpha = this.alpha;
-        ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
+        ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "ヒラギノ明朝 ProN", sans-serif'
         ctx.fillStyle = this.color;
 
         // Draw each line separately
         for (var i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
-            this.y += aspect(this.fontsize) * 2 * 1.2; // Move down by line height for the next line
+            ctx.fillText(lines[i], this.x, this.y);
+            this.y += aspect(this.fontsize) * 2; // Move down by line height for the next line
         }
     }
 

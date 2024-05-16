@@ -47,14 +47,15 @@ class GameScreen {
 
             }
 
-            ctx.drawImage(hukidasi, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(888.92), aspect(349.05));
+            ctx.drawImage(hukidasi, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(characterIcon, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(197), aspect(262));
             if (this.TalkIndex <= talk.chapter01.length - 1) {
                 var key = Object.keys(talk.chapter01[this.TalkIndex]);
                 console.log(talk.chapter01[this.TalkIndex])
-                const talkText = new Text(mainCharacter.x + aspect(800), mainCharacter.y + aspect(200), talk.chapter01[this.TalkIndex][key], 'white', 25, false);
+                const talkText = new Text(mainCharacter.x - aspect(-60), mainCharacter.y  - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false,'normal',700);
                 talkText.drawText(ctx);
             }
-            ctx.drawImage(characterIcon, mainCharacter.x - aspect(161), mainCharacter.y - aspect(330), aspect(197), aspect(262));
+            
             
 
 
