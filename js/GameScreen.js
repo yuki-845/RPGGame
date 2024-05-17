@@ -30,15 +30,8 @@ class GameScreen {
 
 
         // Titleの背景
-        ctx.beginPath()
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = '#00AEEB'; // 四角形の塗りつぶし色
-        ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
-        ctx.fill();
-        //Title
-        const text = new Text(145, 43, "Title", 'white', 106, false);
-        text.draw(ctx)
-        clickItems.push(text)
+       const map = new MapSprite(MapChapter01_Under.image,32,MapChapter01_Under.map)
+       map.draw(ctx)
 
         mainCharacter.draw(ctx);
         if (this.isTalk) {

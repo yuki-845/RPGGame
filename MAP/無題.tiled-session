@@ -1,0 +1,39 @@
+{
+    "activeFile": "b_02高山.tsx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "/Users/hiraiyuuki/Documents/Web_App_Dev/HYRPG/b_02高山.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/hiraiyuuki/Documents/Web_App_Dev/HYRPG/d_05荒地の自然.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/hiraiyuuki/Documents/Web_App_Dev/HYRPG/d_07枯木.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/hiraiyuuki/Documents/Web_App_Dev/HYRPG/e_t02A縦縞の家+壊.tsx": {
+            "scaleInDock": 1
+        },
+        "b_02高山.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "無題.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.5,
+                "y": 320
+            }
+        }
+    },
+    "openFiles": [
+        "b_02高山.tsx"
+    ],
+    "project": "無題.tiled-project",
+    "recentFiles": [
+        "b_02高山.tsx",
+        "無題.tmx"
+    ]
+}
