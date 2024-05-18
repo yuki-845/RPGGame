@@ -46,9 +46,9 @@ class MapSprite {
 
 				//X方向に、何番目の画像か
                 
-				const _frameX = (this.data[y][x] - 33) % ( this.img.width / this.size );
+				const _frameX = (this.data[y][x] - 1) % ( this.img.width / 32 );
 				//Y方向に、何番目の画像か
-				const _frameY = ~~( (this.data[y][x] - 33)/ ( this.img.width / this.size ) );
+				const _frameY = ~~( (this.data[y][x] - 1)/ ( this.img.width / 32 ) );
 
 				//画家さん（コンテキスト）を呼ぶ
 				
@@ -56,10 +56,10 @@ class MapSprite {
 				//タイルを表示
 				ctx.drawImage(
 					this.img,
-					this.size * _frameX,
-					this.size * _frameY ,
-					this.size,
-					this.size,
+					32 * _frameX,
+					32 * _frameY ,
+					32,
+					32,
 					_tileX,
 					_tileY,
 					this.size,

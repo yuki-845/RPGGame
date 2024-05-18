@@ -34,18 +34,20 @@ class Sprite {
 	 * canvas : 紙（キャンバス）
 	 */
 	draw(ctx ) {
+        this.width = aspect(64)
+        this.height = aspect(64)
 		
 		//X,Y方向に、何番目の画像か
-		const _frameX = this.frame % ( this.img.width / this.width );
-		const _frameY = ~~( this.frame / ( this.img.width / this.width ) );
+		const _frameX = this.frame % ( this.img.width / 32 );
+		const _frameY = ~~( this.frame / ( this.img.width / 32 ) );
 
 		//画家さんに、絵を描いてとお願いする
 		ctx.drawImage(
 			this.img,
-			this.width * _frameX,
-			this.height * _frameY,
-			this.width,
-			this.height,
+			32 * _frameX,
+			32 * _frameY,
+			32,
+			32,
 			this.x,
 			this.y,
 			this.width,

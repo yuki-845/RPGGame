@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "b_02高山.tsx",
     "expandedProjectPaths": [
     ],
@@ -28,6 +32,10 @@
             }
         }
     },
+    "last.exportedFilePath": "/Users/hiraiyuuki/Documents/Web_App_Dev/RPGGame/MAP",
+    "last.imagePath": "/Users/hiraiyuuki/Creative Cloud Files Personal Account yuuki.hirai0828@gmail.com 68752A3C6437AD010A495CED@AdobeID/ねくらファンタジーマップチップ素材集/マップ素材/マップタイル",
+    "map.height": 17,
+    "map.lastUsedExportFilter": "JavaScript マップファイル (*.js)",
     "openFiles": [
         "b_02高山.tsx"
     ],
@@ -35,5 +43,6 @@
     "recentFiles": [
         "b_02高山.tsx",
         "無題.tmx"
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx"
 }

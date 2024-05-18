@@ -30,7 +30,8 @@ class GameScreen {
 
 
         // Titleの背景
-       const map = new MapSprite(MapChapter01_Under.image,32,MapChapter01_Under.map)
+        ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
+       const map = new MapSprite(MapChapter01_Under.image,aspect(64),MapChapter01_Under.map)
        map.draw(ctx)
 
         mainCharacter.draw(ctx);
