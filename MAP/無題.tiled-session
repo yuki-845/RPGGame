@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "b_02高山.tsx",
+    "activeFile": "無題.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
@@ -24,11 +24,11 @@
             "scaleInEditor": 1
         },
         "無題.tmx": {
-            "scale": 1,
+            "scale": 0.52,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 479.5,
-                "y": 320
+                "x": 483.6538461538462,
+                "y": 223.07692307692304
             }
         }
     },
@@ -36,7 +36,9 @@
     "last.imagePath": "/Users/hiraiyuuki/Creative Cloud Files Personal Account yuuki.hirai0828@gmail.com 68752A3C6437AD010A495CED@AdobeID/ねくらファンタジーマップチップ素材集/マップ素材/マップタイル",
     "map.height": 17,
     "map.lastUsedExportFilter": "JavaScript マップファイル (*.js)",
+    "map.lastUsedFormat": "tmx",
     "openFiles": [
+        "無題.tmx",
         "b_02高山.tsx"
     ],
     "project": "無題.tiled-project",
