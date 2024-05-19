@@ -60,7 +60,7 @@ class Sprite {
         const dy = mouseY - (this.y + 16); // 16 はキャラクターの高さの半分
         console.log(this.x, this.y);
         const angle = Math.atan2(dy, dx);
-        const speed = 10;
+        const speed = 3;
         let angleInDegrees = (angle * 180) / Math.PI;
         if (angleInDegrees < 0) {
             angleInDegrees += 360;

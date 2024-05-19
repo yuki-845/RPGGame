@@ -1,6 +1,6 @@
 'use strict'
 
-const mainCharacter = new Sprite('img/MainCharacter.png');
+const mainCharacter = new Sprite('img/charaChip/Helene.png');
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 let hukidasi = new Image();
 hukidasi.src = 'img/吹出し.png';
