@@ -38,8 +38,7 @@ addEventListener('load', () => {
            
             // クリックされた座標を取得
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
-            const clickY = event.clientY - canvas.getBoundingClientRect().top;
-            
+            const clickY = event.clientY - canvas.getBoundingClientRect().top;     
       
             if(IsGameScreen.isclick && gamescreen.isTalk) {
                 gamescreen.TalkIndex += 1
@@ -111,12 +110,10 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
-
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
-
         });
 
         canvas.addEventListener('mousemove', function (event) {
@@ -128,7 +125,7 @@ addEventListener('load', () => {
 
                 // キャラクターをマウスの位置に追跡させる
                 Helene.moveTowardsMouse(mouseX, mouseY);
-                Laura.moveTowardsMouse(mouseX, mouseY);
+                Laura.MoveAttend(Helene.x, Helene.y);
             }
         });
         var targetFlag = false; // trueでマウスが要素に乗っているとみなす

@@ -45,14 +45,11 @@ class MapSprite {
 				if ( _tileX < -1 * this.size || _tileX > screenWidth ) continue;
 
 				//X方向に、何番目の画像か
-                
 				const _frameX = (this.data[y][x] - 1) % ( this.img.width / 32 );
 				//Y方向に、何番目の画像か
 				const _frameY = ~~( (this.data[y][x] - 1)/ ( this.img.width / 32 ) );
 
 				//画家さん（コンテキスト）を呼ぶ
-				
-                
 				ctx.drawImage(
 					this.img,
 					32 * _frameX,
