@@ -52,8 +52,7 @@ class MapSprite {
 
 				//画家さん（コンテキスト）を呼ぶ
 				
-                console.log(_frameX,_frameY,this.data[y][x])
-				//タイルを表示
+                
 				ctx.drawImage(
 					this.img,
 					32 * _frameX,

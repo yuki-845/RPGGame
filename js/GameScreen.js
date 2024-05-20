@@ -2,6 +2,8 @@
 
 const Helene = new Sprite('img/charaChip/Helene.png');
 const Laura = new Sprite('img/charaChip/Laura.png');
+Laura.x = 150
+Laura.y = 150
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 let hukidasi = new Image();
 hukidasi.src = 'img/吹出し.png';
@@ -32,38 +34,52 @@ class GameScreen {
 
         // Titleの背景
         ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
-       const map = new MapSprite(MapChapter01_Under.image,aspect(64),MapChapter01_Under.map)
-       map.draw(ctx)
+        const map = new MapSprite(MapChapter01_Under.image, aspect(64), MapChapter01_Under.map)
+        map.draw(ctx)
 
         Helene.draw(ctx);
+
         Laura.draw(ctx)
         if (this.isTalk) {
-            if (talk.chapter01.length == this.TalkIndex) {
+            if(this.TalkIndex === talk.chapter01.length) {
                 this.isTalk = false
-
+                this.TalkIndex = 0;
             }
             let key = Object.keys(talk.chapter01[this.TalkIndex]);
             
-            ctx.drawImage(hukidasi, Helene.x - aspect(161), Helene.y - aspect(330), aspect(940.92), aspect(370.05));
-            ctx.drawImage(characterIcon, Helene.x - aspect(161), Helene.y - aspect(330), aspect(197), aspect(262));
+            let Character_x = 0;
+            let Character_y = 0;
+            if(key[0] == "ラウラ") {
+                Character_x = Laura.x
+                Character_y = Laura.y
+            }else if(key[0] == "ヘレーネ") {
+                Character_x = Helene.x
+                Character_y = Helene.y
+            }
+
+
+            ctx.drawImage(hukidasi, Character_x - aspect(161), Character_x - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(characterIcon, Character_x - aspect(161), Character_x - aspect(330), aspect(197), aspect(262));
             if (this.TalkIndex <= talk.chapter01.length - 1) {
-                
                 console.log(key)
-             
-                const talkText = new Text(Helene.x - aspect(-60), Helene.y  - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false,'normal',700);
+
+                const talkText = new Text(Character_x - aspect(-60), Character_x - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
                 talkText.drawText(ctx);
             }
-            
-            
+
+            console.log(talk.chapter01)
 
 
-            if (talk.chapter01.length == this.TalkIndex) {
-                this.TalkIndex = 0;
+            if (talk.chapter01.length == this.TalkIndex - 1) {
+                
+                
+
 
             }
 
         }
-
+        console.log(this.TalkIndex)
+        console.log(this.isTalk)
         if (encoutnanimation.animation) {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);

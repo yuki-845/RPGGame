@@ -39,7 +39,8 @@ addEventListener('load', () => {
             // クリックされた座標を取得
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
             const clickY = event.clientY - canvas.getBoundingClientRect().top;
-            console.log(gamescreen.isTalk)
+            
+      
             if(IsGameScreen.isclick && gamescreen.isTalk) {
                 gamescreen.TalkIndex += 1
             }
@@ -213,7 +214,7 @@ addEventListener('load', () => {
                 menuscreen.draw(ctx);
             }
 
-            console.log(ISMenuScreen.isclick)
+            
         };
 
         // 60fpsで描画を更新する
