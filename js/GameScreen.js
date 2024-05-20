@@ -2,8 +2,11 @@
 
 const Helene = new Sprite('img/charaChip/Helene.png');
 const Laura = new Sprite('img/charaChip/Laura.png');
-Laura.x = 150
-Laura.y = 150
+
+Helene.x = 300;
+Helene.y = 300;
+Laura.x = 400;
+Laura.y = 400
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 //吹き出し画像
 let speech_bubble = new Image();
@@ -63,12 +66,12 @@ class GameScreen {
             }
 
 
-            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_x - aspect(330), aspect(940.92), aspect(370.05));
-            ctx.drawImage(characterIcon, Character_x - aspect(161), Character_x - aspect(330), aspect(197), aspect(262));
+            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
             if (this.TalkIndex <= talk.chapter01.length - 1) {
                 console.log(key)
 
-                const talkText = new Text(Character_x - aspect(-60), Character_x - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+                const talkText = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
                 talkText.drawText(ctx);
             }
 
