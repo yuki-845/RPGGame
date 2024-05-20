@@ -5,8 +5,12 @@ const Laura = new Sprite('img/charaChip/Laura.png');
 Laura.x = 150
 Laura.y = 150
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
-let hukidasi = new Image();
-hukidasi.src = 'img/吹出し.png';
+//吹き出し画像
+let speech_bubble = new Image();
+speech_bubble.src = 'img/speech_bubble.png';
+//吹き出し画像反転
+let speech_bubble_reverse = new Image();
+speech_bubble_reverse.src = 'img/speech_bubble_reverse.png'
 const characterIcon = new Image()
 characterIcon.src = "img/CharacterIcon.png"
 
@@ -49,6 +53,7 @@ class GameScreen {
             
             let Character_x = 0;
             let Character_y = 0;
+
             if(key[0] == "ラウラ") {
                 Character_x = Laura.x
                 Character_y = Laura.y
@@ -58,7 +63,7 @@ class GameScreen {
             }
 
 
-            ctx.drawImage(hukidasi, Character_x - aspect(161), Character_x - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_x - aspect(330), aspect(940.92), aspect(370.05));
             ctx.drawImage(characterIcon, Character_x - aspect(161), Character_x - aspect(330), aspect(197), aspect(262));
             if (this.TalkIndex <= talk.chapter01.length - 1) {
                 console.log(key)
@@ -68,15 +73,6 @@ class GameScreen {
             }
 
             console.log(talk.chapter01)
-
-
-            if (talk.chapter01.length == this.TalkIndex - 1) {
-                
-                
-
-
-            }
-
         }
         console.log(this.TalkIndex)
         console.log(this.isTalk)
