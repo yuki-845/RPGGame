@@ -126,7 +126,8 @@ addEventListener('load', () => {
                 const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
                 // キャラクターをマウスの位置に追跡させる
-                mainCharacter.moveTowardsMouse(mouseX, mouseY);
+                Helene.moveTowardsMouse(mouseX, mouseY);
+                Laura.moveTowardsMouse(mouseX, mouseY);
             }
         });
         var targetFlag = false; // trueでマウスが要素に乗っているとみなす
