@@ -58,7 +58,7 @@ class Sprite {
         // マウスの位置とキャラクターの位置の差を計算し、速度として使用する
         const dx = mouseX - (this.x + 16); // 16 はキャラクターの幅の半分
         const dy = mouseY - (this.y + 16); // 16 はキャラクターの高さの半分
-        console.log(this.x, this.y);
+       
         const angle = Math.atan2(dy, dx);
         const speed = 3;
         let angleInDegrees = (angle * 180) / Math.PI;
@@ -116,7 +116,11 @@ class Sprite {
         const dy = mouseY - (this.y + 16); // 16 はキャラクターの高さの半分
         console.log(this.x, this.y);
         const angle = Math.atan2(dy, dx);
-        const speed = 3;
+        const speed = 2.7;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const stopDistance = 40; // ターゲットからどの距離で止まるか
+
+        if (distance > stopDistance) {
         let angleInDegrees = (angle * 180) / Math.PI;
         if (angleInDegrees < 0) {
             angleInDegrees += 360;
@@ -162,7 +166,7 @@ class Sprite {
         // キャラクターを移動させます
         this.x += Math.cos(angle) * speed;
         this.y += Math.sin(angle) * speed;
-
+    }
 
 
     }
