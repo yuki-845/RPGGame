@@ -1,6 +1,7 @@
 'use strict';
 
-
+let Mouse_X = 0;
+let Mouse_Y = 0;
 
 // ページの読み込みが完了した後に処理を実行
 addEventListener('load', () => {
@@ -19,7 +20,7 @@ addEventListener('load', () => {
         ctx.scale(scale, scale);
         canvas.style.width = screenWidth + 'px';
         canvas.style.height = screenHeight + 'px';
-        
+
         // 画面を白色で塗りつぶす
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -28,6 +29,8 @@ addEventListener('load', () => {
         image.src = 'img/character.png'
         const titlescreen = new TitleScreen(screenWidth, screenHeight);
         const gamescreen = new GameScreen(screenWidth, screenHeight);
+        Mouse_X = Helene.x
+        Mouse_Y = Helene.y
         const battlescreen = new BattleScreen(
             screenWidth, screenHeight
         )
@@ -35,12 +38,11 @@ addEventListener('load', () => {
             screenWidth, screenHeight
         )
         canvas.addEventListener('click', function (event) {
-           
-            // クリックされた座標を取得
+
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
-            const clickY = event.clientY - canvas.getBoundingClientRect().top;     
-      
-            if(IsGameScreen.isclick && gamescreen.isTalk) {
+            const clickY = event.clientY - canvas.getBoundingClientRect().top;
+            
+            if (IsGameScreen.isclick && gamescreen.isTalk) {
                 gamescreen.TalkIndex += 1
             }
             // テキストの領域内でクリックされたかどうかを判定
@@ -54,16 +56,16 @@ addEventListener('load', () => {
                         clickItems = [];
                     }
                     // GameScreen内でのclick イベント
-                    if(IsGameScreen.isclick) {
-                        if(item.text == "Title") {
-                            
+                    if (IsGameScreen.isclick) {
+                        if (item.text == "Title") {
+
                             ISMenuScreen.isclick = true;
                             // IsGameScreen.isclick = false
                             // encoutnanimation.animation = true
                             menuscreen.isAnimation = true;
-                            
-                        } 
-                        
+
+                        }
+
                     }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick) {
@@ -78,29 +80,29 @@ addEventListener('load', () => {
                     }
                     //MenuScreen内でのclickイベント
                     if (ISMenuScreen.isclick) {
-                        
-                        if(item.text == "CLOSE") {
+
+                        if (item.text == "CLOSE") {
                             console.log("Menuscreen")
                             ISMenuScreen.isclick = false;
                             IsGameScreen.isclick = true;
 
                             console.log(ISMenuScreen.isclick)
                         }
-                        if(item.text == "MAP") {
+                        if (item.text == "MAP") {
                             menuscreen.isNowMenu = item.text
                             STATUS_MENU.x = -100;
                             STATUS_MENU.y = -100
                         }
-                        if(item.text == "STATUS") {
+                        if (item.text == "STATUS") {
                             menuscreen.isNowMenu = item.text
                         }
-                        if(item.text == "SAVE") {
+                        if (item.text == "SAVE") {
                             menuscreen.isNowMenu = item.text
                             STATUS_MENU.x = +100;
                             STATUS_MENU.y = +100
-                            
+
                         }
-                        
+
                     }
 
                 }
@@ -110,27 +112,28 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
-            const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-            const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-            Helene.moveTowardsMouse(mouseX, mouseY);
-            Laura.MoveAttend(Helene.x, Helene.y);
+            if(IsGameScreen.isclick) {
+                Mouse_X = event.clientX - canvas.getBoundingClientRect().left;
+                Mouse_Y = event.clientY - canvas.getBoundingClientRect().top;
+            }
+            
+            
+            
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
-            
+
         });
 
         canvas.addEventListener('mousemove', function (event) {
             // マウスがクリックされている間のみ処理を行う && GameScreenの画面のときだけキャラクターを動かす
             if (isMouseDown && IsGameScreen.isclick) {
 
-                const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-                const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+                Mouse_X = event.clientX - canvas.getBoundingClientRect().left;
+                Mouse_Y = event.clientY - canvas.getBoundingClientRect().top;
 
-                // キャラクターをマウスの位置に追跡させる
-                Helene.moveTowardsMouse(mouseX, mouseY);
-                Laura.MoveAttend(Helene.x, Helene.y);
+                
             }
         });
         var targetFlag = false; // trueでマウスが要素に乗っているとみなす
@@ -167,7 +170,7 @@ addEventListener('load', () => {
                 const mouseY = event.clientY - canvas.getBoundingClientRect().top;
                 clickItems.forEach(item => {
                     if (item.testHit(mouseX, mouseY)) {
-                        
+
                     }
                 })
             },
@@ -198,16 +201,29 @@ addEventListener('load', () => {
         canvas.addEventListener('mouseout', onMouseOut, false);
 
         drawRect();
-
+        let _x = aspect(0.5)
         const draw = () => {
+
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             if (!IsNewGameOR.isclick) {
                 titlescreen.draw(ctx, canvas)
             }
+
             if (IsGameScreen.isclick) {
+                
+                if(Helene.radius >= aspect(20)) {
+                    _x = aspect(-0.5)
+                }else if(Helene.radius <= aspect(10)){
+                    _x = aspect(0.5)
+                }
+                Helene.radius += _x
+                console.log(Helene.radius)
+
                 gamescreen.draw(ctx, canvas)
+                // キャラクターをマウスの位置に追跡させる
+                Helene.moveTowardsMouse(Mouse_X, Mouse_Y,ctx);
+                Laura.MoveAttend(Helene.x, Helene.y);
             }
             if (IsBattleScreen.isclick) {
                 battlescreen.draw(ctx, canvas);
@@ -216,7 +232,7 @@ addEventListener('load', () => {
                 menuscreen.draw(ctx);
             }
 
-            
+
         };
 
         // 60fpsで描画を更新する

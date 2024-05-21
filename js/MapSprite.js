@@ -50,6 +50,7 @@ class MapSprite {
 				const _frameY = ~~( (this.data[y][x] - 1)/ ( this.img.width / 32 ) );
 
 				//画家さん（コンテキスト）を呼ぶ
+                ctx.globalAlpha = 1
 				ctx.drawImage(
 					this.img,
 					32 * _frameX,

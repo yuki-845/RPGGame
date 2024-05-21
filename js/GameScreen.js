@@ -40,6 +40,7 @@ class GameScreen {
 
 
         // Titleの背景
+        ctx.globalAlpha = 1
         ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
         const map = new MapSprite(MapChapter01_Under.image, aspect(64), MapChapter01_Under.map)
         map.draw(ctx)
