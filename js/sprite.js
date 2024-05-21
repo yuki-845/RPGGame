@@ -69,10 +69,12 @@ class Sprite {
         if (distance > stopDistance) {
             
             ctx.beginPath();
-            ctx.fillStyle = 'skyblue';
+            ctx.fillStyle = 'white';
             ctx.arc(mouseX, mouseY, this.radius, 0, Math.PI * 2);
-            ctx.globalAlpha = 0.6
+            ctx.globalAlpha = 0.4
             ctx.fill();
+            
+
             let angleInDegrees = (angle * 180) / Math.PI;
             if (angleInDegrees < 0) {
                 angleInDegrees += 360;

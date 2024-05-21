@@ -29,6 +29,7 @@ class MenuStatus {
         //魔法の詳細
         const InfoCircle = new Circle(642 + this.x,611 + this.y,178,"#508BFA")
         InfoCircle.draw(ctx)
+        
         const INFO = new Text(759 + this.x, 619 + this.y, "INFO", '#ffffff', 51, false, 'normal', 700, false, 1);
         INFO.draw(ctx)
 
