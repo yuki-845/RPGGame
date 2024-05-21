@@ -110,10 +110,15 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
+            const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+            const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+            Helene.moveTowardsMouse(mouseX, mouseY);
+            Laura.MoveAttend(Helene.x, Helene.y);
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
             // マウスが離されたときの処理
+            
         });
 
         canvas.addEventListener('mousemove', function (event) {

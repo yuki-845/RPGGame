@@ -33,7 +33,7 @@ class Sprite {
 	 * 引数
 	 * canvas : 紙（キャンバス）
 	 */
-	draw(ctx ) {
+	draw(ctx) {
         this.width = aspect(64)
         this.height = aspect(64)
 		
@@ -118,7 +118,7 @@ class Sprite {
         const angle = Math.atan2(dy, dx);
         const speed = 2.7;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const stopDistance = 40; // ターゲットからどの距離で止まるか
+        const stopDistance = aspect(100); // ターゲットからどの距離で止まるか
 
         if (distance > stopDistance) {
         let angleInDegrees = (angle * 180) / Math.PI;

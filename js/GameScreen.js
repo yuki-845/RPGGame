@@ -43,10 +43,10 @@ class GameScreen {
         ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
         const map = new MapSprite(MapChapter01_Under.image, aspect(64), MapChapter01_Under.map)
         map.draw(ctx)
-
+        Laura.draw(ctx)
         Helene.draw(ctx);
 
-        Laura.draw(ctx)
+        
         if (this.isTalk) {
             if(this.TalkIndex === talk.chapter01.length) {
                 this.isTalk = false
