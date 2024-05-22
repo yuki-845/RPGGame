@@ -18,3 +18,4 @@ let IsBattleScreen = {
 let ISMenuScreen = {
     isclick: false
 }
+console.log("s")
