@@ -203,7 +203,6 @@ addEventListener('load', () => {
         drawRect();
         let _x = aspect(0.5)
         const draw = () => {
-
             // 描画のための処理
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (!IsNewGameOR.isclick) {
@@ -211,19 +210,23 @@ addEventListener('load', () => {
             }
 
             if (IsGameScreen.isclick) {
-                
-                if(Helene.radius >= aspect(20)) {
-                    _x = aspect(-0.5)
-                }else if(Helene.radius <= aspect(10)){
-                    _x = aspect(0.5)
-                }
-                Helene.radius += _x
-                console.log(Helene.radius)
-
                 gamescreen.draw(ctx, canvas)
-                // キャラクターをマウスの位置に追跡させる
-                Helene.moveTowardsMouse(Mouse_X, Mouse_Y,ctx);
-                Laura.MoveAttend(Helene.x, Helene.y);
+                if(!gamescreen.isTalk) {
+                    if(Helene.radius >= aspect(20)) {
+                        _x = aspect(-0.5)
+                    }else if(Helene.radius <= aspect(10)){
+                        _x = aspect(0.5)
+                    }
+                    Helene.radius += _x
+                    console.log(Helene.radius)
+    
+                   
+                    // キャラクターをマウスの位置に追跡させる
+                    Helene.moveTowardsMouse(Mouse_X, Mouse_Y,ctx);
+                    Laura.MoveAttend(Helene.x, Helene.y);
+                }
+                
+                
             }
             if (IsBattleScreen.isclick) {
                 battlescreen.draw(ctx, canvas);

@@ -65,16 +65,17 @@ class GameScreen {
                 Character_x = Helene.x
                 Character_y = Helene.y
             }
+            
 
-
-            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(840.92), aspect(335.05));
             ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
-            if (this.TalkIndex <= talk.chapter01.length - 1) {
-                
-
-                const talkText = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
-                talkText.drawText(ctx);
-            }
+            const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+            talkTex.drawText(ctx);
+            
+            ctx.drawImage(speech_bubble_reverse, Character_x - aspect(670), Character_y - aspect(330), aspect(940.92), aspect(370.05));
+            ctx.drawImage(characterIcon, Character_x - aspect(700), Character_y - aspect(330), aspect(197), aspect(262));
+            const talkTexc = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+            talkTexc.drawText(ctx);
 
             
         }

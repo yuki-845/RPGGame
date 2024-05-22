@@ -30,7 +30,7 @@ class TitleScreen {
         ctx.fill();
 
         //Title
-        const text = new Text(145, 43, "Title", 'white', 106, false);
+        const text = new Text(145, 43, "Going Legend", 'white', 106, false);
         text.draw(ctx)
 
         //'New Game'テキスト
