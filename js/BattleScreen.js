@@ -157,11 +157,7 @@ class BattleScreen {
         //うるさいので一旦コメントアウト
         // audio.play();
         
-        ctx.beginPath();
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = '#8AA1ED'; // 四角形の塗りつぶし色
-        ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
-        ctx.fill();
+        ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
         clickItems = [];
 
         // スキル画面

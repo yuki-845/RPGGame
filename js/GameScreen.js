@@ -1,12 +1,12 @@
 'use strict'
-
+//味方キャラ
 const Helene = new Sprite('img/charaChip/Helene.png');
 const Laura = new Sprite('img/charaChip/Laura.png');
 
-Helene.x = 300;
-Helene.y = 300;
-Laura.x = 400;
-Laura.y = 400
+Helene.x = aspect(600);
+Helene.y = aspect(400);
+Laura.x = aspect(700);
+Laura.y = aspect(400)
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 //吹き出し画像
 let speech_bubble = new Image();
@@ -16,6 +16,12 @@ let speech_bubble_reverse = new Image();
 speech_bubble_reverse.src = 'img/speech_bubble_reverse.png'
 const characterIcon = new Image()
 characterIcon.src = "img/CharacterIcon.png"
+
+
+//敵キャラ 
+const Skeleton = new Sprite("img/enemyChip/Skeleton.png")
+Skeleton.x = aspect(650)
+Skeleton.y = aspect(1200)
 
 class GameScreen {
 
@@ -31,6 +37,8 @@ class GameScreen {
         this.isTalk = true;
 
         this.TalkIndex = 0;
+
+        this.dontTalk = false
 
     } //constructor() 終
 
@@ -48,42 +56,82 @@ class GameScreen {
         Helene.draw(ctx);
 
         
+
         if (this.isTalk) {
-            if(this.TalkIndex === talk.chapter01.length) {
+
+            if (this.TalkIndex >= talk.chapter01.length) {
+                
+
+                encoutnanimation.animation = true
+                if (encoutnanimation.lineheight >= screenHeight / 1.2) {
+               
                 this.isTalk = false
                 this.TalkIndex = 0;
-            }
-            let key = Object.keys(talk.chapter01[this.TalkIndex]);
+                }
+                
+            }else {
+                
+                let key = Object.keys(talk.chapter01[this.TalkIndex]);
             
+            if (key[0] == "骸") {
+                if(Skeleton.y <= aspect(741)) {
+                    this.dontTalk = false
+                }else {
+                    this.dontTalk = true
+                
+                    
+                this.TalkIndex = this.TalkIndex - 1;
+                
+                }
+                
+            }
+            if(this.dontTalk) {
+                
+
+                Skeleton.y += (aspect(740) - Skeleton.y) / 5;
+                
+            }
+            
+            Skeleton.draw(ctx)
             let Character_x = 0;
             let Character_y = 0;
-
-            if(key[0] == "ラウラ") {
+            
+            if (key[0] == "ラウラ") {
                 Character_x = Laura.x
                 Character_y = Laura.y
-            }else if(key[0] == "ヘレーネ") {
+            } else if (key[0] == "ヘレーネ") {
                 Character_x = Helene.x
                 Character_y = Helene.y
+            }else if(key[0] == "骸") {
+                Character_x = Skeleton.x
+                Character_y = Skeleton.y
+            }
+            if (!this.dontTalk) {
+                ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(840.92), aspect(335.05));
+                ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
+                const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+                talkTex.drawText(ctx);
+
+                ctx.drawImage(speech_bubble_reverse, Character_x - aspect(670), Character_y - aspect(330), aspect(940.92), aspect(370.05));
+                ctx.drawImage(characterIcon, Character_x - aspect(700), Character_y - aspect(330), aspect(197), aspect(262));
+                const talkTexc = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+                talkTexc.drawText(ctx);
+
             }
             
+            }
 
-            ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(840.92), aspect(335.05));
-            ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
-            const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
-            talkTex.drawText(ctx);
-            
-            ctx.drawImage(speech_bubble_reverse, Character_x - aspect(670), Character_y - aspect(330), aspect(940.92), aspect(370.05));
-            ctx.drawImage(characterIcon, Character_x - aspect(700), Character_y - aspect(330), aspect(197), aspect(262));
-            const talkTexc = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
-            talkTexc.drawText(ctx);
 
-            
+
+
+
+
         }
-        
+
         if (encoutnanimation.animation) {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);
-            encoutnanimation.linewidth += screenWidth / 8;
+            encoutnanimation.linewidth += screenWidth / 12;
 
             if (encoutnanimation.linewidth >= screenWidth * 4) {
                 encoutnanimation.lineheight += screenHeight / 25
