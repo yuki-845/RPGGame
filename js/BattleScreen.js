@@ -156,17 +156,18 @@ class BattleScreen {
     draw(ctx, canvas) {
         //うるさいので一旦コメントアウト
         // audio.play();
-        
-        ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
+        ctx.globalAlpha = 1;
+        ctx.drawImage(chapter01background, aspect(0), aspect(-264), aspect(2361), aspect(1574));
         clickItems = [];
 
         // スキル画面
         if (this.isSkill) {
             skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey);
         }
-
+        
         if (!this.isSkill) {
             //攻撃する敵が何かがわかるようにする
+            
             const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
             ENEMY_ARROW.draw(ctx)
             //キャラクターのシャドー
@@ -235,7 +236,7 @@ class BattleScreen {
                 encoutnanimation.isblue = false
                 encoutnanimation.alpha -= 0.1
 
-                if (encoutnanimation.alpha < 0) {
+                if (encoutnanimation.alpha <= 0) {
                     console.log("真っ白になっちまったよ")
                     encoutnanimation.animation = false;
                     this.arrowanimation = true
@@ -274,7 +275,6 @@ class BattleScreen {
         if (skillSwitchAnimation.isAnimation) {
             this.Imagex += aspect(1453 - this.Imagex) / 3;
             this.Imagey += aspect(196 - this.Imagey) / 3;
-
 
             if (this.Imagex >= 1300) {
                 this.isSkill = true;

@@ -34,7 +34,7 @@ class GameScreen {
         //canvas要素を作成
         this.width = width
         this.height = height
-        this.isTalk = true;
+        this.isTalk = false;
 
         this.TalkIndex = 0;
 
@@ -54,11 +54,9 @@ class GameScreen {
         map.draw(ctx)
         Laura.draw(ctx)
         Helene.draw(ctx);
-
-        
-
-        if (this.isTalk) {
-
+        if(SaveData.Chapter == 1 && !SaveData.Event_1) {
+            console.log("javascript")
+            this.isTalk = true
             if (this.TalkIndex >= talk.chapter01.length) {
                 
 
@@ -67,6 +65,8 @@ class GameScreen {
                
                 this.isTalk = false
                 this.TalkIndex = 0;
+
+
                 }
                 
             }else {
@@ -120,13 +120,8 @@ class GameScreen {
             }
             
             }
-
-
-
-
-
-
         }
+        
 
         if (encoutnanimation.animation) {
             ctx.globalAlpha = 1;
