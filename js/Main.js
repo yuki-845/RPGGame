@@ -73,6 +73,9 @@ addEventListener('load', () => {
                             skillSwitchAnimation.isAnimation = true;
                             console.log(item.text)
                         }
+                        if(item.text == "A") {
+                            battlescreen.isAtack = true;
+                        }
                         if (item.text == "BACK") {
                             skillSwitchAnimation.isAnimation = false;
                         }

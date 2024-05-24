@@ -2,16 +2,25 @@
 // 音量調整変数
 
 let volume = 0.5
-let characterShadowImage = new Image();
+const characterShadowImage = new Image();
 
 characterShadowImage.src = 'img/shadowCharacter.png'; // 画像のパスを指定してください
-let characterShadowImage2 = new Image();
+const characterShadowImage2 = new Image();
 
 characterShadowImage2.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
-let audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
+const audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
 audio.loop = true;
 audio.currentTime = 2;
 audio.volume = volume;
+//セレクトアイテム
+const SlectItem = new Image()
+SlectItem.src = "img/SelectItem.png"
+//敵キャラ
+const wolf = new Image()
+wolf.src = "img/enemy/wolf.png"
+
+//エフェクト
+const Slashing = new effectSprite("img/effect/Slashing.png")
 
 /**
  * 角が丸い四角形のパスを作成する
@@ -151,6 +160,8 @@ class BattleScreen {
         this.arrowy4 = -95
 
         this.arrowanimation = false;
+
+        this.isAtack = false;
     }
 
     draw(ctx, canvas) {
@@ -159,6 +170,7 @@ class BattleScreen {
         ctx.globalAlpha = 1;
         ctx.drawImage(chapter01background, aspect(0), aspect(-264), aspect(2361), aspect(1574));
         clickItems = [];
+        
 
         // スキル画面
         if (this.isSkill) {
@@ -167,7 +179,7 @@ class BattleScreen {
         
         if (!this.isSkill) {
             //攻撃する敵が何かがわかるようにする
-            
+
             const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
             ENEMY_ARROW.draw(ctx)
             //キャラクターのシャドー
@@ -201,6 +213,16 @@ class BattleScreen {
 
             }
         }
+        //チャプター１の敵
+        if(SaveData.Chapter == 1 && !SaveData.Event_1) {
+            ctx.globalAlpha = 1;
+            const Wolf = new Img(wolf,173,97,731,861)
+            Wolf.draw(ctx)
+        }
+        //どの敵に攻撃しているか
+        ctx.globalAlpha = 1;
+        ctx.drawImage(SlectItem, aspect(429.36), aspect(407.88), aspect(324.64), aspect(161.25));
+        
         //キャラクター　四角形
         ctx.beginPath();
         ctx.globalAlpha = 0.6;
@@ -220,7 +242,12 @@ class BattleScreen {
         ctx.lineTo(aspect(1497), aspect(1024)); // 左下
         ctx.closePath(); // パスを閉じる
         ctx.fillStyle = '#5535DE'; // 色の指定
-        ctx.fill(); // 塗りつぶし
+        ctx.fill(); // 塗りつぶ市
+
+        if(this.isAtack) {
+            Slashing.draw(ctx)
+            
+        }
 
         //戦闘画面遷移アニメーション
         if (encoutnanimation.animation) {
@@ -257,18 +284,20 @@ class BattleScreen {
 
         }
         if (this.arrowanimation) {
-            this.arrowx1 += (1987 - this.arrowx1) / 10
-            this.arrowy1 += (-149 - this.arrowy1) / 10
+            this.arrowx1 += (2429.53 - this.arrowx1) / 10
+            this.arrowy1 += (-62.72 - this.arrowy1) / 10
 
-            this.arrowx2 += (-119 - this.arrowx2) / 10
-            this.arrowy2 += (1307 - this.arrowy2) / 10
+            this.arrowx2 += (-139.69 - this.arrowx2) / 10
+            this.arrowy2 += (649.62 - this.arrowy2) / 10
 
-            this.arrowx3 += (-100 - this.arrowx3) / 10
-            this.arrowy3 += (1322 - this.arrowy3) / 10
+            this.arrowx3 += (-139.69 - this.arrowx3) / 10
+            this.arrowy3 += (663.26 - this.arrowy3) / 10
 
-            this.arrowx4 += (2026 - this.arrowx4) / 10
-            this.arrowy4 += (-16 - this.arrowy4) / 10
+            this.arrowx4 += (2425.18 - this.arrowx4) / 10
+            this.arrowy4 += (74.76 - this.arrowy4) / 10
             // console.log(this.arrowx1)
+
+            
         }
 
         // スキル画面線維アニメーション
@@ -299,8 +328,9 @@ class BattleScreen {
 
 
         }
-
-
+        
+        
     }
+    
 
 }

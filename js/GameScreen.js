@@ -54,7 +54,10 @@ class GameScreen {
         map.draw(ctx)
         Laura.draw(ctx)
         Helene.draw(ctx);
+
+        //チャプター１のはじめのイベント
         if(SaveData.Chapter == 1 && !SaveData.Event_1) {
+            Skeleton.draw(ctx)
             console.log("javascript")
             this.isTalk = true
             if (this.TalkIndex >= talk.chapter01.length) {
@@ -92,7 +95,7 @@ class GameScreen {
                 
             }
             
-            Skeleton.draw(ctx)
+            
             let Character_x = 0;
             let Character_y = 0;
             
