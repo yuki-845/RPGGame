@@ -3,11 +3,15 @@
 
 let volume = 0.5
 const characterShadowImage = new Image();
-
 characterShadowImage.src = 'img/shadowCharacter.png'; // 画像のパスを指定してください
-const characterShadowImage2 = new Image();
 
+const characterShadowImage2 = new Image();
 characterShadowImage2.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
+
+const LauraShadow = new Image()
+LauraShadow.src = "img/shadowLaura.png"
+
+
 const audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
 audio.loop = true;
 audio.currentTime = 2;
@@ -162,6 +166,9 @@ class BattleScreen {
         this.arrowanimation = false;
 
         this.isAtack = false;
+
+        this.AllyWhatTimesAttackedIsEnglish = 0;
+        this.isChange = false;
     }
 
     draw(ctx, canvas) {
@@ -171,7 +178,8 @@ class BattleScreen {
         ctx.drawImage(chapter01background, aspect(0), aspect(-264), aspect(2361), aspect(1574));
         clickItems = [];
         
-
+        const BackArrow = new Parallelogram(2020.29,1413.65,-633.14,-57.17,-674.16,-253.74,1368.24,2589.98,1,"#356093")
+        BackArrow.draw(ctx)
         // スキル画面
         if (this.isSkill) {
             skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey);
@@ -182,8 +190,14 @@ class BattleScreen {
 
             const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
             ENEMY_ARROW.draw(ctx)
+
             //キャラクターのシャドー
-            ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
+            if(this.AllyWhatTimesAttackedIsEnglish == 0) {
+                ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
+            }else {
+                ctx.drawImage(LauraShadow, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
+            }
+            
             // テキストを描画
             if (!skillSwitchAnimation.isAnimation) {
                 // Skillボタン
@@ -246,7 +260,16 @@ class BattleScreen {
 
         if(this.isAtack) {
             Slashing.draw(ctx)
-            
+            Slashing.count += 1;
+            if(Slashing.count % 3 == 0) {
+                Slashing.frame += 1;
+                if(Slashing.frame == Slashing.img.width / 240) {
+                    this.isAtack = false
+                    Slashing.count = 0;
+                    this.AllyWhatTimesAttackedIsEnglish = 1;
+                    this.isChange = true;
+                }
+            }
         }
 
         //戦闘画面遷移アニメーション

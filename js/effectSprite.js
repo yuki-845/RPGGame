@@ -24,6 +24,8 @@ class effectSprite {
         this.height = height || 240;
         //何番目の画像を表示するか
         this.frame = 0;
+
+        this.count = 0;
         
     } //constructor() 終了
 
@@ -41,6 +43,7 @@ class effectSprite {
         //X,Y方向に、何番目の画像か
         const _frameX = this.frame % (this.img.width / 240);
         const _frameY = ~~(this.frame / (this.img.width / 240));
+
         ctx.globalAlpha = 1
         //画家さんに、絵を描いてとお願いする
         ctx.drawImage(

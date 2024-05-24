@@ -24,7 +24,7 @@ class SkillSwitchAnimation {
         // ctx.fill(); // 塗りつぶし
 
         ctx.beginPath();
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = 0.6;
         ctx.moveTo(aspect(this.x1 - aspect(229)), 0); // 始点
         ctx.lineTo(aspect(this.x2 - aspect(229)), 0); // 右上
         ctx.lineTo(aspect(this.x3 - aspect(229)), aspect(1080)); // 右下
@@ -70,7 +70,7 @@ class SkillSwitchAnimation {
             ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(545), aspect(971));
 
             //SKILL テキスト
-            const SKILL = new Text(1246, -50, "SKILL", 'black', 217, false, 'normal',700);
+            const SKILL = new Text(1246, -50, "MAGIC", 'black', 217, false, 'normal',700);
             SKILL.draw(ctx);
             // Back テキスト
             const BACK = new Text(884, 932, "BACK", 'white', 145, false, 'normal');
