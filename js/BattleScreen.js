@@ -11,6 +11,9 @@ characterShadowImage2.src = 'img/shadowCharacter2.png'; // 画像のパスを指
 const LauraShadow = new Image()
 LauraShadow.src = "img/shadowLaura.png"
 
+const LauraShadowBack = new Image()
+LauraShadowBack.src = "img/shadowLaura_back.png"
+
 
 const audio = new Audio('sound/bgm/謎の人物Ｋ - 00.mp3');
 audio.loop = true;
@@ -167,7 +170,7 @@ class BattleScreen {
 
         this.isAtack = false;
 
-        this.AllyWhatTimesAttackedIsEnglish = 0;
+        this.AllyWhatTimesAttacked = 0;
         this.isChange = false;
     }
 
@@ -177,27 +180,31 @@ class BattleScreen {
         ctx.globalAlpha = 1;
         ctx.drawImage(chapter01background, aspect(0), aspect(-264), aspect(2361), aspect(1574));
         clickItems = [];
-        
-        const BackArrow = new Parallelogram(2020.29,1413.65,-633.14,-57.17,-674.16,-253.74,1368.24,2589.98,1,"#356093")
+
+        const BackArrow = new Parallelogram(2020.29, 1413.65, -633.14, -57.17, -674.16, -253.74, 1368.24, 2589.98, 1, "#356093")
         BackArrow.draw(ctx)
         // スキル画面
         if (this.isSkill) {
-            skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey);
+            skillSwitchAnimation.draw(ctx, this.Imagex, this.Imagey, this.AllyWhatTimesAttacked);
         }
-        
+
         if (!this.isSkill) {
             //攻撃する敵が何かがわかるようにする
 
-            const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
-            ENEMY_ARROW.draw(ctx)
+
 
             //キャラクターのシャドー
-            if(this.AllyWhatTimesAttackedIsEnglish == 0) {
+            if (this.AllyWhatTimesAttacked == 0) {
+                const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
+                ENEMY_ARROW.draw(ctx)
                 ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
-            }else {
-                ctx.drawImage(LauraShadow, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
+            } else {
+                const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#ECDA00")
+                ENEMY_ARROW.draw(ctx)
+
+                ctx.drawImage(LauraShadow, aspect(this.Imagex), aspect(this.Imagey), aspect(638.44), aspect(1518.31));
             }
-            
+
             // テキストを描画
             if (!skillSwitchAnimation.isAnimation) {
                 // Skillボタン
@@ -225,18 +232,32 @@ class BattleScreen {
                 const uard = new Text(1349, 820, "UARD", 'black', 54, false);
                 uard.draw(ctx);
 
+                ctx.beginPath();
+                ctx.globalAlpha = 0.6;
+                ctx.moveTo(aspect(1187.76), aspect(46.88)); // 始点
+                ctx.lineTo(aspect(1747.85), aspect(46.88)); // 右上
+                ctx.lineTo(aspect(1700.24), aspect(111.12)); // 右下
+                ctx.lineTo(aspect(1140.15), aspect(111.12)); // 左下
+                ctx.closePath(); // パスを閉じる
+                ctx.fillStyle = '#000000'; // 色の指定
+                ctx.fill(); // 塗りつぶ市
+
+
+                const gameText = new Text(1364, 63, "敵の名前", 'white', 32, false, 'normal', 400);
+                gameText.draw(ctx)
+
             }
         }
         //チャプター１の敵
-        if(SaveData.Chapter == 1 && !SaveData.Event_1) {
+        if (SaveData.Chapter == 1 && !SaveData.Event_1) {
             ctx.globalAlpha = 1;
-            const Wolf = new Img(wolf,173,97,731,861)
+            const Wolf = new Img(wolf, 173, 97, 731, 861)
             Wolf.draw(ctx)
         }
         //どの敵に攻撃しているか
         ctx.globalAlpha = 1;
         ctx.drawImage(SlectItem, aspect(429.36), aspect(407.88), aspect(324.64), aspect(161.25));
-        
+
         //キャラクター　四角形
         ctx.beginPath();
         ctx.globalAlpha = 0.6;
@@ -258,15 +279,17 @@ class BattleScreen {
         ctx.fillStyle = '#5535DE'; // 色の指定
         ctx.fill(); // 塗りつぶ市
 
-        if(this.isAtack) {
+
+
+        if (this.isAtack) {
             Slashing.draw(ctx)
             Slashing.count += 1;
-            if(Slashing.count % 3 == 0) {
+            if (Slashing.count % 3 == 0) {
                 Slashing.frame += 1;
-                if(Slashing.frame == Slashing.img.width / 240) {
+                if (Slashing.frame == Slashing.img.width / 240) {
                     this.isAtack = false
                     Slashing.count = 0;
-                    this.AllyWhatTimesAttackedIsEnglish = 1;
+                    this.AllyWhatTimesAttacked = 1;
                     this.isChange = true;
                 }
             }
@@ -320,40 +343,43 @@ class BattleScreen {
             this.arrowy4 += (74.76 - this.arrowy4) / 10
             // console.log(this.arrowx1)
 
-            
+
         }
 
         // スキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation) {
-            this.Imagex += aspect(1453 - this.Imagex) / 3;
-            this.Imagey += aspect(196 - this.Imagey) / 3;
+            const animationspeed = 5
+            this.Imagex += (1453 - this.Imagex) / animationspeed;
+            this.Imagey += (196 - this.Imagey) / animationspeed;
 
             if (this.Imagex >= 1300) {
                 this.isSkill = true;
 
-                skillSwitchAnimation.x1 += aspect(1153 - skillSwitchAnimation.x1) / 3;
-                skillSwitchAnimation.x2 += aspect(1920 - skillSwitchAnimation.x2) / 3;
-                skillSwitchAnimation.x3 += aspect(1654 - skillSwitchAnimation.x3) / 3;
-                skillSwitchAnimation.x4 += aspect(888 - skillSwitchAnimation.x4) / 3;
+                skillSwitchAnimation.x1 += (1153 - skillSwitchAnimation.x1) / animationspeed;
+                skillSwitchAnimation.x2 += (1920 - skillSwitchAnimation.x2) / animationspeed;
+                skillSwitchAnimation.x3 += (1654 - skillSwitchAnimation.x3) / animationspeed;
+                skillSwitchAnimation.x4 += (888 - skillSwitchAnimation.x4) / animationspeed;
 
             }
         } else {
-            skillSwitchAnimation.x1 += aspect(2098 - skillSwitchAnimation.x1) / 3;
-            skillSwitchAnimation.x2 += aspect(2884 - skillSwitchAnimation.x2) / 3;
-            skillSwitchAnimation.x3 += aspect(2712 - skillSwitchAnimation.x3) / 3;
-            skillSwitchAnimation.x4 += aspect(2026 - skillSwitchAnimation.x4) / 3;
-            if (skillSwitchAnimation.x1 >= 2000) {
+            const animationspeed = 5
+            skillSwitchAnimation.x1 += (2098 - skillSwitchAnimation.x1) / animationspeed;
+            skillSwitchAnimation.x2 += (2884 - skillSwitchAnimation.x2) / animationspeed;
+            skillSwitchAnimation.x3 += (2712 - skillSwitchAnimation.x3) / animationspeed;
+            skillSwitchAnimation.x4 += (2026 - skillSwitchAnimation.x4) / animationspeed;
+            if (skillSwitchAnimation.x1 >= 2040) {
+                console.log(skillSwitchAnimation.x1)
                 this.isSkill = false;
-                this.Imagex += aspect(936 - this.Imagex) / 3;
-                this.Imagey += aspect(91 - this.Imagey) / 3;
+                this.Imagex += (936 - this.Imagex) / animationspeed;
+                this.Imagey += (91 - this.Imagey) / animationspeed;
 
             }
 
 
         }
-        
-        
+
+
     }
-    
+
 
 }

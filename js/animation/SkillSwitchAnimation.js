@@ -11,7 +11,7 @@ class SkillSwitchAnimation {
 
     }
 
-    draw(ctx, imagex, imagey) {
+    draw(ctx, imagex, imagey,AllyWhatTimesAttacked) {
         // Skillの背景２
         // ctx.beginPath();
         // ctx.globalAlpha = 0.7;
@@ -23,23 +23,37 @@ class SkillSwitchAnimation {
         // ctx.fillStyle = '#00AEEB'; // 色の指定
         // ctx.fill(); // 塗りつぶし
 
-        ctx.beginPath();
+        if(AllyWhatTimesAttacked == 0) {
+            ctx.beginPath();
         ctx.globalAlpha = 0.6;
-        ctx.moveTo(aspect(this.x1 - aspect(229)), 0); // 始点
-        ctx.lineTo(aspect(this.x2 - aspect(229)), 0); // 右上
-        ctx.lineTo(aspect(this.x3 - aspect(229)), aspect(1080)); // 右下
-        ctx.lineTo(aspect(this.x4 - aspect(229)), aspect(1080)); // 左下
+        ctx.moveTo(aspect(this.x1) - (aspect(88)), aspect(0)); // 始点
+        ctx.lineTo(aspect(this.x2) - (aspect(88)), aspect(0)); // 右上
+        ctx.lineTo(aspect(this.x3) - (aspect(88)), aspect(1080)); // 右下
+        ctx.lineTo(aspect(this.x4) - (aspect(88)), aspect(1080)); // 左下
         ctx.closePath(); // パスを閉じる
         ctx.fillStyle = '#00AEEB'; // 色の指定
         ctx.fill(); // 塗りつぶし
+        }else {
+            ctx.beginPath();
+        ctx.globalAlpha = 0.6;
+        ctx.moveTo(aspect(this.x1) - (aspect(88)), aspect(0)); // 始点
+        ctx.lineTo(aspect(this.x2) - (aspect(88)), aspect(0)); // 右上
+        ctx.lineTo(aspect(this.x3) - (aspect(88)), aspect(1080)); // 右下
+        ctx.lineTo(aspect(this.x4) - (aspect(88)), aspect(1080)); // 左下
+        ctx.closePath(); // パスを閉じる
+        ctx.fillStyle = '#ECDA00'; // 色の指定
+        ctx.fill(); // 塗りつぶし
+        }
+
+        
 
 
         //Skillの背景1
         ctx.beginPath();
         ctx.globalAlpha = 1;
 
-        ctx.moveTo(aspect(this.x1), 0); // 始点
-        ctx.lineTo(aspect(this.x2), 0); // 右上
+        ctx.moveTo(aspect(this.x1), aspect(0)); // 始点
+        ctx.lineTo(aspect(this.x2), aspect(0)); // 右上
         ctx.lineTo(aspect(this.x3), aspect(1080)); // 右下
         ctx.lineTo(aspect(this.x4), aspect(1080)); // 左下
         ctx.closePath(); // パスを閉じる
@@ -66,8 +80,14 @@ class SkillSwitchAnimation {
 
             // キャラクター画像
             ctx.globalAlpha = 1;
-            ctx.drawImage(characterShadowImage2, aspect(1476), aspect(0), aspect(618), aspect(1113));
+            if(AllyWhatTimesAttacked == 0) {
+                ctx.drawImage(characterShadowImage2, aspect(1476), aspect(0), aspect(618), aspect(1113));
             ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(545), aspect(971));
+            }else {
+                ctx.drawImage(LauraShadowBack, aspect(1564), aspect(182), aspect(443.56), aspect(1054.85));
+            ctx.drawImage(LauraShadow, aspect(imagex), aspect(imagey), aspect(443.56), aspect(1054.85));
+            }
+            
 
             //SKILL テキスト
             const SKILL = new Text(1246, -50, "MAGIC", 'black', 217, false, 'normal',700);

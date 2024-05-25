@@ -125,7 +125,6 @@ class GameScreen {
             }
         }
         
-
         if (encoutnanimation.animation) {
             ctx.globalAlpha = 1;
             encoutnanimation.draw(ctx);
