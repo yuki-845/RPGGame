@@ -25,8 +25,10 @@ class Img {
 
     } //constructor() 終了
     draw(ctx) {
-        ctx.drawImage(this.img,aspect(this.x),aspect(this.y),aspect(this.w),aspect(this.h))
 
+       
+        ctx.drawImage(this.img,aspect(this.x),aspect(this.y),aspect(this.w),aspect(this.h))
+ 
     }
     
 
