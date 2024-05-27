@@ -81,8 +81,11 @@ class SkillSwitchAnimation {
             // キャラクター画像
             ctx.globalAlpha = 1;
             if(AllyWhatTimesAttacked == 0) {
-                ctx.drawImage(characterShadowImage2, aspect(1476), aspect(0), aspect(618), aspect(1113));
-            ctx.drawImage(characterShadowImage, aspect(imagex), aspect(imagey), aspect(545), aspect(971));
+                ctx.drawImage(HeleneShadowBack, aspect(1476), aspect(0), aspect(618), aspect(1113));
+                HeleneShadow.w = 545 
+                HeleneShadow.h = 971
+                HeleneShadow.draw(ctx);
+            
             }else {
                 ctx.drawImage(LauraShadowBack, aspect(1564), aspect(182), aspect(443.56), aspect(1054.85));
             ctx.drawImage(LauraShadow, aspect(imagex), aspect(imagey), aspect(443.56), aspect(1054.85));
@@ -90,8 +93,8 @@ class SkillSwitchAnimation {
             
 
             //SKILL テキスト
-            const SKILL = new Text(1246, -50, "MAGIC", 'black', 217, false, 'normal',700);
-            SKILL.draw(ctx);
+            const MAGIC = new Text(1199, -50, "MAGIC", 'black', 200, false, 'normal',700);
+            MAGIC.draw(ctx);
             // Back テキスト
             const BACK = new Text(884, 932, "BACK", 'white', 145, false, 'normal');
             BACK.draw(ctx);

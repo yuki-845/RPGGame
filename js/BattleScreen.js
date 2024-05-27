@@ -2,14 +2,14 @@
 // 音量調整変数
 
 let volume = 0.5
-const characterShadowImage = new Image();
-characterShadowImage.src = 'img/shadowCharacter.png'; // 画像のパスを指定してください
+const HeleneShadow = new Img('img/shadowCharacter.png',987,95,723,1287)
 
-const characterShadowImage2 = new Image();
-characterShadowImage2.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
 
-const LauraShadow = new Image()
-LauraShadow.src = "img/shadowLaura.png"
+const HeleneShadowBack = new Image();
+HeleneShadowBack.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
+
+const LauraShadow = new Img("img/shadowLaura.png",1200,95,638.44, 1518.31)
+
 
 const LauraShadowBack = new Image()
 LauraShadowBack.src = "img/shadowLaura_back.png"
@@ -23,8 +23,7 @@ audio.volume = volume;
 const SlectItem = new Image()
 SlectItem.src = "img/SelectItem.png"
 //敵キャラ
-const wolf = new Image()
-wolf.src = "img/enemy/wolf.png"
+const wolf = new Img("img/enemy/wolf.png",173, 97, 731, 861)
 
 //エフェクト
 const Slashing = new effectSprite("img/effect/Slashing.png")
@@ -195,9 +194,12 @@ class BattleScreen {
 
             //キャラクターのシャドー
             if (this.AllyWhatTimesAttacked == 0) {
+
                 const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#00AEEB")
                 ENEMY_ARROW.draw(ctx)
-                ctx.drawImage(characterShadowImage, aspect(this.Imagex), aspect(this.Imagey), aspect(723), aspect(1287));
+                HeleneShadow.w = 723
+                HeleneShadow.h = 1287
+                HeleneShadow.draw(ctx)
             } else {
                 const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#ECDA00")
                 ENEMY_ARROW.draw(ctx)
@@ -251,8 +253,7 @@ class BattleScreen {
         //チャプター１の敵
         if (SaveData.Chapter == 1 && !SaveData.Event_1) {
             ctx.globalAlpha = 1;
-            const Wolf = new Img(wolf, 173, 97, 731, 861)
-            Wolf.draw(ctx)
+            wolf.draw(ctx)
         }
         //どの敵に攻撃しているか
         ctx.globalAlpha = 1;
@@ -284,7 +285,7 @@ class BattleScreen {
         if (this.isAtack) {
             Slashing.draw(ctx)
             Slashing.count += 1;
-            if (Slashing.count % 3 == 0) {
+            if (Slashing.count % 4 == 0) {
                 Slashing.frame += 1;
                 if (Slashing.frame == Slashing.img.width / 240) {
                     this.isAtack = false
@@ -346,19 +347,18 @@ class BattleScreen {
 
         }
 
-        // スキル画面線維アニメーション
+        // Heleneスキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation) {
             const animationspeed = 5
-            this.Imagex += (1453 - this.Imagex) / animationspeed;
-            this.Imagey += (196 - this.Imagey) / animationspeed;
+            HeleneShadow.x += (1453 - HeleneShadow.x) / animationspeed;
+            HeleneShadow.y += (196 - HeleneShadow.y) / animationspeed;
 
-            if (this.Imagex >= 1300) {
+            if (HeleneShadow.x >= 1300) {
                 this.isSkill = true;
-
-                skillSwitchAnimation.x1 += (1153 - skillSwitchAnimation.x1) / animationspeed;
+                skillSwitchAnimation.x1 += (1166.16 - skillSwitchAnimation.x1) / animationspeed;
                 skillSwitchAnimation.x2 += (1920 - skillSwitchAnimation.x2) / animationspeed;
-                skillSwitchAnimation.x3 += (1654 - skillSwitchAnimation.x3) / animationspeed;
-                skillSwitchAnimation.x4 += (888 - skillSwitchAnimation.x4) / animationspeed;
+                skillSwitchAnimation.x3 += (1658.84 - skillSwitchAnimation.x3) / animationspeed;
+                skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
 
             }
         } else {
@@ -370,8 +370,8 @@ class BattleScreen {
             if (skillSwitchAnimation.x1 >= 2040) {
                 console.log(skillSwitchAnimation.x1)
                 this.isSkill = false;
-                this.Imagex += (936 - this.Imagex) / animationspeed;
-                this.Imagey += (91 - this.Imagey) / animationspeed;
+                HeleneShadow.x += (936 - HeleneShadow.x) / animationspeed;
+                HeleneShadow.y += (91 - HeleneShadow.y) / animationspeed;
 
             }
 

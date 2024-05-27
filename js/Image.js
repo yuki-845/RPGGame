@@ -9,8 +9,9 @@ class Img {
      * height : ゲームの縦幅
      */
     constructor(img,x, y, w,h) {
-        
-        this.img = img
+        this.img = new Image();
+        //this.img.srcに画像ファイルまでのパスを代入
+        this.img.src = img;
 
         this.x = x;
         this.y = y;
