@@ -8,7 +8,7 @@ class Text {
      * width : ゲームの横幅
      * height : ゲームの縦幅
      */
-    constructor(x, y, text, color, fontsize, ismouse, weight, w, isRect, alpha) {
+    constructor(x, y, text, color, fontsize, ismouse, weight, fontweight, isRect, alpha) {
         //canvas要素を作成
 
         this.x = x;
@@ -21,12 +21,12 @@ class Text {
         this.ismouse = ismouse
         this.weight = weight || 'normal'
 
-        this.w = w || 700;
+        this.fontweight = fontweight || 700;
 
         this.isRect = isRect
         this.alpha = alpha || 1.0
 
-        
+      
 
 
     } //constructor() 終了
@@ -49,16 +49,14 @@ class Text {
         // ctx.rotate(angleInRadians); // 角度を回転
         ctx.globalAlpha = this.alpha;
         // ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px "Aktiv.Grotesk", sans-serif';
-        ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
+        ctx.font = this.fontweight + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
         ctx.fillStyle = this.color;
         ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
         ctx.fill();
 
         this.h = aspect(this.fontsize);
         this.w = ctx.measureText(this.text).width;
-
-
-
+        
 
 
 
@@ -67,7 +65,7 @@ class Text {
         // Split the text at every newline character
         var lines = this.text.split('\n');
         ctx.globalAlpha = this.alpha;
-        ctx.font = this.w + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "ヒラギノ明朝 ProN", sans-serif'
+        ctx.font = this.fontweight + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "ヒラギノ明朝 ProN", sans-serif'
         ctx.fillStyle = this.color;
 
         // Draw each line separately

@@ -41,7 +41,7 @@ addEventListener('load', () => {
 
             const clickX = event.clientX - canvas.getBoundingClientRect().left;
             const clickY = event.clientY - canvas.getBoundingClientRect().top;
-            
+
             if (IsGameScreen.isclick && gamescreen.isTalk) {
                 gamescreen.TalkIndex += 1
             }
@@ -73,7 +73,7 @@ addEventListener('load', () => {
                             skillSwitchAnimation.isAnimation = true;
                             console.log(item.text)
                         }
-                        if(item.text == "A") {
+                        if (item.text == "A") {
                             battlescreen.isAtack = true;
                         }
                         if (item.text == "BACK") {
@@ -115,13 +115,13 @@ addEventListener('load', () => {
         let isMouseDown = false;
         canvas.addEventListener('mousedown', function (event) {
             isMouseDown = true;
-            if(IsGameScreen.isclick) {
+            if (IsGameScreen.isclick) {
                 Mouse_X = event.clientX - canvas.getBoundingClientRect().left;
                 Mouse_Y = event.clientY - canvas.getBoundingClientRect().top;
             }
-            
-            
-            
+
+
+
         })
         canvas.addEventListener('mouseup', function (event) {
             isMouseDown = false;
@@ -136,11 +136,11 @@ addEventListener('load', () => {
                 Mouse_X = event.clientX - canvas.getBoundingClientRect().left;
                 Mouse_Y = event.clientY - canvas.getBoundingClientRect().top;
 
-                
+
             }
         });
-        var targetFlag = false; // trueでマウスが要素に乗っているとみなす
-        var rect = null;
+        let targetFlag = false; // trueでマウスが要素に乗っているとみなす
+        let rect = null;
 
         /* Canvas上にマウスが乗った時 */
         function onMouseOver(e) {
@@ -171,11 +171,22 @@ addEventListener('load', () => {
             updateTargetFlag: function (event) {
                 const mouseX = event.clientX - canvas.getBoundingClientRect().left;
                 const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+                let ison = false
                 clickItems.forEach(item => {
-                    if (item.testHit(mouseX, mouseY)) {
 
+                    if (item.testHit(mouseX, mouseY)) {
+                        ison = true
+                        targetFlag = true;
+                        isTitleScreenOnMouse.isOnMouse = true;
+                        isTitleScreenOnMouse.text = item.text
                     }
+
                 })
+                if (!ison) {
+                    isTitleScreenOnMouse.isOnMouse = false;
+                    isTitleScreenOnMouse.text = ""
+                    targetFlag = false
+                }
             },
             /* 連続イベントの間引き */
             throttle: function (targetFunc, time) {
@@ -195,6 +206,9 @@ addEventListener('load', () => {
 
         function drawRect(color) {
             // デフォルトもしくはマウスが要素から離れた時の描画処理
+            isTitleScreenOnMouse.isOnMouse = false;
+            isTitleScreenOnMouse.text = ""
+            targetFlag = false
         }
         function drawRectIsHover() {
             // マウスが要素に乗った時の描画処理
@@ -214,22 +228,22 @@ addEventListener('load', () => {
 
             if (IsGameScreen.isclick) {
                 gamescreen.draw(ctx, canvas)
-                if(!gamescreen.isTalk) {
-                    if(Helene.radius >= aspect(20)) {
+                if (!gamescreen.isTalk) {
+                    if (Helene.radius >= aspect(20)) {
                         _x = aspect(-0.5)
-                    }else if(Helene.radius <= aspect(10)){
+                    } else if (Helene.radius <= aspect(10)) {
                         _x = aspect(0.5)
                     }
                     Helene.radius += _x
                     console.log(Helene.radius)
-    
-                   
+
+
                     // キャラクターをマウスの位置に追跡させる
-                    Helene.moveTowardsMouse(Mouse_X, Mouse_Y,ctx);
+                    Helene.moveTowardsMouse(Mouse_X, Mouse_Y, ctx);
                     Laura.MoveAttend(Helene.x, Helene.y);
                 }
-                
-                
+
+
             }
             if (IsBattleScreen.isclick) {
                 battlescreen.draw(ctx, canvas);

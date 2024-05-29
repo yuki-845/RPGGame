@@ -18,4 +18,11 @@ let IsBattleScreen = {
 let ISMenuScreen = {
     isclick: false
 }
-console.log("s")
+
+
+// タイトル画面でマウスが上に乗ったとき
+
+let isTitleScreenOnMouse = {
+    isOnMouse: false,
+    text: ""
+}

@@ -2,13 +2,13 @@
 // 音量調整変数
 
 let volume = 0.5
-const HeleneShadow = new Img('img/shadowCharacter.png',987,95,723,1287)
+const HeleneShadow = new Img('img/shadowCharacter.png', 987, 95, 723, 1287)
 
 
 const HeleneShadowBack = new Image();
 HeleneShadowBack.src = 'img/shadowCharacter2.png'; // 画像のパスを指定してください
 
-const LauraShadow = new Img("img/shadowLaura.png",1200,95,638.44, 1518.31,0.0)
+const LauraShadow = new Img("img/shadowLaura.png", 1200, 95, 638.44, 1518.31, 0.0)
 
 
 const LauraShadowBack = new Image()
@@ -23,7 +23,7 @@ audio.volume = volume;
 const SlectItem = new Image()
 SlectItem.src = "img/SelectItem.png"
 //敵キャラ
-const wolf = new Img("img/enemy/wolf.png",173, 97, 731, 861)
+const wolf = new Img("img/enemy/wolf.png", 173, 97, 731, 861)
 
 //エフェクト
 const Slashing = new effectSprite("img/effect/Slashing.png")
@@ -177,6 +177,8 @@ class BattleScreen {
         this.LauraAlpha = 0;
 
         this.isEnemyTurn = false
+
+        this.gameText = "";
     }
 
     draw(ctx, canvas) {
@@ -203,8 +205,8 @@ class BattleScreen {
                 HeleneShadow.w = 723
                 HeleneShadow.h = 1287
 
-                
-            } else if(this.AllyWhatTimesAttacked == 1) {
+
+            } else if (this.AllyWhatTimesAttacked == 1) {
                 const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#ECDA00")
                 ENEMY_ARROW.draw(ctx)
                 LauraShadow.w = 638.44
@@ -213,14 +215,14 @@ class BattleScreen {
             }
 
             console.log(this.HeleneAlpha)
-            ctx.globalAlpha = this.HeleneAlpha 
+            ctx.globalAlpha = this.HeleneAlpha
             HeleneShadow.draw(ctx)
-            
 
-            
+
+
             ctx.globalAlpha = this.LauraAlpha
             LauraShadow.draw(ctx)
-            
+
             // テキストを描画
             if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked != 2) {
                 // Skillボタン
@@ -259,8 +261,9 @@ class BattleScreen {
                 ctx.fill(); // 塗りつぶ市
 
 
-                const gameText = new Text(1364, 63, "敵の名前", 'white', 32, false, 'normal', 400);
-                gameText.draw(ctx)
+                ctx.font = '32px "Hiragino Mincho ProN", serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(this.gameText, 1364, 63);
 
             }
         }
@@ -268,6 +271,7 @@ class BattleScreen {
         if (SaveData.Chapter == 1 && !SaveData.Event_1) {
             ctx.globalAlpha = 1;
             wolf.draw(ctx)
+            this.gameText = "ウルフ"
         }
         //どの敵に攻撃しているか
         ctx.globalAlpha = 1;
@@ -295,7 +299,6 @@ class BattleScreen {
         ctx.fill(); // 塗りつぶ市
 
 
-
         if (this.isAtack) {
 
             Slashing.draw(ctx)
@@ -305,15 +308,15 @@ class BattleScreen {
                 if (Slashing.frame == Slashing.img.width / 240) {
                     this.isAtack = false
                     Slashing.count = 0;
-                    if(this.AllyWhatTimesAttacked == 0) {
+                    if (this.AllyWhatTimesAttacked == 0) {
                         this.AllyWhatTimesAttacked = 1;
-                    }else if(this.AllyWhatTimesAttacked == 1){
+                    } else if (this.AllyWhatTimesAttacked == 1) {
                         this.AllyWhatTimesAttacked = 2;
                     }
-                    
+
                     this.isChange = true;
 
-                    
+
                 }
             }
         }
@@ -383,7 +386,7 @@ class BattleScreen {
                 skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
 
             }
-        } else if(!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
+        } else if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
             const animationspeed = 5
             skillSwitchAnimation.x1 += (2098 - skillSwitchAnimation.x1) / animationspeed;
             skillSwitchAnimation.x2 += (2884 - skillSwitchAnimation.x2) / animationspeed;
@@ -411,7 +414,7 @@ class BattleScreen {
                 skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
 
             }
-        } else if(!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
+        } else if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
             const animationspeed = 5
             skillSwitchAnimation.x1 += (2098 - skillSwitchAnimation.x1) / animationspeed;
             skillSwitchAnimation.x2 += (2884 - skillSwitchAnimation.x2) / animationspeed;
@@ -429,33 +432,33 @@ class BattleScreen {
         }
 
         //アタックしたあとの入れ替わりアニメーション
-        if(this.isChange && this.AllyWhatTimesAttacked == 1) {
-            
+        if (this.isChange && this.AllyWhatTimesAttacked == 1) {
+
             this.HeleneAlpha -= 0.05;
             this.LauraAlpha += 0.05
-            if(this.HeleneAlpha <= 0) {
+            if (this.HeleneAlpha <= 0) {
                 this.isChange = false
                 this.HeleneAlpha = 0;
                 this.LauraAlpha = 1;
-                Slashing.frame  = 0;
+                Slashing.frame = 0;
             }
             const animationspeed = 5
             LauraShadow.x += (987 - LauraShadow.x) / animationspeed
             HeleneShadow.x += (1200 - HeleneShadow.x) / animationspeed
 
-            
-        }else if(this.isChange && this.AllyWhatTimesAttacked == 2) {
-            
+
+        } else if (this.isChange && this.AllyWhatTimesAttacked == 2) {
+
             this.LauraAlpha -= 0.05
-            if(this.LauraAlpha <= 0) {
+            if (this.LauraAlpha <= 0) {
                 this.isChange = false
-                
+
                 this.LauraAlpha = 0;
-                
+
                 this.isEnemyTurn = true;
             }
             const animationspeed = 5
-            
+
             LauraShadow.x += (1200 - LauraShadow.x) / animationspeed
         }
     }
