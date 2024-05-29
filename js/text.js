@@ -26,7 +26,7 @@ class Text {
         this.isRect = isRect
         this.alpha = alpha || 1.0
 
-      
+
 
 
     } //constructor() 終了
@@ -40,8 +40,7 @@ class Text {
 
         }
 
-        this.x = aspect(this.x)
-        this.y = aspect(this.y)
+
         ctx.beginPath();
         // let angleInRadians = this.angle * Math.PI / 180; // 45度の角度をラジアンに変換
 
@@ -51,11 +50,12 @@ class Text {
         // ctx.font = this.weight + ' ' + aspect(this.fontsize) +'px "Aktiv.Grotesk", sans-serif';
         ctx.font = this.fontweight + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "aktiv-grotesk", sans-serif'
         ctx.fillStyle = this.color;
-        ctx.fillText(this.text, this.x, this.y + aspect(this.fontsize));
+        ctx.fillText(this.text, aspect(this.x), aspect(this.y) + aspect(this.fontsize));
         ctx.fill();
 
         this.h = aspect(this.fontsize);
         this.w = ctx.measureText(this.text).width;
+
         
 
 
@@ -70,15 +70,15 @@ class Text {
 
         // Draw each line separately
         for (var i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], this.x, this.y);
+            ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
             this.y += aspect(this.fontsize) * 2; // Move down by line height for the next line
         }
     }
 
 
     testHit(clickX, clickY) {
-        return (this.x <= clickX && clickX <= this.x + this.w) &&
-            (this.y <= clickY && clickY <= this.y + this.h);
+        return (aspect(this.x) <= clickX && clickX <= aspect(this.x) + this.w) &&
+            (aspect(this.y) <= clickY && clickY <= aspect(this.y) + this.h);
     }
 }
 

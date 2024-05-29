@@ -186,6 +186,7 @@ addEventListener('load', () => {
                     isTitleScreenOnMouse.isOnMouse = false;
                     isTitleScreenOnMouse.text = ""
                     targetFlag = false
+                    titlescreen.x1 = 1920
                 }
             },
             /* 連続イベントの間引き */

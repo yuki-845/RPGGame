@@ -16,6 +16,8 @@ class TitleScreen {
         //canvas要素を作成
         this.width = width
         this.height = height
+
+        this.x1 = 1920
     } //constructor() 終了
 
     draw(ctx, canvas) {
@@ -26,7 +28,7 @@ class TitleScreen {
         // Titleの背景
         ctx.beginPath()
         ctx.globalAlpha = 1;
-        ctx.fillStyle = '#CADBEE'; // 四角形の塗りつぶし色
+        ctx.fillStyle = '#ffffff'; // 四角形の塗りつぶし色
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
         //Helene
@@ -45,20 +47,39 @@ class TitleScreen {
 
 
         //'New Game'テキスト
-        if (isTitleScreenOnMouse.isOnMouse && isTitleScreenOnMouse.text == "NEW GAME") {
-            ctx.beginPath()
-            ctx.globalAlpha = 1;
-            ctx.fillStyle = '#001DFF'; // 四角形の塗りつぶし色
-            ctx.fillRect(1172, 675, 890, 114); // (x, y, width, height)
-            ctx.fill();
-        }
+        if (!IsNewGameOR.isclick && isTitleScreenOnMouse.isOnMouse && isTitleScreenOnMouse.text == "NEW GAME") {
+            ctx.beginPath();
+            ctx.globalAlpha = this.alpha;
+            ctx.moveTo(aspect(this.x1), aspect(631 + 44)); // 始点
+            ctx.lineTo(aspect(2062), aspect(631 + 44)); // 右上
+            ctx.lineTo(aspect(2062), aspect(631 + 44 + 96)); // 右下
+            ctx.lineTo(aspect(this.x1), aspect(631 + 44 + 96)); // 左下
+            ctx.closePath(); // パスを閉じる
+            ctx.fillStyle = "#001DFF" // 色の指定
+            ctx.fill(); // 塗りつぶし
 
+            this.x1 += (1172 - this.x1) / 15
+
+        } 
         const newgame = new Text(1195, 631, "NEW GAME", 'white', 96, false, "normal", 200)
         newgame.draw(ctx)
         clickItems.push(newgame);
 
 
         // 'LoadGame’　テキスト
+        if (!IsNewGameOR.isclick && isTitleScreenOnMouse.isOnMouse && isTitleScreenOnMouse.text == "LOAD GAME") {
+            ctx.beginPath();
+            ctx.globalAlpha = this.alpha;
+            ctx.moveTo(aspect(this.x1), aspect(754 + 44)); // 始点
+            ctx.lineTo(aspect(2062), aspect(754 + 44)); // 右上
+            ctx.lineTo(aspect(2062), aspect(754 + 44 + 96)); // 右下
+            ctx.lineTo(aspect(this.x1), aspect(754 + 44 + 96)); // 左下
+            ctx.closePath(); // パスを閉じる
+            ctx.fillStyle = "#001DFF" // 色の指定
+            ctx.fill(); // 塗りつぶし
+
+            this.x1 += (1172 - this.x1) / 15
+        } 
         const loadgame = new Text(1270, 754, "LOAD GAME", 'white', 96, false, "normal", 200)
 
         loadgame.draw(ctx)
@@ -66,6 +87,19 @@ class TitleScreen {
         console.log(isTitleScreenOnMouse.isOnMouse)
 
         // 'Setting’　テキスト
+        if (!IsNewGameOR.isclick && isTitleScreenOnMouse.isOnMouse && isTitleScreenOnMouse.text == "SETTING") {
+            ctx.beginPath();
+            ctx.globalAlpha = this.alpha;
+            ctx.moveTo(aspect(this.x1), aspect(877 + 44)); // 始点
+            ctx.lineTo(aspect(2062), aspect(877 + 44)); // 右上
+            ctx.lineTo(aspect(2062), aspect(877 + 44 + 96)); // 右下
+            ctx.lineTo(aspect(this.x1), aspect(877 + 44 + 96)); // 左下
+            ctx.closePath(); // パスを閉じる
+            ctx.fillStyle = "#001DFF" // 色の指定
+            ctx.fill(); // 塗りつぶし
+
+            this.x1 += (1172 - this.x1) / 15
+        } 
         const setting = new Text(1345, 877, "SETTING", 'white', 96, false, "normal", 200)
         setting.draw(ctx)
         clickItems.push(setting);
