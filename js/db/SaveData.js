@@ -11,5 +11,25 @@
 let SaveData =  {
     Chapter: 1,
     Event_1: false,
-    Event_2:false
+    Event_2:false,
+    Helene: {
+        Lv: 1,
+        HP: 10,
+        MP: 10,
+        ATK: 10,
+        DEF: 10,
+        SPD: 10,
+        MAT: 10,
+    },
+    Laura: {
+        Lv: 1,
+        HP: 10,
+        MP: 10,
+        ATK: 10,
+        DEF: 10,
+        SPD: 10,
+        MAT: 10,
+    },
+    Image: "",
+    
 }
