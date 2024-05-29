@@ -175,6 +175,8 @@ class BattleScreen {
 
         this.HeleneAlpha = 1;
         this.LauraAlpha = 0;
+
+        this.isEnemyTurn = false
     }
 
     draw(ctx, canvas) {
@@ -202,7 +204,7 @@ class BattleScreen {
                 HeleneShadow.h = 1287
 
                 
-            } else {
+            } else if(this.AllyWhatTimesAttacked == 1) {
                 const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#ECDA00")
                 ENEMY_ARROW.draw(ctx)
                 
@@ -218,7 +220,7 @@ class BattleScreen {
             LauraShadow.draw(ctx)
             
             // テキストを描画
-            if (!skillSwitchAnimation.isAnimation) {
+            if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked != 2) {
                 // Skillボタン
                 const Skill = new Text(1257, 220, "M", 'white', 291, false, 'italic', 900);
                 Skill.draw(ctx);
@@ -293,6 +295,7 @@ class BattleScreen {
 
 
         if (this.isAtack) {
+
             Slashing.draw(ctx)
             Slashing.count += 1;
             if (Slashing.count % 4 == 0) {
@@ -300,8 +303,15 @@ class BattleScreen {
                 if (Slashing.frame == Slashing.img.width / 240) {
                     this.isAtack = false
                     Slashing.count = 0;
-                    this.AllyWhatTimesAttacked = 1;
+                    if(this.AllyWhatTimesAttacked == 0) {
+                        this.AllyWhatTimesAttacked = 1;
+                    }else if(this.AllyWhatTimesAttacked == 1){
+                        this.AllyWhatTimesAttacked = 2;
+                    }
+                    
                     this.isChange = true;
+
+                    
                 }
             }
         }
@@ -389,7 +399,7 @@ class BattleScreen {
         }
 
         //アタックしたあとの入れ替わりアニメーション
-        if(this.isChange) {
+        if(this.isChange && this.AllyWhatTimesAttacked == 1) {
             
             this.HeleneAlpha -= 0.05;
             this.LauraAlpha += 0.05
@@ -397,12 +407,26 @@ class BattleScreen {
                 this.isChange = false
                 this.HeleneAlpha = 0;
                 this.LauraAlpha = 1;
+                Slashing.frame  = 0;
             }
             const animationspeed = 5
             LauraShadow.x += (987 - LauraShadow.x) / animationspeed
             HeleneShadow.x += (1200 - HeleneShadow.x) / animationspeed
 
             
+        }else if(this.isChange && this.AllyWhatTimesAttacked == 2) {
+            
+            this.LauraAlpha -= 0.05
+            if(this.LauraAlpha <= 0) {
+                this.isChange = false
+                
+                this.LauraAlpha = 0;
+                
+                this.isEnemyTurn = true;
+            }
+            const animationspeed = 5
+            
+            LauraShadow.x += (1200 - LauraShadow.x) / animationspeed
         }
     }
 
