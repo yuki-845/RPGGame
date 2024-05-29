@@ -88,7 +88,9 @@ class SkillSwitchAnimation {
             
             }else {
                 ctx.drawImage(LauraShadowBack, aspect(1564), aspect(182), aspect(443.56), aspect(1054.85));
-            ctx.drawImage(LauraShadow, aspect(imagex), aspect(imagey), aspect(443.56), aspect(1054.85));
+                LauraShadow.w = 469.56
+                LauraShadow.h = 1054.85
+                LauraShadow.draw(ctx)
             }
             
 

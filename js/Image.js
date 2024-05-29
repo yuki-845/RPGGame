@@ -18,9 +18,6 @@ class Img {
         
         this.w = w;
         this.h = h;
-       
-
-        
 
 
     } //constructor() 終了
@@ -36,6 +33,11 @@ class Img {
     testHit(clickX, clickY) {
         return (this.x <= clickX && clickX <= this.x + this.w) &&
             (this.y <= clickY && clickY <= this.y + this.h);
+    }
+
+    //敵が攻撃を受けたら
+    takenDamage() {
+        
     }
 }
 

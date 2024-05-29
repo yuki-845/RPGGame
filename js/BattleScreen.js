@@ -207,7 +207,9 @@ class BattleScreen {
             } else if(this.AllyWhatTimesAttacked == 1) {
                 const ENEMY_ARROW = new Parallelogram(this.arrowx1, this.arrowy1, this.arrowx2, this.arrowy2, this.arrowx3, this.arrowy3, this.arrowx4, this.arrowy4, 1, "#ECDA00")
                 ENEMY_ARROW.draw(ctx)
-                
+                LauraShadow.w = 638.44
+                LauraShadow.h = 1518.31
+
             }
 
             console.log(this.HeleneAlpha)
@@ -368,7 +370,7 @@ class BattleScreen {
         }
 
         // Heleneスキル画面線維アニメーション
-        if (skillSwitchAnimation.isAnimation) {
+        if (skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
             const animationspeed = 5
             HeleneShadow.x += (1453 - HeleneShadow.x) / animationspeed;
             HeleneShadow.y += (196 - HeleneShadow.y) / animationspeed;
@@ -381,7 +383,7 @@ class BattleScreen {
                 skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
 
             }
-        } else {
+        } else if(!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
             const animationspeed = 5
             skillSwitchAnimation.x1 += (2098 - skillSwitchAnimation.x1) / animationspeed;
             skillSwitchAnimation.x2 += (2884 - skillSwitchAnimation.x2) / animationspeed;
@@ -392,6 +394,34 @@ class BattleScreen {
                 this.isSkill = false;
                 HeleneShadow.x += (936 - HeleneShadow.x) / animationspeed;
                 HeleneShadow.y += (91 - HeleneShadow.y) / animationspeed;
+
+            }
+        }
+        // Lauraスキル画面線維アニメーション
+        if (skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
+            const animationspeed = 5
+            LauraShadow.x += (1453 - LauraShadow.x) / animationspeed;
+            LauraShadow.y += (196 - LauraShadow.y) / animationspeed;
+
+            if (LauraShadow.x >= 1300) {
+                this.isSkill = true;
+                skillSwitchAnimation.x1 += (1166.16 - skillSwitchAnimation.x1) / animationspeed;
+                skillSwitchAnimation.x2 += (1920 - skillSwitchAnimation.x2) / animationspeed;
+                skillSwitchAnimation.x3 += (1658.84 - skillSwitchAnimation.x3) / animationspeed;
+                skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
+
+            }
+        } else if(!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
+            const animationspeed = 5
+            skillSwitchAnimation.x1 += (2098 - skillSwitchAnimation.x1) / animationspeed;
+            skillSwitchAnimation.x2 += (2884 - skillSwitchAnimation.x2) / animationspeed;
+            skillSwitchAnimation.x3 += (2712 - skillSwitchAnimation.x3) / animationspeed;
+            skillSwitchAnimation.x4 += (2026 - skillSwitchAnimation.x4) / animationspeed;
+            if (skillSwitchAnimation.x1 >= 2040) {
+                console.log(skillSwitchAnimation.x1)
+                this.isSkill = false;
+                LauraShadow.x += (936 - LauraShadow.x) / animationspeed;
+                LauraShadow.y += (91 - LauraShadow.y) / animationspeed;
 
             }
 
