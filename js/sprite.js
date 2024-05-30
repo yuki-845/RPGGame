@@ -49,8 +49,8 @@ class Sprite {
             32 * _frameY,
             32,
             32,
-            this.x,
-            this.y,
+            aspect(this.x),
+            aspect(this.y),
             this.width,
             this.height
         );

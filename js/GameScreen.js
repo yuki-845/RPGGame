@@ -22,7 +22,7 @@ characterIcon.src = "img/CharacterIcon.png"
 const Skeleton = new Sprite("img/enemyChip/Skeleton.png")
 Skeleton.x = aspect(650)
 Skeleton.y = aspect(1200)
-
+Skeleton.frame = 10
 class GameScreen {
 
     /**
