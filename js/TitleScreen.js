@@ -58,7 +58,7 @@ class TitleScreen {
             ctx.fillStyle = "#001DFF" // 色の指定
             ctx.fill(); // 塗りつぶし
 
-            this.x1 += (1172 - this.x1) / 15
+            this.x1 += (1172 - this.x1) / 12
 
         } 
         const newgame = new Text(1195, 631, "NEW GAME", 'white', 96, false, "normal", 200)
@@ -78,7 +78,7 @@ class TitleScreen {
             ctx.fillStyle = "#001DFF" // 色の指定
             ctx.fill(); // 塗りつぶし
 
-            this.x1 += (1172 - this.x1) / 15
+            this.x1 += (1172 - this.x1) / 12
         } 
         const loadgame = new Text(1270, 754, "LOAD GAME", 'white', 96, false, "normal", 200)
 
@@ -98,7 +98,7 @@ class TitleScreen {
             ctx.fillStyle = "#001DFF" // 色の指定
             ctx.fill(); // 塗りつぶし
 
-            this.x1 += (1172 - this.x1) / 15
+            this.x1 += (1172 - this.x1) / 12
         } 
         const setting = new Text(1345, 877, "SETTING", 'white', 96, false, "normal", 200)
         setting.draw(ctx)
