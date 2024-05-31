@@ -61,29 +61,34 @@ class Text {
 
 
     }
-    drawText(ctx) {
+    drawText(ctx,XC) {
         // Split the text at every newline character
-        let count = 0;
-        for (let i = 0; i < this.text.length; i++) {
-            if (this.text[i] === '\n') {
-                count++;
-            }
-        }
-
         
-            console.log(this.y)
-            this.y -= (aspect(34) * count)
-            console.log(this.y)
         
         
         var lines = this.text.split('\n');
         ctx.globalAlpha = this.alpha;
         ctx.font = 400 + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "Noto Serif JP", sans-serif'
         ctx.fillStyle = this.color;
+        
 
+        
+
+        this.y -= (aspect(this.fontsize) * lines.length) - aspect(25)
+
+
+        let maxwidth = -1;
+        for (let i = 0; i < lines.length; i++) {
+            let width = ctx.measureText(lines[i]).width;
+            if(maxwidth < width) {
+                maxwidth = width
+            }
+
+        }
         // Draw each line separately
         for (var i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
+            console.log((293 + XC) - (maxwidth / 2))
+            ctx.fillText(lines[i], (aspect(293) + aspect(XC)) - (maxwidth / 2), aspect(this.y));
             this.y += (aspect(this.fontsize) * 2) + aspect(20); // Move down by line height for the next line
         }
     }

@@ -135,7 +135,7 @@ class GameScreen {
                     
                     ctx.drawImage(characterIcon,  aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 41), aspect(268.46), aspect(356.89));
                     const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white',32, false, 'normal', 500);
-                    talkTexc.drawText(ctx);
+                    talkTexc.drawText(ctx,Character_x - 444);
 
                 }
 
