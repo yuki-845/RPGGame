@@ -2,7 +2,7 @@
 
 let Mouse_X = 0;
 let Mouse_Y = 0;
-
+let countAnimation = 0;
 // ページの読み込みが完了した後に処理を実行
 addEventListener('load', () => {
     /**
@@ -252,7 +252,7 @@ addEventListener('load', () => {
             if (ISMenuScreen.isclick) {
                 menuscreen.draw(ctx);
             }
-
+            countAnimation++;
 
         };
 

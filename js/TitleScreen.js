@@ -1,6 +1,20 @@
 'use strict'
 const TitleImage = new Img("img/Title.png", 6.85, 235.71, 1906.5, 609, 1.0)
-const HeleneTitleImage = new Img("img/HeleneTitle.png", -223, -255, 1493, 1493, 1.0)
+
+const TitleHeleneAnimation = [];
+for(let i = 0; i < 105; i++) {
+    if(0 <= i && 10 > i) {
+        const img = new Img('img/animation/Scene1_00'+ i + '.png', -98, 0, 1199, 1199, 1.0)
+        TitleHeleneAnimation.push(img);
+    }else if(10 <= i && 100 > i){
+        const img = new Img('img/animation/Scene1_0'+ i + '.png',  -98, 0, 1199, 1199, 1.0)
+        TitleHeleneAnimation.push(img);
+    }else {
+        const img = new Img('img/animation/Scene1_'+ i + '.png', -98, 0, 1199, 1199, 1.0)
+        TitleHeleneAnimation.push(img);
+    }
+    
+}
 /**
  * ゲームづくりの基本となるクラス
  */
@@ -32,7 +46,8 @@ class TitleScreen {
         ctx.fillRect(0, 0, this.width, this.height); // (x, y, width, height)
         ctx.fill();
         //Helene
-        HeleneTitleImage.draw(ctx)
+        // HeleneTitleImage.draw(ctx)
+        TitleHeleneAnimation[countAnimation % 105].draw(ctx)
         ctx.beginPath()
         ctx.globalAlpha = 0.1;
         ctx.fillStyle = '#000000'; // 四角形の塗りつぶし色

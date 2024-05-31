@@ -217,9 +217,6 @@ class BattleScreen {
             console.log(this.HeleneAlpha)
             ctx.globalAlpha = this.HeleneAlpha
             HeleneShadow.draw(ctx)
-
-
-
             ctx.globalAlpha = this.LauraAlpha
             LauraShadow.draw(ctx)
 
