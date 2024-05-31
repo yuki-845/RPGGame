@@ -9,11 +9,11 @@ Laura.x = 700;
 Laura.y = 400
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 //吹き出し画像
-let speech_bubble = new Image();
-speech_bubble.src = 'img/speech_bubble.png';
+const speech_bubble = new Img('img/speech_bubble.png',0,0,840,335.88)
+
 //吹き出し画像反転
-let speech_bubble_reverse = new Image();
-speech_bubble_reverse.src = 'img/speech_bubble_reverse.png'
+const speech_bubble_reverse = new Img('img/speech_bubble_reverse.png',0,0,959.19,383.54);
+
 const characterIcon = new Image()
 characterIcon.src = "img/CharacterIcon.png"
 
@@ -110,14 +110,20 @@ class GameScreen {
                     Character_y = Skeleton.y
                 }
                 if (!this.dontTalk) {
-                    ctx.drawImage(speech_bubble, Character_x - aspect(161), Character_y - aspect(330), aspect(840.92), aspect(335.05));
-                    ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
-                    const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
-                    talkTex.drawText(ctx);
+                    // speech_bubble.x = 85
+                    // speech_bubble.y = 138.12
+                    // speech_bubble.draw(ctx)
+                   
+                    // ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
+                    // const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+                    // talkTex.drawText(ctx);
+                    speech_bubble_reverse.x = Character_x - 580
+                    speech_bubble_reverse.y = Character_y - 350
 
-                    ctx.drawImage(speech_bubble_reverse, Character_x - aspect(670), Character_y - aspect(330), aspect(940.92), aspect(370.05));
+                    speech_bubble_reverse.draw(ctx)
+                    
                     ctx.drawImage(characterIcon, Character_x - aspect(700), Character_y - aspect(330), aspect(197), aspect(262));
-                    const talkTexc = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
+                    const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white', 33, false, 'normal', 500);
                     talkTexc.drawText(ctx);
 
                 }

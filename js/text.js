@@ -63,15 +63,28 @@ class Text {
     }
     drawText(ctx) {
         // Split the text at every newline character
+        let count = 0;
+        for (let i = 0; i < this.text.length; i++) {
+            if (this.text[i] === '\n') {
+                count++;
+            }
+        }
+
+        
+            console.log(this.y)
+            this.y -= (aspect(34) * count)
+            console.log(this.y)
+        
+        
         var lines = this.text.split('\n');
         ctx.globalAlpha = this.alpha;
-        ctx.font = this.fontweight + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "ヒラギノ明朝 ProN", sans-serif'
+        ctx.font = this.fontweight + ' ' + this.weight + ' ' + aspect(this.fontsize) + 'px "Noto Serif JP", sans-serif'
         ctx.fillStyle = this.color;
 
         // Draw each line separately
         for (var i = 0; i < lines.length; i++) {
             ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
-            this.y += aspect(this.fontsize) * 2; // Move down by line height for the next line
+            this.y += (aspect(this.fontsize) * 2) + aspect(10); // Move down by line height for the next line
         }
     }
 

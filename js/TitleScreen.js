@@ -47,7 +47,12 @@ class TitleScreen {
         ctx.fill();
         //Helene
         // HeleneTitleImage.draw(ctx)
-        TitleHeleneAnimation[countAnimation % 105].draw(ctx)
+        if(countAnimation % 1 == 0) {
+            TitleHeleneAnimation[countAnimation % 105].draw(ctx)
+        }else  {
+            TitleHeleneAnimation[(countAnimation - 0.5) % 105].draw(ctx)
+        }
+        
         ctx.beginPath()
         ctx.globalAlpha = 0.1;
         ctx.fillStyle = '#000000'; // 四角形の塗りつぶし色

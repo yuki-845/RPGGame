@@ -252,7 +252,7 @@ addEventListener('load', () => {
             if (ISMenuScreen.isclick) {
                 menuscreen.draw(ctx);
             }
-            countAnimation++;
+            countAnimation += 0.5
 
         };
 
