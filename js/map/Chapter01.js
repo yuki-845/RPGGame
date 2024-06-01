@@ -3,7 +3,7 @@ HighMountain.src = "img/map/b_02高山.png"
 const DeadTree = new Image()
 DeadTree.src = "img/map/d_07枯木.png"
 const chapter01background = new Image()
-chapter01background.src = "img/background.jpeg"
+chapter01background.src = "img/background.png"
 const MapChapter01 = {
    map:[
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

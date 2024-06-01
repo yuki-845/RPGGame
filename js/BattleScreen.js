@@ -185,7 +185,7 @@ class BattleScreen {
         //うるさいので一旦コメントアウト
         // audio.play();
         ctx.globalAlpha = 1;
-        ctx.drawImage(chapter01background, aspect(0), aspect(-264), aspect(2361), aspect(1574));
+        ctx.drawImage(chapter01background, aspect(-195), aspect(-459), aspect(2311), aspect(1552));
         clickItems = [];
 
         const BackArrow = new Parallelogram(2020.29, 1413.65, -633.14, -57.17, -674.16, -253.74, 1368.24, 2589.98, 1, "#356093")

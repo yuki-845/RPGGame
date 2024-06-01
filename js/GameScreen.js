@@ -4,11 +4,11 @@ const Helene = new Sprite('img/charaChip/Helene.png');
 const Laura = new Sprite('img/charaChip/Laura.png');
 
 Helene.x = 600;
-Helene.y = 400;
+Helene.y = 600;
 Helene.frame = 7
 
 Laura.x = 700;
-Laura.y = 400
+Laura.y = 600
 Laura.frame = 4
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 //吹き出し画像
@@ -18,7 +18,7 @@ const speech_bubble = new Img('img/speech_bubble.png',0,0,840,335.88)
 const speech_bubble_reverse = new Img('img/speech_bubble_reverse.png',0,0,959.19,383.54);
 
 const characterIcon = new Image()
-characterIcon.src = "img/CharacterIcon.png"
+characterIcon.src = "img/charaIcon/CharacterIcon.png"
 
 
 //ビックリマーク
@@ -56,8 +56,9 @@ class GameScreen {
 
         // Titleの背景
         ctx.globalAlpha = 1
-        ctx.drawImage(chapter01background, aspect(0), aspect(-189), aspect(1953), aspect(1302));
+        ctx.drawImage(chapter01background, aspect(-195), aspect(-459), aspect(2311), aspect(1552));
         const map = new MapSprite(MapChapter01_Under.image, aspect(64), MapChapter01_Under.map)
+        map.y = aspect(200)
         map.draw(ctx)
         Laura.draw(ctx)
         Helene.draw(ctx);
@@ -84,7 +85,7 @@ class GameScreen {
                 let key = Object.keys(talk.chapter01[this.TalkIndex]);
 
                 if (key[0] == "骸") {
-                    if (Skeleton.y <= 741) {
+                    if (Skeleton.y <= 801) {
                         this.dontTalk = false
                     } else {
                         this.dontTalk = true
@@ -100,7 +101,7 @@ class GameScreen {
                     Laura.frame = 1;
                     ctx.drawImage(exclamationMark, aspect(Helene.x + 21), aspect(Helene.y - 88), aspect(39), aspect(78));
                     ctx.drawImage(exclamationMark, aspect(Laura.x + 21), aspect(Laura.y - 88), aspect(39), aspect(78));
-                    Skeleton.y += (740 - Skeleton.y) / 5;
+                    Skeleton.y += (800 - Skeleton.y) / 5;
 
                 }
 
@@ -108,16 +109,9 @@ class GameScreen {
                 let Character_x = 0;
                 let Character_y = 0;
 
-                if (key[0] == "ラウラ") {
-                    Character_x = Laura.x
-                    Character_y = Laura.y
-                } else if (key[0] == "ヘレーネ") {
-                    Character_x = Helene.x
-                    Character_y = Helene.y
-                } else if (key[0] == "骸") {
-                    Character_x = Skeleton.x
-                    Character_y = Skeleton.y
-                }
+                let s = Whois(key[0])
+                Character_x = s.x
+                Character_y = s.y
                 if (!this.dontTalk) {
                     // speech_bubble.x = 85
                     // speech_bubble.y = 138.12
@@ -126,9 +120,14 @@ class GameScreen {
                     // ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
                     // const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
                     // talkTex.drawText(ctx);
+                    let keys = Object.keys(talk.chapter01[this.TalkIndex + 1]);
+                    
+                    let s2 = Whois(keys[0])
+                    let _xx = s2.x;
+                    let _yy = s2.y;
 
-
-                    speech_bubble_reverse.x = Character_x - 580
+                    if(_xx > Character_x) {
+                        speech_bubble_reverse.x = Character_x - 580
                     speech_bubble_reverse.y = Character_y - 350
 
                     speech_bubble_reverse.draw(ctx)
@@ -136,7 +135,19 @@ class GameScreen {
                     ctx.drawImage(characterIcon,  aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
                     const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white',32, false, 'normal', 500);
                     talkTexc.drawText(ctx,Character_x - 444);
-
+                    }else {
+                        // speech_bubble_reverse.x = Character_x - 580
+                        // speech_bubble_reverse.y = Character_y - 350
+    
+                        // speech_bubble_reverse.draw(ctx)
+                        
+                        // ctx.drawImage(characterIcon,  aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
+                        // const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white',32, false, 'normal', 500);
+                        // talkTexc.drawText(ctx,Character_x - 444);
+                    }
+                    
+                    
+                    
                 }
 
             }
@@ -171,3 +182,20 @@ class GameScreen {
     }
 }
 
+function Whois(s) {
+    let x = {
+        x: 0,
+        y: 0
+    }
+    if (s === "ラウラ") {
+        x.x = Laura.x
+        x.y = Laura.y
+    }if (s === "ヘレーネ") {
+       x.x = Helene.x
+        x.y= Helene.y
+    } else if (s === "骸") {
+        x.x = Skeleton.x
+        x.y = Skeleton.y
+    }
+    return x
+}
