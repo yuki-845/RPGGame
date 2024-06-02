@@ -69,13 +69,19 @@ addEventListener('load', () => {
                     }
                     //BattleScreen内でのclickイベント
                     if (IsBattleScreen.isclick) {
-                        if (item.text == "M") {
-                            skillSwitchAnimation.isAnimation = true;
-                            console.log(item.text)
+                        if(!battlescreen.isAction) {
+                            if (item.text == "M") {
+                                skillSwitchAnimation.isAnimation = true;
+                                console.log(item.text)
+                            }
+                            if (item.text == "A") {
+                                battlescreen.isAtack = true;
+                            }
+                            if(item.text === "G") {
+                                battlescreen.isGuard = true;
+                            }
                         }
-                        if (item.text == "A") {
-                            battlescreen.isAtack = true;
-                        }
+                        
                         if (item.text == "BACK") {
                             skillSwitchAnimation.isAnimation = false;
                         }

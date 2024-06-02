@@ -168,10 +168,10 @@ class BattleScreen {
         this.arrowanimation = false;
 
         this.isAtack = false;
+        this.isGuard = false;
 
         this.AllyWhatTimesAttacked = 0;
         this.isChange = false;
-
 
         this.HeleneAlpha = 1;
         this.LauraAlpha = 0;
@@ -179,6 +179,8 @@ class BattleScreen {
         this.isEnemyTurn = false
 
         this.gameText = "";
+
+        this.isAction = false
     }
 
     draw(ctx, canvas) {
@@ -270,6 +272,8 @@ class BattleScreen {
             wolf.draw(ctx)
             this.gameText = "ウルフ"
         }
+
+        
         //どの敵に攻撃しているか
         ctx.globalAlpha = 1;
         ctx.drawImage(SlectItem, aspect(429.36), aspect(407.88), aspect(324.64), aspect(161.25));
@@ -296,26 +300,39 @@ class BattleScreen {
         ctx.fill(); // 塗りつぶ市
 
 
-        if (this.isAtack) {
+        if (this.isAtack || this.isGuard) {
+            this.isAction = true
+           
+            if(this.isGuard) {
+                if (this.AllyWhatTimesAttacked == 0) {
+                    this.AllyWhatTimesAttacked = 1;
+                } else if (this.AllyWhatTimesAttacked == 1) {
+                    this.AllyWhatTimesAttacked = 2;
+                }
+                this.isChange = true;
+                this.isGuard = false
 
-            Slashing.draw(ctx)
-            Slashing.count += 1;
-            if (Slashing.count % 4 == 0) {
-                Slashing.frame += 1;
-                if (Slashing.frame == Slashing.img.width / 240) {
-                    this.isAtack = false
-                    Slashing.count = 0;
-                    if (this.AllyWhatTimesAttacked == 0) {
-                        this.AllyWhatTimesAttacked = 1;
-                    } else if (this.AllyWhatTimesAttacked == 1) {
-                        this.AllyWhatTimesAttacked = 2;
+            }else if(this.isAtack) {
+                Slashing.draw(ctx)
+                Slashing.count += 1;
+                if (Slashing.count % 4 == 0) {
+                    Slashing.frame += 1;
+                    if (Slashing.frame == Slashing.img.width / 240) {
+                        this.isAtack = false
+                        Slashing.count = 0;
+                        if (this.AllyWhatTimesAttacked == 0) {
+                            this.AllyWhatTimesAttacked = 1;
+                        } else if (this.AllyWhatTimesAttacked == 1) {
+                            this.AllyWhatTimesAttacked = 2;
+                        }
+    
+                        this.isChange = true;
+    
+    
                     }
-
-                    this.isChange = true;
-
-
                 }
             }
+            
         }
 
         //戦闘画面遷移アニメーション
@@ -430,7 +447,7 @@ class BattleScreen {
 
         //アタックしたあとの入れ替わりアニメーション
         if (this.isChange && this.AllyWhatTimesAttacked == 1) {
-
+            
             this.HeleneAlpha -= 0.05;
             this.LauraAlpha += 0.05
             if (this.HeleneAlpha <= 0) {
@@ -438,6 +455,8 @@ class BattleScreen {
                 this.HeleneAlpha = 0;
                 this.LauraAlpha = 1;
                 Slashing.frame = 0;
+
+            this.isAction = false
             }
             const animationspeed = 5
             LauraShadow.x += (987 - LauraShadow.x) / animationspeed
@@ -453,6 +472,8 @@ class BattleScreen {
                 this.LauraAlpha = 0;
 
                 this.isEnemyTurn = true;
+
+                this.isAction = false
             }
             const animationspeed = 5
 

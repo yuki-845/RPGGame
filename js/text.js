@@ -89,7 +89,7 @@ class Text {
         for (var i = 0; i < lines.length; i++) {
             console.log((293 + XC) - (maxwidth / 2))
             ctx.fillText(lines[i], (aspect(293) + aspect(XC)) - (maxwidth / 2), aspect(this.y));
-            this.y += (aspect(this.fontsize) * 2) + aspect(20); // Move down by line height for the next line
+            this.y += (aspect(this.fontsize) * 2) + aspect(25); // Move down by line height for the next line
         }
     }
 

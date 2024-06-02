@@ -12,14 +12,16 @@ Laura.y = 600
 Laura.frame = 4
 const encoutnanimation = new EncoutAnimation(583, 435, 533, 714, screenWidth);
 //吹き出し画像
-const speech_bubble = new Img('img/speech_bubble.png',0,0,840,335.88)
+const speech_bubble = new Img('img/speech_bubble.png', 0, 0, 959.19, 383.54);
 
 //吹き出し画像反転
-const speech_bubble_reverse = new Img('img/speech_bubble_reverse.png',0,0,959.19,383.54);
+const speech_bubble_reverse = new Img('img/speech_bubble_reverse.png', 0, 0, 959.19, 383.54);
+
+const characterIcon_reverse = new Image()
+characterIcon_reverse.src = "img/charaIcon/CharacterIcon_reverse.png"
 
 const characterIcon = new Image()
-characterIcon.src = "img/charaIcon/CharacterIcon.png"
-
+characterIcon.src = "img/charaIcon/characterIcon.png"
 
 //ビックリマーク
 const exclamationMark = new Image()
@@ -116,38 +118,44 @@ class GameScreen {
                     // speech_bubble.x = 85
                     // speech_bubble.y = 138.12
                     // speech_bubble.draw(ctx)
-                   
+
                     // ctx.drawImage(characterIcon, Character_x - aspect(161), Character_y - aspect(330), aspect(197), aspect(262));
                     // const talkTex = new Text(Character_x - aspect(-60), Character_y - aspect(180), talk.chapter01[this.TalkIndex][key], 'white', 28, false, 'normal', 700);
                     // talkTex.drawText(ctx);
-                    let keys = Object.keys(talk.chapter01[this.TalkIndex + 1]);
-                    
-                    let s2 = Whois(keys[0])
-                    let _xx = s2.x;
-                    let _yy = s2.y;
 
-                    if(_xx > Character_x) {
-                        speech_bubble_reverse.x = Character_x - 580
-                    speech_bubble_reverse.y = Character_y - 350
 
-                    speech_bubble_reverse.draw(ctx)
-                    
-                    ctx.drawImage(characterIcon,  aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
-                    const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white',32, false, 'normal', 500);
-                    talkTexc.drawText(ctx,Character_x - 444);
-                    }else {
-                        // speech_bubble_reverse.x = Character_x - 580
-                        // speech_bubble_reverse.y = Character_y - 350
-    
-                        // speech_bubble_reverse.draw(ctx)
-                        
-                        // ctx.drawImage(characterIcon,  aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
-                        // const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white',32, false, 'normal', 500);
-                        // talkTexc.drawText(ctx,Character_x - 444);
+
+                    //普通の吹き出しか(0)反転した吹き出しか(1)どうか
+                    let which = 0;
+                    if (key[0] == "ヘレーネ") {
+                        which = 0
+                    } else {
+                        which = 1;
                     }
-                    
-                    
-                    
+
+
+
+                    if (which === 0) {
+                        speech_bubble.x = Character_x - 340
+                        speech_bubble.y = Character_y - 360
+                        speech_bubble.draw(ctx)
+                        ctx.drawImage(characterIcon, aspect(Character_x - 580 + 240), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
+                        const talkTexc = new Text(Character_x - 104, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white', 32, false, 'normal', 500);
+                        talkTexc.drawText(ctx, Character_x - 104);
+                    } else {
+                        speech_bubble_reverse.x = Character_x - 580
+                        speech_bubble_reverse.y = Character_y - 360
+                        speech_bubble_reverse.draw(ctx)
+                        ctx.drawImage(characterIcon_reverse, aspect(Character_x - 580 + 718), aspect(Character_y - 350 - 50), aspect(268.46), aspect(356.89));
+                        const talkTexc = new Text(Character_x - 444, Character_y - 180, talk.chapter01[this.TalkIndex][key], 'white', 32, false, 'normal', 500);
+                        talkTexc.drawText(ctx, Character_x - 444);
+
+                    }
+
+
+
+
+
                 }
 
             }
@@ -190,9 +198,9 @@ function Whois(s) {
     if (s === "ラウラ") {
         x.x = Laura.x
         x.y = Laura.y
-    }if (s === "ヘレーネ") {
-       x.x = Helene.x
-        x.y= Helene.y
+    } if (s === "ヘレーネ") {
+        x.x = Helene.x
+        x.y = Helene.y
     } else if (s === "骸") {
         x.x = Skeleton.x
         x.y = Skeleton.y
