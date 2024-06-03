@@ -271,6 +271,10 @@ class BattleScreen {
             ctx.globalAlpha = 1;
             wolf.draw(ctx)
             this.gameText = "ウルフ"
+
+            // if(this.isAtack) {
+            //     wolf.takenDamage();
+            // }
         }
 
         

@@ -19,11 +19,11 @@ class Img {
         this.w = w;
         this.h = h;
 
+        this.alpha = 1;
 
     } //constructor() 終了
     draw(ctx) {
-
-       
+        
         ctx.drawImage(this.img,aspect(this.x),aspect(this.y),aspect(this.w),aspect(this.h))
  
     }
