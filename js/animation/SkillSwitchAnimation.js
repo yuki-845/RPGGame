@@ -119,9 +119,16 @@ class SkillSwitchAnimation {
                 }
             }
 
-            const Explanation = new Text(1039, 790, isSkillScreenOnMouse.explanation, 'white', 30, false, 'normal', 700);
-            Explanation.drawExplanation(ctx);
+            if( isSkillScreenOnMouse.explanation === "") {
+                const Explanation = new Text(1039, 790, "NONE", 'white', 30, false, 'normal', 700);
+                Explanation.drawExplanation(ctx);
+    
+            }else {
+                const Explanation = new Text(1039, 790, isSkillScreenOnMouse.explanation, 'white', 30, false, 'normal', 700);
+                Explanation.drawExplanation(ctx);
 
+            }
+            
             // キャラクター画像
 
 

@@ -351,7 +351,7 @@ class BattleScreen {
             encoutnanimation.y4 += screenHeight / 25;
             if (encoutnanimation.y3 >= screenHeight * 2) {
                 encoutnanimation.isblue = false
-                encoutnanimation.alpha -= 0.1
+                encoutnanimation.alpha -= 0.01
 
                 if (encoutnanimation.alpha <= 0) {
                     console.log("真っ白になっちまったよ")

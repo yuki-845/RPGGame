@@ -92,7 +92,7 @@ class Text {
         }
     }
     drawExplanation(ctx) {
-        ctx.drawImage(skillbatu, aspect(994.89), aspect(this.y - this.fontsize + 5), aspect(20.6), aspect(20.8));
+        ctx.drawImage(skillbatu, aspect(994.89), aspect(this.y - this.fontsize), aspect(30.6), aspect(30.8));
         
         var lines = this.text.split('\n');
         ctx.globalAlpha = 1;
