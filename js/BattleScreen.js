@@ -393,15 +393,15 @@ class BattleScreen {
         // Heleneスキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
             const animationspeed = 5
-            HeleneShadow.x += (1453 - HeleneShadow.x) / animationspeed;
-            HeleneShadow.y += (196 - HeleneShadow.y) / animationspeed;
+            HeleneShadow.x += (1295 - HeleneShadow.x) / animationspeed;
+            HeleneShadow.y += (118 - HeleneShadow.y) / animationspeed;
 
-            if (HeleneShadow.x >= 1300) {
+            if (HeleneShadow.x >= 1270) {
                 this.isSkill = true;
-                skillSwitchAnimation.x1 += (1166.16 - skillSwitchAnimation.x1) / animationspeed;
-                skillSwitchAnimation.x2 += (1920 - skillSwitchAnimation.x2) / animationspeed;
-                skillSwitchAnimation.x3 += (1658.84 - skillSwitchAnimation.x3) / animationspeed;
-                skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
+                skillSwitchAnimation.x1 += (1118.93 - skillSwitchAnimation.x1) / animationspeed;
+                skillSwitchAnimation.x2 += (1872.76 - skillSwitchAnimation.x2) / animationspeed;
+                skillSwitchAnimation.x3 += (1611.6 - skillSwitchAnimation.x3) / animationspeed;
+                skillSwitchAnimation.x4 += (857.76 - skillSwitchAnimation.x4) / animationspeed;
 
             }
         } else if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 0) {
@@ -421,15 +421,15 @@ class BattleScreen {
         // Lauraスキル画面線維アニメーション
         if (skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
             const animationspeed = 5
-            LauraShadow.x += (1453 - LauraShadow.x) / animationspeed;
-            LauraShadow.y += (196 - LauraShadow.y) / animationspeed;
+            LauraShadow.x += (1462 - LauraShadow.x) / animationspeed;
+            LauraShadow.y += (164.99 - LauraShadow.y) / animationspeed;
 
             if (LauraShadow.x >= 1300) {
                 this.isSkill = true;
-                skillSwitchAnimation.x1 += (1166.16 - skillSwitchAnimation.x1) / animationspeed;
-                skillSwitchAnimation.x2 += (1920 - skillSwitchAnimation.x2) / animationspeed;
-                skillSwitchAnimation.x3 += (1658.84 - skillSwitchAnimation.x3) / animationspeed;
-                skillSwitchAnimation.x4 += (905 - skillSwitchAnimation.x4) / animationspeed;
+                skillSwitchAnimation.x1 += (1118.93 - skillSwitchAnimation.x1) / animationspeed;
+                skillSwitchAnimation.x2 += (1872.76 - skillSwitchAnimation.x2) / animationspeed;
+                skillSwitchAnimation.x3 += (1611.6 - skillSwitchAnimation.x3) / animationspeed;
+                skillSwitchAnimation.x4 += (857.76 - skillSwitchAnimation.x4) / animationspeed;
 
             }
         } else if (!skillSwitchAnimation.isAnimation && this.AllyWhatTimesAttacked == 1) {
