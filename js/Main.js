@@ -190,6 +190,7 @@ addEventListener('load', () => {
                         ison = true
                         isSkillScreenOnMouse.isOnMouse = true
                         isSkillScreenOnMouse.i = item.i
+                        
                     }
                 })
                 if (!ison) {

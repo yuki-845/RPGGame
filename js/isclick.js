@@ -30,5 +30,6 @@ let isTitleScreenOnMouse = {
 
 let isSkillScreenOnMouse = {
     isOnMouse: false,
-    i: -1
+    i: -1,
+    explanation: ""
 }

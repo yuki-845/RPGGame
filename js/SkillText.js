@@ -2,6 +2,9 @@ const skillpara = new Image();
 skillpara.src = 'img/skillpara.png'; // 画像のパスを指定してください
 const roundrect = new Image();
 roundrect.src = 'img/roundrect.png'; // 画像のパスを指定してください
+const skillbatu = new Image();
+skillbatu.src = 'img/skillbatu.png'; // 画像のパスを指定してください
+
 
 class SkillText {
 

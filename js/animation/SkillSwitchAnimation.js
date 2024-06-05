@@ -9,6 +9,7 @@ class SkillSwitchAnimation {
         this.x4 = 3026;
 
 
+        this.x = 1843.26;
     }
 
     draw(ctx, imagex, imagey, AllyWhatTimesAttacked) {
@@ -69,12 +70,18 @@ class SkillSwitchAnimation {
         // ctx.fill();
         if (this.isAnimation) {
 
-            // if(isSkillScreenOnMouse.isOnMouse && this.i == isSkillScreenOnMouse.i) {
-            //     ctx.fillStyle = 'white'; //
-            //     ctx.fillRect(aspect(-183.74), aspect(229.88 + (72 * this.i)), aspect(2180), aspect(68)); // x, y, 幅, 高さ
-    
-            // }
-           
+            for (let i = 0; i < SaveData.Helene.Magic.length; i++) {
+                if (isSkillScreenOnMouse.isOnMouse && i == isSkillScreenOnMouse.i) {
+                    ctx.fillStyle = 'white'; //
+                    ctx.fillRect(aspect(this.x), aspect(229.88 + (72 * i)), aspect(2180), aspect(68)); // x, y, 幅, 高さ
+                    this.x += (-183 - this.x) / 7;
+
+                }
+            }
+            if(!isSkillScreenOnMouse.isOnMouse) {
+                this.x = 1843.26;
+            }
+
             ctx.globalAlpha = 1;
             if (AllyWhatTimesAttacked == 0) {
                 ctx.drawImage(HeleneShadowBack, aspect(1314), aspect(-80), aspect(713), aspect(1284));
@@ -90,17 +97,33 @@ class SkillSwitchAnimation {
             }
             // スキル名テキスト
             if (AllyWhatTimesAttacked == 0) {
-                for(let i = 0; i < SaveData.Helene.Magic.length; i++) {
-                    const skill = new SkillText(SaveData.Helene.Magic[i]["name"],1125.74 - (18 * i),246.5 + (72 * i),aspect(35),i )
+                for (let i = 0; i < SaveData.Helene.Magic.length; i++) {
+                    const skill = new SkillText(SaveData.Helene.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
                     skill.draw(ctx)
                     clickItems.push(skill)
+                    if (isSkillScreenOnMouse.isOnMouse && i == isSkillScreenOnMouse.i) {
+
+                        isSkillScreenOnMouse.explanation = SaveData.Helene.Magic[i]["explanation"]
+                        
+                    }
                 }
             } else {
+                for (let i = 0; i < SaveData.Laura.Magic.length; i++) {
+                    const skill = new SkillText(SaveData.Laura.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
+                    skill.draw(ctx)
+                    clickItems.push(skill)
+                    if (isSkillScreenOnMouse.isOnMouse && i == isSkillScreenOnMouse.i) {
 
+                        isSkillScreenOnMouse.explanation = SaveData.Laura.Magic[i]["explanation"]
+                    }
+                }
             }
 
+            const Explanation = new Text(1039, 790, isSkillScreenOnMouse.explanation, 'white', 30, false, 'normal', 700);
+            Explanation.drawExplanation(ctx);
+
             // キャラクター画像
-            
+
 
 
             //SKILL テキスト

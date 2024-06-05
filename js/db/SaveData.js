@@ -12,7 +12,7 @@ let SaveData =  {
     Event_1: false,
     Event_2:false,
     Helene: {
-        Magic: [{"name": "ファイヤ", "SP": 3}, {"name": "キュア", "SP": 5}],
+        Magic: [{"name": "ファイヤ", "SP": 3 ,"explanation": "ファイヤーを履こう"}, {"name": "キュア", "SP": 5,"explanation": "ファイヤーを履こう"}],
         Lv: 1,
         HP: 10,
         MP: 10,
@@ -23,7 +23,7 @@ let SaveData =  {
         MAT: 10,
     },
     Laura: {
-        Magic: [{"name": "ファイヤ", "SP": 3}, {"name": "キュア", "SP": 5}],
+        Magic: [{"name": "ファイヤ", "SP": 3,"explanation": "ファイヤーを履こう"}, {"name": "キュア", "SP": 5,"explanation": "ファイヤーを履こう"}],
         Lv: 1,
         HP: 10,
         MP: 10,
