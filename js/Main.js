@@ -186,13 +186,21 @@ addEventListener('load', () => {
                         isTitleScreenOnMouse.isOnMouse = true;
                         isTitleScreenOnMouse.text = item.text
                     }
-
+                    if(item.testHit(mouseX, mouseY) && IsBattleScreen.isclick) {
+                        ison = true
+                        isSkillScreenOnMouse.isOnMouse = true
+                        isSkillScreenOnMouse.i = item.i
+                    }
                 })
                 if (!ison) {
                     isTitleScreenOnMouse.isOnMouse = false;
                     isTitleScreenOnMouse.text = ""
                     targetFlag = false
                     titlescreen.x1 = 1920
+
+
+                    isSkillScreenOnMouse.isOnMouse = false
+                    isSkillScreenOnMouse.i = -1
                 }
             },
             /* 連続イベントの間引き */

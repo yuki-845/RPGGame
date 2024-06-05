@@ -27,3 +27,8 @@ let isTitleScreenOnMouse = {
     isOnMouse: false,
     text: ""
 }
+
+let isSkillScreenOnMouse = {
+    isOnMouse: false,
+    i: -1
+}

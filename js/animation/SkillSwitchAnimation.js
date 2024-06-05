@@ -68,23 +68,13 @@ class SkillSwitchAnimation {
         // ctx.fillRect(aspect(-147), aspect(338), aspect(2100), aspect(68)) // (x, y, width, height)
         // ctx.fill();
         if (this.isAnimation) {
-            // スキル名テキスト
-            if (AllyWhatTimesAttacked == 0) {
-                for (let i = 0; i < SaveData.Helene.Magic.length; i++) {
-                    const fire = new Text(1245.26 - (18 * i), 245.88 + (72 * i), SaveData.Helene.Magic[i]["name"], 'white', 35, false, 'normal');
-                    fire.draw(ctx);
-                    ctx.fillStyle = 'white';
-                    fillRoundRect(ctx, aspect(1494), aspect(352), aspect(117), aspect(41), 10);
-                    const sp = new Text(1514, 353, "3 SP", '#333DBC', 31, false, 'normal');
-                    sp.draw(ctx);
-                }
 
-
-            } else {
-
-            }
-
-            // キャラクター画像
+            // if(isSkillScreenOnMouse.isOnMouse && this.i == isSkillScreenOnMouse.i) {
+            //     ctx.fillStyle = 'white'; //
+            //     ctx.fillRect(aspect(-183.74), aspect(229.88 + (72 * this.i)), aspect(2180), aspect(68)); // x, y, 幅, 高さ
+    
+            // }
+           
             ctx.globalAlpha = 1;
             if (AllyWhatTimesAttacked == 0) {
                 ctx.drawImage(HeleneShadowBack, aspect(1314), aspect(-80), aspect(713), aspect(1284));
@@ -98,6 +88,19 @@ class SkillSwitchAnimation {
                 LauraShadow.h = 1054.85
                 LauraShadow.draw(ctx)
             }
+            // スキル名テキスト
+            if (AllyWhatTimesAttacked == 0) {
+                for(let i = 0; i < SaveData.Helene.Magic.length; i++) {
+                    const skill = new SkillText(SaveData.Helene.Magic[i]["name"],1125.74 - (18 * i),246.5 + (72 * i),aspect(35),i )
+                    skill.draw(ctx)
+                    clickItems.push(skill)
+                }
+            } else {
+
+            }
+
+            // キャラクター画像
+            
 
 
             //SKILL テキスト
