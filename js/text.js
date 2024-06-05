@@ -88,11 +88,11 @@ class Text {
         for (var i = 0; i < lines.length; i++) {
             
             ctx.fillText(lines[i], (aspect(293) + aspect(XC)) - (maxwidth / 2), aspect(this.y));
-            this.y += (aspect(this.fontsize) * 2) + aspect(25); // Move down by line height for the next line
+            this.y += this.fontsize * 1.4// Move down by line height for the next line
         }
     }
     drawExplanation(ctx) {
-        ctx.drawImage(skillbatu, aspect(994.89), aspect(this.y - this.fontsize), aspect(20.6), aspect(20.8));
+        ctx.drawImage(skillbatu, aspect(994.89), aspect(this.y - this.fontsize + 5), aspect(20.6), aspect(20.8));
         
         var lines = this.text.split('\n');
         ctx.globalAlpha = 1;
@@ -102,7 +102,7 @@ class Text {
         this.y -= (aspect(this.fontsize) * lines.length) - aspect(25)
         for (var i = 0; i < lines.length; i++) {
             ctx.fillText(lines[i], aspect(this.x), aspect(this.y));
-            this.y += (this.fontsize); // Move down by line height for the next line
+            this.y += this.fontsize * 1.4; // Move down by line height for the next line
         }
     }
 

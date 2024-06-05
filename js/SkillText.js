@@ -34,7 +34,7 @@ class SkillText {
         if(isSkillScreenOnMouse.isOnMouse && this.i == isSkillScreenOnMouse.i) {
             ctx.fillStyle = "black";
         }
-        ctx.fillText(this.text, aspect(this.x + 119.52), aspect(this.y) + aspect(35));
+        ctx.fillText(this.text, aspect(this.x + 119.52), aspect(this.y) + aspect(30));
 
         ctx.drawImage(roundrect, aspect(this.x + 337.52), aspect(this.y), aspect(107), aspect(35));
         ctx.fill();
