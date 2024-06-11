@@ -4,6 +4,7 @@ let Mouse_X = 0;
 let Mouse_Y = 0;
 let countAnimation = 0;
 // ページの読み込みが完了した後に処理を実行
+let rainAnimation = 0;
 addEventListener('load', () => {
     /**
      * ゲームづくりの基本となるクラス
@@ -268,6 +269,11 @@ addEventListener('load', () => {
                 menuscreen.draw(ctx);
             }
             countAnimation += 0.5
+            if(countAnimation % 2 == 0) {
+                rainAnimation += 1;
+            }
+            
+
 
         };
 

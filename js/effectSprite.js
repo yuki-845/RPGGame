@@ -19,9 +19,9 @@ class effectSprite {
         //画像の初期位置
         this.x = this.y = 200;
         //画像を表示する範囲の横幅。引数widthが指定されていない場合、this.widthに32を代入
-        this.width = width || 240;
+        this.width = width || 384;
         //画像を表示する範囲の縦幅。引数heightが指定されていない場合、this.heightに32を代入
-        this.height = height || 240;
+        this.height = height || 384;
         //何番目の画像を表示するか
         this.frame = 0;
 
@@ -41,20 +41,20 @@ class effectSprite {
         // this.height = aspect(64)
 
         //X,Y方向に、何番目の画像か
-        const _frameX = this.frame % (this.img.width / 240);
-        const _frameY = ~~(this.frame / (this.img.width / 240));
+        const _frameX = this.frame % (this.img.width / this.width);
+        const _frameY = ~~(this.frame / (this.img.width / this.width));
         ctx.globalAlpha = 1
         //画家さんに、絵を描いてとお願いする
         ctx.drawImage(
             this.img,
-            240 * _frameX,
-            240 * _frameY,
-            240,
-            240,
+            this.width * _frameX,
+            this.width * _frameY,
+            this.width,
+            this.width,
             this.x,
             this.y,
-            this.width,
-            this.height
+            aspect(this.width * 2),
+            aspect(this.width * 2)
         );
     } //render() 終了
     

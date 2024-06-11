@@ -13,8 +13,9 @@ class SkillText {
      * width : ゲームの横幅
      * height : ゲームの縦幅
      */
-    constructor(text, x,y,h,i) {
+    constructor(img,text, x,y,h,i) {
         //canvas要素を作成
+        this.img = img
         this.text = text
         this.x = x;
         this.y = y;
@@ -27,7 +28,7 @@ class SkillText {
         
         ctx.beginPath();
         ctx.globalAlpha = 1;
-        ctx.drawImage(skillpara, aspect(this.x), aspect(this.y), aspect(87.28), aspect(35));
+        ctx.drawImage(this.img, aspect(this.x), aspect(this.y), aspect(87.28), aspect(35));
 
         ctx.font = 400 + ' ' + 'normal' + ' ' + aspect(35) + 'px "Noto Serif JP", sans-serif'
         ctx.fillStyle = "white";

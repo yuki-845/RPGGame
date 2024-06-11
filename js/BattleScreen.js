@@ -28,6 +28,13 @@ const wolf = new Img("img/enemy/wolf.png", 173, 97, 731, 861)
 //エフェクト
 const Slashing = new effectSprite("img/effect/Slashing.png")
 
+const Ray = new effectSprite("img/effect/ray.png",384,384)
+//アイコン
+const HeleneBattleScreen = new Image()
+HeleneBattleScreen.src = "img/charaIcon/HeleneBattleScreen.png"
+
+const LauraBattleScreen = new Image()
+LauraBattleScreen.src = "img/charaIcon/LauraBattleScreen.png"
 /**
  * 角が丸い四角形のパスを作成する
  * @param  {CanvasRenderingContext2D} ctx コンテキスト
@@ -188,6 +195,7 @@ class BattleScreen {
         // audio.play();
         ctx.globalAlpha = 1;
         ctx.drawImage(chapter01background, aspect(-195), aspect(-459), aspect(2311), aspect(1552));
+        rainArray[rainAnimation % 20].draw(ctx)
         clickItems = [];
 
         const BackArrow = new Parallelogram(2020.29, 1413.65, -633.14, -57.17, -674.16, -253.74, 1368.24, 2589.98, 1, "#356093")
@@ -277,37 +285,49 @@ class BattleScreen {
             // }
         }
 
-        
+
         //どの敵に攻撃しているか
         ctx.globalAlpha = 1;
         ctx.drawImage(SlectItem, aspect(429.36), aspect(407.88), aspect(324.64), aspect(161.25));
 
         //キャラクター　四角形
-        ctx.beginPath();
-        ctx.globalAlpha = 0.6;
-        ctx.moveTo(aspect(1532), aspect(652)); // 始点
-        ctx.lineTo(aspect(1920), aspect(652)); // 右上
-        ctx.lineTo(aspect(1884), aspect(822)); // 右下
-        ctx.lineTo(aspect(1497), aspect(822)); // 左下
-        ctx.closePath(); // パスを閉じる
-        ctx.fillStyle = '#5535DE'; // 色の指定
-        ctx.fill(); // 塗りつぶし
+        ctx.globalAlpha = 1;
+        ctx.drawImage(HeleneBattleScreen, aspect(1482.56), aspect(472.88), aspect(513.44), aspect(206.87));
+        //ヘレーネ HP
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#11C8FF'; // 塗りつぶしの色を赤に設定
+        ctx.fillRect(aspect(1659), aspect(603.37), aspect(220), aspect(10)); // 四角形を描画（x座標, y座標, 幅, 高さ）
+        const HeleneHPText = new Text(1817, 563.37, "999", '#11C8FF', 35, false, 'italic', 300);
+        HeleneHPText.draw(ctx);
+        // ヘレーネ MP
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#FFEC00'; // 塗りつぶしの色を赤に設定
+        ctx.fillRect(aspect(1659), aspect(650.37), aspect(220), aspect(10)); // 四角形を描画（x座標, y座標, 幅, 高さ）
+       
+        const HeleneMPText = new Text(1817, 611.37, "999", '#FFEC00', 35, false, 'italic', 300);
+        HeleneMPText.draw(ctx);
 
-        ctx.beginPath();
-        ctx.globalAlpha = 0.6;
-        ctx.moveTo(aspect(1532), aspect(854)); // 始点
-        ctx.lineTo(aspect(1920), aspect(854)); // 右上
-        ctx.lineTo(aspect(1884), aspect(1024)); // 右下
-        ctx.lineTo(aspect(1497), aspect(1024)); // 左下
-        ctx.closePath(); // パスを閉じる
-        ctx.fillStyle = '#5535DE'; // 色の指定
-        ctx.fill(); // 塗りつぶ市
+        ctx.globalAlpha = 1;
+        ctx.drawImage(LauraBattleScreen, aspect(1482.56), aspect(731.76), aspect(504.39), aspect(206.87));
+        //ラウラ HP
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#11C8FF'; // 塗りつぶしの色を赤に設定
+        ctx.fillRect(aspect(1659), aspect(858.37), aspect(220), aspect(10)); // 四角形を描画（x座標, y座標, 幅, 高さ）
 
+        const LauraHPText = new Text(1817, 818.37, "999", '#11C8FF', 35, false, 'italic', 300);
+        LauraHPText.draw(ctx);
+        // ラウラ MP
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#FFEC00'; // 塗りつぶしの色を赤に設定
+        ctx.fillRect(aspect(1659), aspect(905.37), aspect(220), aspect(10)); // 四角形を描画（x座標, y座標, 幅, 高さ）
+
+        const LauraMPText = new Text(1817, 866.37, "999", '#FFEC00', 35, false, 'italic', 300);
+        LauraMPText.draw(ctx);
 
         if (this.isAtack || this.isGuard) {
             this.isAction = true
-           
-            if(this.isGuard) {
+
+            if (this.isGuard) {
                 if (this.AllyWhatTimesAttacked == 0) {
                     this.AllyWhatTimesAttacked = 1;
                 } else if (this.AllyWhatTimesAttacked == 1) {
@@ -316,27 +336,29 @@ class BattleScreen {
                 this.isChange = true;
                 this.isGuard = false
 
-            }else if(this.isAtack) {
-                Slashing.draw(ctx)
-                Slashing.count += 1;
-                if (Slashing.count % 4 == 0) {
-                    Slashing.frame += 1;
-                    if (Slashing.frame == Slashing.img.width / 240) {
+            } else if (this.isAtack) {
+                Ray.draw(ctx)
+                Ray.count += 1;
+                if (Ray.count % 3 == 0) {
+                    console.log((Ray.img.width / Ray.width) * (Ray.img.height / Ray.width),"カウント")
+                    Ray.frame += 1;
+                    if (Ray.frame == (Ray.img.width / Ray.width) * (Ray.img.height / Ray.width)) {
                         this.isAtack = false
-                        Slashing.count = 0;
+                        Ray.count = 0;
+
                         if (this.AllyWhatTimesAttacked == 0) {
                             this.AllyWhatTimesAttacked = 1;
                         } else if (this.AllyWhatTimesAttacked == 1) {
                             this.AllyWhatTimesAttacked = 2;
                         }
-    
+
                         this.isChange = true;
-    
-    
+
+
                     }
                 }
             }
-            
+
         }
 
         //戦闘画面遷移アニメーション
@@ -451,16 +473,16 @@ class BattleScreen {
 
         //アタックしたあとの入れ替わりアニメーション
         if (this.isChange && this.AllyWhatTimesAttacked == 1) {
-            
+
             this.HeleneAlpha -= 0.05;
             this.LauraAlpha += 0.05
             if (this.HeleneAlpha <= 0) {
                 this.isChange = false
                 this.HeleneAlpha = 0;
                 this.LauraAlpha = 1;
-                Slashing.frame = 0;
+                Ray.frame = 0;
 
-            this.isAction = false
+                this.isAction = false
             }
             const animationspeed = 5
             LauraShadow.x += (987 - LauraShadow.x) / animationspeed

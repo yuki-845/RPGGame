@@ -32,6 +32,20 @@ const Skeleton = new Sprite("img/enemyChip/Skeleton.png")
 Skeleton.x = 650
 Skeleton.y = 1200
 Skeleton.frame = 10
+
+//雨
+const rainArray = [];
+for(let i = 1; i <= 20; i++) {
+    const img = new Img('img/rain/雨_斜め_trans_p' + i + '.png', 0, 0, 1920, 1080, 1.0)
+    rainArray.push(img);
+}
+// for(let i = 1; i <= 40; i++) {
+//     const img = new Img('img/rain/rainNormal/rainNormal_p' + i + '.png', 0, 0, 1920, 1080, 1.0)
+//     rainArray.push(img);
+// }
+
+
+
 class GameScreen {
 
     /**
@@ -64,6 +78,9 @@ class GameScreen {
         map.draw(ctx)
         Laura.draw(ctx)
         Helene.draw(ctx);
+      
+        
+        rainArray[rainAnimation % 20].draw(ctx)
 
         //チャプター１のはじめのイベント
         if (SaveData.Chapter == 1 && !SaveData.Event_1) {

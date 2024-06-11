@@ -98,7 +98,7 @@ class SkillSwitchAnimation {
             // スキル名テキスト
             if (AllyWhatTimesAttacked == 0) {
                 for (let i = 0; i < SaveData.Helene.Magic.length; i++) {
-                    const skill = new SkillText(SaveData.Helene.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
+                    const skill = new SkillText(SaveData.Helene.Magic[i]["image"],SaveData.Helene.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
                     skill.draw(ctx)
                     clickItems.push(skill)
                     if (isSkillScreenOnMouse.isOnMouse && i == isSkillScreenOnMouse.i) {
@@ -109,7 +109,7 @@ class SkillSwitchAnimation {
                 }
             } else {
                 for (let i = 0; i < SaveData.Laura.Magic.length; i++) {
-                    const skill = new SkillText(SaveData.Laura.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
+                    const skill = new SkillText(SaveData.Laura.Magic[i]["image"],SaveData.Laura.Magic[i]["name"], 1125.74 - (18 * i), 246.5 + (72 * i), aspect(35), i)
                     skill.draw(ctx)
                     clickItems.push(skill)
                     if (isSkillScreenOnMouse.isOnMouse && i == isSkillScreenOnMouse.i) {
